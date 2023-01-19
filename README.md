@@ -1,3 +1,4 @@
 # douyin-like-server
 
-push develop分支 测试
+auth功能开发
+注册和登录以及实体类
