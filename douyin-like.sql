@@ -24,7 +24,7 @@ CREATE TABLE `user` (
   `username` varchar(16) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '用户密码',
   `email` varchar(32) NOT NULL COMMENT 'email',
-  `phone` char(20) NOT NULL COMMENT '手机号码',
+  `phone` char(20)  COMMENT '手机号码',
   `follow_count` bigint NOT NULL COMMENT '关注总数',
   `follower_count` bigint NOT NULL COMMENT '粉丝总数',
   `created_time` datetime NOT NULL COMMENT '创建时间',
