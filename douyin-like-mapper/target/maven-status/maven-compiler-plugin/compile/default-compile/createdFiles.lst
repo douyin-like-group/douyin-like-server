@@ -1,6 +1,1 @@
-com\rocky\mapper\UsersMapper.class
 com\rocky\my\mapper\MyMapper.class
-com\rocky\mapper\FansMapper.class
-com\rocky\mapper\MyLikedVlogMapper.class
-com\rocky\mapper\VlogMapper.class
-com\rocky\mapper\CommentMapper.class

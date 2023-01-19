@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.rocky</groupId>
-            <artifactId>dy-like-mapper</artifactId>
+            <artifactId>douyin-like-mapper</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
