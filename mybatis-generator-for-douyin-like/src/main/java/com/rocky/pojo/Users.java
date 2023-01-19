@@ -5,84 +5,48 @@ import javax.persistence.*;
 
 public class Users {
     @Id
-    private String id;
+    private Long id;
 
     /**
-     * 手机号
+     * 閻?劍鍩涢崥锟
      */
-    private String mobile;
+    private String username;
 
     /**
-     * 昵称，媒体号
+     * 閻?劍鍩涚?鍡欑垳
      */
-    private String nickname;
+    private String password;
 
     /**
-     * 慕课号，类似头条号，抖音号，公众号，唯一标识，需要限制修改次数，比如终生1次，每年1次，每半年1次等，可以用于付费修改。
+     * email
      */
-    @Column(name = "imooc_num")
-    private String imoocNum;
+    private String email;
 
     /**
-     * 头像
+     * 閹靛?婧?崣椋庣垳
      */
-    private String face;
+    private String phone;
 
     /**
-     * 性别 1:男  0:女  2:保密
+     * 閸忚櫕鏁為幀缁樻殶
      */
-    private Integer sex;
+    @Column(name = "follow_count")
+    private Long followCount;
 
     /**
-     * 生日
+     * 缁??绗ｉ幀缁樻殶
      */
-    private Date birthday;
+    @Column(name = "follower_count")
+    private Long followerCount;
 
     /**
-     * 国家
-     */
-    private String country;
-
-    /**
-     * 省份
-     */
-    private String province;
-
-    /**
-     * 城市
-     */
-    private String city;
-
-    /**
-     * 区县
-     */
-    private String district;
-
-    /**
-     * 简介
-     */
-    private String description;
-
-    /**
-     * 个人介绍的背景图
-     */
-    @Column(name = "bg_img")
-    private String bgImg;
-
-    /**
-     * 慕课号能否被修改，1：默认，可以修改；0，无法修改
-     */
-    @Column(name = "can_imooc_num_be_updated")
-    private Integer canImoocNumBeUpdated;
-
-    /**
-     * 创建时间 创建时间
+     * 閸掓稑缂撻弮鍫曟？
      */
     @Column(name = "created_time")
     private Date createdTime;
 
     /**
-     * 更新时间 更新时间
+     * 閺囧瓨鏌婇弮鍫曟？
      */
     @Column(name = "updated_time")
     private Date updatedTime;
@@ -90,282 +54,156 @@ public class Users {
     /**
      * @return id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * 获取手机号
+     * 获取閻?劍鍩涢崥锟
      *
-     * @return mobile - 手机号
+     * @return username - 閻?劍鍩涢崥锟
      */
-    public String getMobile() {
-        return mobile;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * 设置手机号
+     * 设置閻?劍鍩涢崥锟
      *
-     * @param mobile 手机号
+     * @param username 閻?劍鍩涢崥锟
      */
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
-     * 获取昵称，媒体号
+     * 获取閻?劍鍩涚?鍡欑垳
      *
-     * @return nickname - 昵称，媒体号
+     * @return password - 閻?劍鍩涚?鍡欑垳
      */
-    public String getNickname() {
-        return nickname;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * 设置昵称，媒体号
+     * 设置閻?劍鍩涚?鍡欑垳
      *
-     * @param nickname 昵称，媒体号
+     * @param password 閻?劍鍩涚?鍡欑垳
      */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
-     * 获取慕课号，类似头条号，抖音号，公众号，唯一标识，需要限制修改次数，比如终生1次，每年1次，每半年1次等，可以用于付费修改。
+     * 获取email
      *
-     * @return imooc_num - 慕课号，类似头条号，抖音号，公众号，唯一标识，需要限制修改次数，比如终生1次，每年1次，每半年1次等，可以用于付费修改。
+     * @return email - email
      */
-    public String getImoocNum() {
-        return imoocNum;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * 设置慕课号，类似头条号，抖音号，公众号，唯一标识，需要限制修改次数，比如终生1次，每年1次，每半年1次等，可以用于付费修改。
+     * 设置email
      *
-     * @param imoocNum 慕课号，类似头条号，抖音号，公众号，唯一标识，需要限制修改次数，比如终生1次，每年1次，每半年1次等，可以用于付费修改。
+     * @param email email
      */
-    public void setImoocNum(String imoocNum) {
-        this.imoocNum = imoocNum;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
-     * 获取头像
+     * 获取閹靛?婧?崣椋庣垳
      *
-     * @return face - 头像
+     * @return phone - 閹靛?婧?崣椋庣垳
      */
-    public String getFace() {
-        return face;
+    public String getPhone() {
+        return phone;
     }
 
     /**
-     * 设置头像
+     * 设置閹靛?婧?崣椋庣垳
      *
-     * @param face 头像
+     * @param phone 閹靛?婧?崣椋庣垳
      */
-    public void setFace(String face) {
-        this.face = face;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     /**
-     * 获取性别 1:男  0:女  2:保密
+     * 获取閸忚櫕鏁為幀缁樻殶
      *
-     * @return sex - 性别 1:男  0:女  2:保密
+     * @return follow_count - 閸忚櫕鏁為幀缁樻殶
      */
-    public Integer getSex() {
-        return sex;
+    public Long getFollowCount() {
+        return followCount;
     }
 
     /**
-     * 设置性别 1:男  0:女  2:保密
+     * 设置閸忚櫕鏁為幀缁樻殶
      *
-     * @param sex 性别 1:男  0:女  2:保密
+     * @param followCount 閸忚櫕鏁為幀缁樻殶
      */
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setFollowCount(Long followCount) {
+        this.followCount = followCount;
     }
 
     /**
-     * 获取生日
+     * 获取缁??绗ｉ幀缁樻殶
      *
-     * @return birthday - 生日
+     * @return follower_count - 缁??绗ｉ幀缁樻殶
      */
-    public Date getBirthday() {
-        return birthday;
+    public Long getFollowerCount() {
+        return followerCount;
     }
 
     /**
-     * 设置生日
+     * 设置缁??绗ｉ幀缁樻殶
      *
-     * @param birthday 生日
+     * @param followerCount 缁??绗ｉ幀缁樻殶
      */
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setFollowerCount(Long followerCount) {
+        this.followerCount = followerCount;
     }
 
     /**
-     * 获取国家
+     * 获取閸掓稑缂撻弮鍫曟？
      *
-     * @return country - 国家
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * 设置国家
-     *
-     * @param country 国家
-     */
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    /**
-     * 获取省份
-     *
-     * @return province - 省份
-     */
-    public String getProvince() {
-        return province;
-    }
-
-    /**
-     * 设置省份
-     *
-     * @param province 省份
-     */
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    /**
-     * 获取城市
-     *
-     * @return city - 城市
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * 设置城市
-     *
-     * @param city 城市
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    /**
-     * 获取区县
-     *
-     * @return district - 区县
-     */
-    public String getDistrict() {
-        return district;
-    }
-
-    /**
-     * 设置区县
-     *
-     * @param district 区县
-     */
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    /**
-     * 获取简介
-     *
-     * @return description - 简介
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * 设置简介
-     *
-     * @param description 简介
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * 获取个人介绍的背景图
-     *
-     * @return bg_img - 个人介绍的背景图
-     */
-    public String getBgImg() {
-        return bgImg;
-    }
-
-    /**
-     * 设置个人介绍的背景图
-     *
-     * @param bgImg 个人介绍的背景图
-     */
-    public void setBgImg(String bgImg) {
-        this.bgImg = bgImg;
-    }
-
-    /**
-     * 获取慕课号能否被修改，1：默认，可以修改；0，无法修改
-     *
-     * @return can_imooc_num_be_updated - 慕课号能否被修改，1：默认，可以修改；0，无法修改
-     */
-    public Integer getCanImoocNumBeUpdated() {
-        return canImoocNumBeUpdated;
-    }
-
-    /**
-     * 设置慕课号能否被修改，1：默认，可以修改；0，无法修改
-     *
-     * @param canImoocNumBeUpdated 慕课号能否被修改，1：默认，可以修改；0，无法修改
-     */
-    public void setCanImoocNumBeUpdated(Integer canImoocNumBeUpdated) {
-        this.canImoocNumBeUpdated = canImoocNumBeUpdated;
-    }
-
-    /**
-     * 获取创建时间 创建时间
-     *
-     * @return created_time - 创建时间 创建时间
+     * @return created_time - 閸掓稑缂撻弮鍫曟？
      */
     public Date getCreatedTime() {
         return createdTime;
     }
 
     /**
-     * 设置创建时间 创建时间
+     * 设置閸掓稑缂撻弮鍫曟？
      *
-     * @param createdTime 创建时间 创建时间
+     * @param createdTime 閸掓稑缂撻弮鍫曟？
      */
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     /**
-     * 获取更新时间 更新时间
+     * 获取閺囧瓨鏌婇弮鍫曟？
      *
-     * @return updated_time - 更新时间 更新时间
+     * @return updated_time - 閺囧瓨鏌婇弮鍫曟？
      */
     public Date getUpdatedTime() {
         return updatedTime;
     }
 
     /**
-     * 设置更新时间 更新时间
+     * 设置閺囧瓨鏌婇弮鍫曟？
      *
-     * @param updatedTime 更新时间 更新时间
+     * @param updatedTime 閺囧瓨鏌婇弮鍫曟？
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;

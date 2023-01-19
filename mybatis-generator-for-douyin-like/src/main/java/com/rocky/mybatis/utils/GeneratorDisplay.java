@@ -19,7 +19,7 @@ public class GeneratorDisplay {
 		//指定 逆向工程配置文件
 		File configFile = new File("mybatis-generator-for-imooc"
 											+ File.separator
-											+"generatorConfig.xml");
+											+ "src/main/re/mybatis-generatorConfig.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);

@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `my_liked_vlog`;
 DROP TABLE IF EXISTS `vlog`;
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '用户密码',

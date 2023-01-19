@@ -5,45 +5,25 @@ import javax.persistence.*;
 
 public class Comment {
     @Id
-    private String id;
+    private Long id;
 
     /**
-     * 评论的视频是哪个作者（vloger）的关联id
+     * 鍙戝竷鐣欒█鐨勭敤鎴穒d
      */
-    @Column(name = "vloger_id")
-    private String vlogerId;
+    private Long uid;
 
     /**
-     * 如果是回复留言，则本条为子留言，需要关联查询
+     * 璇勮鐨勮棰戜綔鑰卛d
      */
-    @Column(name = "father_comment_id")
-    private String fatherCommentId;
+    private Long vid;
 
     /**
-     * 回复的那个视频id
-     */
-    @Column(name = "vlog_id")
-    private String vlogId;
-
-    /**
-     * 发布留言的用户id
-     */
-    @Column(name = "comment_user_id")
-    private String commentUserId;
-
-    /**
-     * 留言内容
+     * 鐣欒█鍐呭
      */
     private String content;
 
     /**
-     * 留言的点赞总数
-     */
-    @Column(name = "like_counts")
-    private Integer likeCounts;
-
-    /**
-     * 留言时间
+     * 鐣欒█鏃堕棿
      */
     @Column(name = "create_time")
     private Date createTime;
@@ -51,138 +31,84 @@ public class Comment {
     /**
      * @return id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * 获取评论的视频是哪个作者（vloger）的关联id
+     * 获取鍙戝竷鐣欒█鐨勭敤鎴穒d
      *
-     * @return vloger_id - 评论的视频是哪个作者（vloger）的关联id
+     * @return uid - 鍙戝竷鐣欒█鐨勭敤鎴穒d
      */
-    public String getVlogerId() {
-        return vlogerId;
+    public Long getUid() {
+        return uid;
     }
 
     /**
-     * 设置评论的视频是哪个作者（vloger）的关联id
+     * 设置鍙戝竷鐣欒█鐨勭敤鎴穒d
      *
-     * @param vlogerId 评论的视频是哪个作者（vloger）的关联id
+     * @param uid 鍙戝竷鐣欒█鐨勭敤鎴穒d
      */
-    public void setVlogerId(String vlogerId) {
-        this.vlogerId = vlogerId;
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
     /**
-     * 获取如果是回复留言，则本条为子留言，需要关联查询
+     * 获取璇勮鐨勮棰戜綔鑰卛d
      *
-     * @return father_comment_id - 如果是回复留言，则本条为子留言，需要关联查询
+     * @return vid - 璇勮鐨勮棰戜綔鑰卛d
      */
-    public String getFatherCommentId() {
-        return fatherCommentId;
+    public Long getVid() {
+        return vid;
     }
 
     /**
-     * 设置如果是回复留言，则本条为子留言，需要关联查询
+     * 设置璇勮鐨勮棰戜綔鑰卛d
      *
-     * @param fatherCommentId 如果是回复留言，则本条为子留言，需要关联查询
+     * @param vid 璇勮鐨勮棰戜綔鑰卛d
      */
-    public void setFatherCommentId(String fatherCommentId) {
-        this.fatherCommentId = fatherCommentId;
+    public void setVid(Long vid) {
+        this.vid = vid;
     }
 
     /**
-     * 获取回复的那个视频id
+     * 获取鐣欒█鍐呭
      *
-     * @return vlog_id - 回复的那个视频id
-     */
-    public String getVlogId() {
-        return vlogId;
-    }
-
-    /**
-     * 设置回复的那个视频id
-     *
-     * @param vlogId 回复的那个视频id
-     */
-    public void setVlogId(String vlogId) {
-        this.vlogId = vlogId;
-    }
-
-    /**
-     * 获取发布留言的用户id
-     *
-     * @return comment_user_id - 发布留言的用户id
-     */
-    public String getCommentUserId() {
-        return commentUserId;
-    }
-
-    /**
-     * 设置发布留言的用户id
-     *
-     * @param commentUserId 发布留言的用户id
-     */
-    public void setCommentUserId(String commentUserId) {
-        this.commentUserId = commentUserId;
-    }
-
-    /**
-     * 获取留言内容
-     *
-     * @return content - 留言内容
+     * @return content - 鐣欒█鍐呭
      */
     public String getContent() {
         return content;
     }
 
     /**
-     * 设置留言内容
+     * 设置鐣欒█鍐呭
      *
-     * @param content 留言内容
+     * @param content 鐣欒█鍐呭
      */
     public void setContent(String content) {
         this.content = content;
     }
 
     /**
-     * 获取留言的点赞总数
+     * 获取鐣欒█鏃堕棿
      *
-     * @return like_counts - 留言的点赞总数
-     */
-    public Integer getLikeCounts() {
-        return likeCounts;
-    }
-
-    /**
-     * 设置留言的点赞总数
-     *
-     * @param likeCounts 留言的点赞总数
-     */
-    public void setLikeCounts(Integer likeCounts) {
-        this.likeCounts = likeCounts;
-    }
-
-    /**
-     * 获取留言时间
-     *
-     * @return create_time - 留言时间
+     * @return create_time - 鐣欒█鏃堕棿
      */
     public Date getCreateTime() {
         return createTime;
     }
 
     /**
-     * 设置留言时间
+     * 设置鐣欒█鏃堕棿
      *
-     * @param createTime 留言时间
+     * @param createTime 鐣欒█鏃堕棿
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;

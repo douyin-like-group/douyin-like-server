@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 本地mysql connector jar包，保持和pom 文件的版本一致-->
+    <classPathEntry location="C:\Program Files\MySQL\mysql-connector-j-8.0.32\mysql-connector-j-8.0.32.jar"/>
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 通用mapper所在目录 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+
+            <property name="mappers" value="com.rocky.my.mapper.mapper.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/douyin?serverTimezone=GMT%2B7"
+                        userId="root"
+                        password="zhu123">
+        </jdbcConnection>
+
+        <!-- 对应生成的pojo所在包 -->
+        <javaModelGenerator targetPackage="com.rocky.pojo" targetProject="./src/main/java"/>
+
+		<!-- 对应生成的mapper所在目录 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources"/>
+
+		<!-- 配置mapper对应的java映射 -->
+        <javaClientGenerator targetPackage="com.rocky.mapper" targetProject="./src/main/java" type="XMLMAPPER"/>
+
+        <!-- 数据库表 -->
+		<table tableName="users"></table>
+		<table tableName="video"></table>
+		<table tableName="comment"></table>
+		<table tableName="follow"></table>
+		<table tableName="favorite"></table>
+        <table tableName="message"></table>
+    </context>
+
+</generatorConfiguration>

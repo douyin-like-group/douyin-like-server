@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rocky.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="Host" jdbcType="CHAR" property="host" />
+    <id column="User" jdbcType="CHAR" property="user" />
+    <result column="Select_priv" jdbcType="CHAR" property="selectPriv" />
+    <result column="Insert_priv" jdbcType="CHAR" property="insertPriv" />
+    <result column="Update_priv" jdbcType="CHAR" property="updatePriv" />
+    <result column="Delete_priv" jdbcType="CHAR" property="deletePriv" />
+    <result column="Create_priv" jdbcType="CHAR" property="createPriv" />
+    <result column="Drop_priv" jdbcType="CHAR" property="dropPriv" />
+    <result column="Reload_priv" jdbcType="CHAR" property="reloadPriv" />
+    <result column="Shutdown_priv" jdbcType="CHAR" property="shutdownPriv" />
+    <result column="Process_priv" jdbcType="CHAR" property="processPriv" />
+    <result column="File_priv" jdbcType="CHAR" property="filePriv" />
+    <result column="Grant_priv" jdbcType="CHAR" property="grantPriv" />
+    <result column="References_priv" jdbcType="CHAR" property="referencesPriv" />
+    <result column="Index_priv" jdbcType="CHAR" property="indexPriv" />
+    <result column="Alter_priv" jdbcType="CHAR" property="alterPriv" />
+    <result column="Show_db_priv" jdbcType="CHAR" property="showDbPriv" />
+    <result column="Super_priv" jdbcType="CHAR" property="superPriv" />
+    <result column="Create_tmp_table_priv" jdbcType="CHAR" property="createTmpTablePriv" />
+    <result column="Lock_tables_priv" jdbcType="CHAR" property="lockTablesPriv" />
+    <result column="Execute_priv" jdbcType="CHAR" property="executePriv" />
+    <result column="Repl_slave_priv" jdbcType="CHAR" property="replSlavePriv" />
+    <result column="Repl_client_priv" jdbcType="CHAR" property="replClientPriv" />
+    <result column="Create_view_priv" jdbcType="CHAR" property="createViewPriv" />
+    <result column="Show_view_priv" jdbcType="CHAR" property="showViewPriv" />
+    <result column="Create_routine_priv" jdbcType="CHAR" property="createRoutinePriv" />
+    <result column="Alter_routine_priv" jdbcType="CHAR" property="alterRoutinePriv" />
+    <result column="Create_user_priv" jdbcType="CHAR" property="createUserPriv" />
+    <result column="Event_priv" jdbcType="CHAR" property="eventPriv" />
+    <result column="Trigger_priv" jdbcType="CHAR" property="triggerPriv" />
+    <result column="Create_tablespace_priv" jdbcType="CHAR" property="createTablespacePriv" />
+    <result column="ssl_type" jdbcType="CHAR" property="sslType" />
+    <result column="max_questions" jdbcType="INTEGER" property="maxQuestions" />
+    <result column="max_updates" jdbcType="INTEGER" property="maxUpdates" />
+    <result column="max_connections" jdbcType="INTEGER" property="maxConnections" />
+    <result column="max_user_connections" jdbcType="INTEGER" property="maxUserConnections" />
+    <result column="plugin" jdbcType="CHAR" property="plugin" />
+    <result column="password_expired" jdbcType="CHAR" property="passwordExpired" />
+    <result column="password_last_changed" jdbcType="TIMESTAMP" property="passwordLastChanged" />
+    <result column="password_lifetime" jdbcType="SMALLINT" property="passwordLifetime" />
+    <result column="account_locked" jdbcType="CHAR" property="accountLocked" />
+    <result column="Create_role_priv" jdbcType="CHAR" property="createRolePriv" />
+    <result column="Drop_role_priv" jdbcType="CHAR" property="dropRolePriv" />
+    <result column="Password_reuse_history" jdbcType="SMALLINT" property="passwordReuseHistory" />
+    <result column="Password_reuse_time" jdbcType="SMALLINT" property="passwordReuseTime" />
+    <result column="Password_require_current" jdbcType="CHAR" property="passwordRequireCurrent" />
+    <result column="ssl_cipher" jdbcType="LONGVARBINARY" property="sslCipher" />
+    <result column="x509_issuer" jdbcType="LONGVARBINARY" property="x509Issuer" />
+    <result column="x509_subject" jdbcType="LONGVARBINARY" property="x509Subject" />
+    <result column="authentication_string" jdbcType="LONGVARCHAR" property="authenticationString" />
+    <result column="User_attributes" jdbcType="LONGVARCHAR" property="userAttributes" />
+  </resultMap>
+</mapper>
