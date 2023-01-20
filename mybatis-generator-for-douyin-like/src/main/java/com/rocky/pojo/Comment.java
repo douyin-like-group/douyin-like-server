@@ -8,22 +8,22 @@ public class Comment {
     private Long id;
 
     /**
-     * 鍙戝竷鐣欒█鐨勭敤鎴穒d
+     * 发布留言的用户id
      */
     private Long uid;
 
     /**
-     * 璇勮鐨勮棰戜綔鑰卛d
+     * 评论的视频作者id
      */
     private Long vid;
 
     /**
-     * 鐣欒█鍐呭
+     * 留言内容
      */
     private String content;
 
     /**
-     * 鐣欒█鏃堕棿
+     * 留言时间
      */
     @Column(name = "create_time")
     private Date createTime;
@@ -43,72 +43,72 @@ public class Comment {
     }
 
     /**
-     * 获取鍙戝竷鐣欒█鐨勭敤鎴穒d
+     * 获取发布留言的用户id
      *
-     * @return uid - 鍙戝竷鐣欒█鐨勭敤鎴穒d
+     * @return uid - 发布留言的用户id
      */
     public Long getUid() {
         return uid;
     }
 
     /**
-     * 设置鍙戝竷鐣欒█鐨勭敤鎴穒d
+     * 设置发布留言的用户id
      *
-     * @param uid 鍙戝竷鐣欒█鐨勭敤鎴穒d
+     * @param uid 发布留言的用户id
      */
     public void setUid(Long uid) {
         this.uid = uid;
     }
 
     /**
-     * 获取璇勮鐨勮棰戜綔鑰卛d
+     * 获取评论的视频作者id
      *
-     * @return vid - 璇勮鐨勮棰戜綔鑰卛d
+     * @return vid - 评论的视频作者id
      */
     public Long getVid() {
         return vid;
     }
 
     /**
-     * 设置璇勮鐨勮棰戜綔鑰卛d
+     * 设置评论的视频作者id
      *
-     * @param vid 璇勮鐨勮棰戜綔鑰卛d
+     * @param vid 评论的视频作者id
      */
     public void setVid(Long vid) {
         this.vid = vid;
     }
 
     /**
-     * 获取鐣欒█鍐呭
+     * 获取留言内容
      *
-     * @return content - 鐣欒█鍐呭
+     * @return content - 留言内容
      */
     public String getContent() {
         return content;
     }
 
     /**
-     * 设置鐣欒█鍐呭
+     * 设置留言内容
      *
-     * @param content 鐣欒█鍐呭
+     * @param content 留言内容
      */
     public void setContent(String content) {
         this.content = content;
     }
 
     /**
-     * 获取鐣欒█鏃堕棿
+     * 获取留言时间
      *
-     * @return create_time - 鐣欒█鏃堕棿
+     * @return create_time - 留言时间
      */
     public Date getCreateTime() {
         return createTime;
     }
 
     /**
-     * 设置鐣欒█鏃堕棿
+     * 设置留言时间
      *
-     * @param createTime 鐣欒█鏃堕棿
+     * @param createTime 留言时间
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;

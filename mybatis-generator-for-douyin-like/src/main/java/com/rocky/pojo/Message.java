@@ -8,34 +8,34 @@ public class Message {
     private Long id;
 
     /**
-     * 鍙戦�佽�� id
+     * 发送者 id
      */
     private Long uid;
 
     /**
-     * 鎺ュ彈鑰� id
+     * 接受者 id
      */
     private Long vid;
 
     /**
-     * 浜掑叧涓�1锛屽惁鍒欎负0
+     * 互关为1，否则为0
      */
     @Column(name = "is_friend")
     private Byte isFriend;
 
     /**
-     * 鐣欒█鍐呭
+     * 留言内容
      */
     private String content;
 
     /**
-     * 鍏虫敞鏃堕棿
+     * 关注时间
      */
     @Column(name = "create_time")
     private Date createTime;
 
     /**
-     * 0-鏈锛�1-宸茶锛�2-鍒犻櫎
+     * 0-未读，1-已读，2-删除
      */
     @Column(name = "message_status")
     private Byte messageStatus;
@@ -55,108 +55,108 @@ public class Message {
     }
 
     /**
-     * 获取鍙戦�佽�� id
+     * 获取发送者 id
      *
-     * @return uid - 鍙戦�佽�� id
+     * @return uid - 发送者 id
      */
     public Long getUid() {
         return uid;
     }
 
     /**
-     * 设置鍙戦�佽�� id
+     * 设置发送者 id
      *
-     * @param uid 鍙戦�佽�� id
+     * @param uid 发送者 id
      */
     public void setUid(Long uid) {
         this.uid = uid;
     }
 
     /**
-     * 获取鎺ュ彈鑰� id
+     * 获取接受者 id
      *
-     * @return vid - 鎺ュ彈鑰� id
+     * @return vid - 接受者 id
      */
     public Long getVid() {
         return vid;
     }
 
     /**
-     * 设置鎺ュ彈鑰� id
+     * 设置接受者 id
      *
-     * @param vid 鎺ュ彈鑰� id
+     * @param vid 接受者 id
      */
     public void setVid(Long vid) {
         this.vid = vid;
     }
 
     /**
-     * 获取浜掑叧涓�1锛屽惁鍒欎负0
+     * 获取互关为1，否则为0
      *
-     * @return is_friend - 浜掑叧涓�1锛屽惁鍒欎负0
+     * @return is_friend - 互关为1，否则为0
      */
     public Byte getIsFriend() {
         return isFriend;
     }
 
     /**
-     * 设置浜掑叧涓�1锛屽惁鍒欎负0
+     * 设置互关为1，否则为0
      *
-     * @param isFriend 浜掑叧涓�1锛屽惁鍒欎负0
+     * @param isFriend 互关为1，否则为0
      */
     public void setIsFriend(Byte isFriend) {
         this.isFriend = isFriend;
     }
 
     /**
-     * 获取鐣欒█鍐呭
+     * 获取留言内容
      *
-     * @return content - 鐣欒█鍐呭
+     * @return content - 留言内容
      */
     public String getContent() {
         return content;
     }
 
     /**
-     * 设置鐣欒█鍐呭
+     * 设置留言内容
      *
-     * @param content 鐣欒█鍐呭
+     * @param content 留言内容
      */
     public void setContent(String content) {
         this.content = content;
     }
 
     /**
-     * 获取鍏虫敞鏃堕棿
+     * 获取关注时间
      *
-     * @return create_time - 鍏虫敞鏃堕棿
+     * @return create_time - 关注时间
      */
     public Date getCreateTime() {
         return createTime;
     }
 
     /**
-     * 设置鍏虫敞鏃堕棿
+     * 设置关注时间
      *
-     * @param createTime 鍏虫敞鏃堕棿
+     * @param createTime 关注时间
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     /**
-     * 获取0-鏈锛�1-宸茶锛�2-鍒犻櫎
+     * 获取0-未读，1-已读，2-删除
      *
-     * @return message_status - 0-鏈锛�1-宸茶锛�2-鍒犻櫎
+     * @return message_status - 0-未读，1-已读，2-删除
      */
     public Byte getMessageStatus() {
         return messageStatus;
     }
 
     /**
-     * 设置0-鏈锛�1-宸茶锛�2-鍒犻櫎
+     * 设置0-未读，1-已读，2-删除
      *
-     * @param messageStatus 0-鏈锛�1-宸茶锛�2-鍒犻櫎
+     * @param messageStatus 0-未读，1-已读，2-删除
      */
     public void setMessageStatus(Byte messageStatus) {
         this.messageStatus = messageStatus;

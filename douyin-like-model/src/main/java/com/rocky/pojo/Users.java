@@ -1,19 +1,20 @@
 package com.rocky.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
-import javax.persistence.*;
 
 public class Users {
     @Id
     private Long id;
 
     /**
-     * 閻?劍鍩涢崥锟
+     * 鐢ㄦ埛鍚
      */
     private String username;
 
     /**
-     * 閻?劍鍩涚?鍡欑垳
+     * 鐢ㄦ埛瀵嗙爜
      */
     private String password;
 
@@ -23,30 +24,30 @@ public class Users {
     private String email;
 
     /**
-     * 閹靛?婧?崣椋庣垳
+     * 鎵嬫満鍙风爜
      */
     private String phone;
 
     /**
-     * 閸忚櫕鏁為幀缁樻殶
+     * 鍏虫敞鎬绘暟
      */
     @Column(name = "follow_count")
     private Long followCount;
 
     /**
-     * 缁??绗ｉ幀缁樻殶
+     * 绮変笣鎬绘暟
      */
     @Column(name = "follower_count")
     private Long followerCount;
 
     /**
-     * 閸掓稑缂撻弮鍫曟？
+     * 鍒涘缓鏃堕棿
      */
     @Column(name = "created_time")
     private Date createdTime;
 
     /**
-     * 閺囧瓨鏌婇弮鍫曟？
+     * 鏇存柊鏃堕棿
      */
     @Column(name = "updated_time")
     private Date updatedTime;
@@ -66,36 +67,36 @@ public class Users {
     }
 
     /**
-     * 获取閻?劍鍩涢崥锟
+     * 获取鐢ㄦ埛鍚
      *
-     * @return username - 閻?劍鍩涢崥锟
+     * @return username - 鐢ㄦ埛鍚
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * 设置閻?劍鍩涢崥锟
+     * 设置鐢ㄦ埛鍚
      *
-     * @param username 閻?劍鍩涢崥锟
+     * @param username 鐢ㄦ埛鍚
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * 获取閻?劍鍩涚?鍡欑垳
+     * 获取鐢ㄦ埛瀵嗙爜
      *
-     * @return password - 閻?劍鍩涚?鍡欑垳
+     * @return password - 鐢ㄦ埛瀵嗙爜
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * 设置閻?劍鍩涚?鍡欑垳
+     * 设置鐢ㄦ埛瀵嗙爜
      *
-     * @param password 閻?劍鍩涚?鍡欑垳
+     * @param password 鐢ㄦ埛瀵嗙爜
      */
     public void setPassword(String password) {
         this.password = password;
@@ -120,90 +121,90 @@ public class Users {
     }
 
     /**
-     * 获取閹靛?婧?崣椋庣垳
+     * 获取鎵嬫満鍙风爜
      *
-     * @return phone - 閹靛?婧?崣椋庣垳
+     * @return phone - 鎵嬫満鍙风爜
      */
     public String getPhone() {
         return phone;
     }
 
     /**
-     * 设置閹靛?婧?崣椋庣垳
+     * 设置鎵嬫満鍙风爜
      *
-     * @param phone 閹靛?婧?崣椋庣垳
+     * @param phone 鎵嬫満鍙风爜
      */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
     /**
-     * 获取閸忚櫕鏁為幀缁樻殶
+     * 获取鍏虫敞鎬绘暟
      *
-     * @return follow_count - 閸忚櫕鏁為幀缁樻殶
+     * @return follow_count - 鍏虫敞鎬绘暟
      */
     public Long getFollowCount() {
         return followCount;
     }
 
     /**
-     * 设置閸忚櫕鏁為幀缁樻殶
+     * 设置鍏虫敞鎬绘暟
      *
-     * @param followCount 閸忚櫕鏁為幀缁樻殶
+     * @param followCount 鍏虫敞鎬绘暟
      */
     public void setFollowCount(Long followCount) {
         this.followCount = followCount;
     }
 
     /**
-     * 获取缁??绗ｉ幀缁樻殶
+     * 获取绮変笣鎬绘暟
      *
-     * @return follower_count - 缁??绗ｉ幀缁樻殶
+     * @return follower_count - 绮変笣鎬绘暟
      */
     public Long getFollowerCount() {
         return followerCount;
     }
 
     /**
-     * 设置缁??绗ｉ幀缁樻殶
+     * 设置绮変笣鎬绘暟
      *
-     * @param followerCount 缁??绗ｉ幀缁樻殶
+     * @param followerCount 绮変笣鎬绘暟
      */
     public void setFollowerCount(Long followerCount) {
         this.followerCount = followerCount;
     }
 
     /**
-     * 获取閸掓稑缂撻弮鍫曟？
+     * 获取鍒涘缓鏃堕棿
      *
-     * @return created_time - 閸掓稑缂撻弮鍫曟？
+     * @return created_time - 鍒涘缓鏃堕棿
      */
     public Date getCreatedTime() {
         return createdTime;
     }
 
     /**
-     * 设置閸掓稑缂撻弮鍫曟？
+     * 设置鍒涘缓鏃堕棿
      *
-     * @param createdTime 閸掓稑缂撻弮鍫曟？
+     * @param createdTime 鍒涘缓鏃堕棿
      */
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     /**
-     * 获取閺囧瓨鏌婇弮鍫曟？
+     * 获取鏇存柊鏃堕棿
      *
-     * @return updated_time - 閺囧瓨鏌婇弮鍫曟？
+     * @return updated_time - 鏇存柊鏃堕棿
      */
     public Date getUpdatedTime() {
         return updatedTime;
     }
 
     /**
-     * 设置閺囧瓨鏌婇弮鍫曟？
+     * 设置鏇存柊鏃堕棿
      *
-     * @param updatedTime 閺囧瓨鏌婇弮鍫曟？
+     * @param updatedTime 鏇存柊鏃堕棿
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;

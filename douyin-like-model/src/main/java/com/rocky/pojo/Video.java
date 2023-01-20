@@ -1,54 +1,55 @@
 package com.rocky.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
-import javax.persistence.*;
 
 public class Video {
     @Id
     private Long id;
 
     /**
-     * 瀵瑰簲鐢ㄦ埛琛╥d锛岃棰戝彂甯冭��
+     * 对应用户表id，视频发布者
      */
     private Long uid;
 
     /**
-     * 瑙嗛鎾斁鍦板潃
+     * 视频播放地址
      */
     @Column(name = "play_url")
     private String playUrl;
 
     /**
-     * 瑙嗛灏侀潰鍦板潃
+     * 视频封面地址
      */
     @Column(name = "cover_url")
     private String coverUrl;
 
     /**
-     * 瑙嗛鏍囬锛屽彲浠ヤ负绌�
+     * 视频标题，可以为空
      */
     private String title;
 
     /**
-     * 璇勮鎬绘暟
+     * 评论总数
      */
     @Column(name = "comments_count")
     private Long commentsCount;
 
     /**
-     * 鐐硅禐鎬绘暟
+     * 点赞总数
      */
     @Column(name = "favorite_count")
     private Long favoriteCount;
 
     /**
-     * 鍒涘缓鏃堕棿
+     * 创建时间
      */
     @Column(name = "created_time")
     private Date createdTime;
 
     /**
-     * 鏇存柊鏃堕棿
+     * 更新时间
      */
     @Column(name = "updated_time")
     private Date updatedTime;
@@ -68,144 +69,144 @@ public class Video {
     }
 
     /**
-     * 获取瀵瑰簲鐢ㄦ埛琛╥d锛岃棰戝彂甯冭��
+     * 获取对应用户表id，视频发布者
      *
-     * @return uid - 瀵瑰簲鐢ㄦ埛琛╥d锛岃棰戝彂甯冭��
+     * @return uid - 对应用户表id，视频发布者
      */
     public Long getUid() {
         return uid;
     }
 
     /**
-     * 设置瀵瑰簲鐢ㄦ埛琛╥d锛岃棰戝彂甯冭��
+     * 设置对应用户表id，视频发布者
      *
-     * @param uid 瀵瑰簲鐢ㄦ埛琛╥d锛岃棰戝彂甯冭��
+     * @param uid 对应用户表id，视频发布者
      */
     public void setUid(Long uid) {
         this.uid = uid;
     }
 
     /**
-     * 获取瑙嗛鎾斁鍦板潃
+     * 获取视频播放地址
      *
-     * @return play_url - 瑙嗛鎾斁鍦板潃
+     * @return play_url - 视频播放地址
      */
     public String getPlayUrl() {
         return playUrl;
     }
 
     /**
-     * 设置瑙嗛鎾斁鍦板潃
+     * 设置视频播放地址
      *
-     * @param playUrl 瑙嗛鎾斁鍦板潃
+     * @param playUrl 视频播放地址
      */
     public void setPlayUrl(String playUrl) {
         this.playUrl = playUrl;
     }
 
     /**
-     * 获取瑙嗛灏侀潰鍦板潃
+     * 获取视频封面地址
      *
-     * @return cover_url - 瑙嗛灏侀潰鍦板潃
+     * @return cover_url - 视频封面地址
      */
     public String getCoverUrl() {
         return coverUrl;
     }
 
     /**
-     * 设置瑙嗛灏侀潰鍦板潃
+     * 设置视频封面地址
      *
-     * @param coverUrl 瑙嗛灏侀潰鍦板潃
+     * @param coverUrl 视频封面地址
      */
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
 
     /**
-     * 获取瑙嗛鏍囬锛屽彲浠ヤ负绌�
+     * 获取视频标题，可以为空
      *
-     * @return title - 瑙嗛鏍囬锛屽彲浠ヤ负绌�
+     * @return title - 视频标题，可以为空
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * 设置瑙嗛鏍囬锛屽彲浠ヤ负绌�
+     * 设置视频标题，可以为空
      *
-     * @param title 瑙嗛鏍囬锛屽彲浠ヤ负绌�
+     * @param title 视频标题，可以为空
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * 获取璇勮鎬绘暟
+     * 获取评论总数
      *
-     * @return comments_count - 璇勮鎬绘暟
+     * @return comments_count - 评论总数
      */
     public Long getCommentsCount() {
         return commentsCount;
     }
 
     /**
-     * 设置璇勮鎬绘暟
+     * 设置评论总数
      *
-     * @param commentsCount 璇勮鎬绘暟
+     * @param commentsCount 评论总数
      */
     public void setCommentsCount(Long commentsCount) {
         this.commentsCount = commentsCount;
     }
 
     /**
-     * 获取鐐硅禐鎬绘暟
+     * 获取点赞总数
      *
-     * @return favorite_count - 鐐硅禐鎬绘暟
+     * @return favorite_count - 点赞总数
      */
     public Long getFavoriteCount() {
         return favoriteCount;
     }
 
     /**
-     * 设置鐐硅禐鎬绘暟
+     * 设置点赞总数
      *
-     * @param favoriteCount 鐐硅禐鎬绘暟
+     * @param favoriteCount 点赞总数
      */
     public void setFavoriteCount(Long favoriteCount) {
         this.favoriteCount = favoriteCount;
     }
 
     /**
-     * 获取鍒涘缓鏃堕棿
+     * 获取创建时间
      *
-     * @return created_time - 鍒涘缓鏃堕棿
+     * @return created_time - 创建时间
      */
     public Date getCreatedTime() {
         return createdTime;
     }
 
     /**
-     * 设置鍒涘缓鏃堕棿
+     * 设置创建时间
      *
-     * @param createdTime 鍒涘缓鏃堕棿
+     * @param createdTime 创建时间
      */
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     /**
-     * 获取鏇存柊鏃堕棿
+     * 获取更新时间
      *
-     * @return updated_time - 鏇存柊鏃堕棿
+     * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
         return updatedTime;
     }
 
     /**
-     * 设置鏇存柊鏃堕棿
+     * 设置更新时间
      *
-     * @param updatedTime 鏇存柊鏃堕棿
+     * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;

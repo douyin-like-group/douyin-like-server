@@ -15,10 +15,13 @@
         <module name="douyin-like-mapper" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
+    <option name="PREFER_TARGET_JDK_COMPILER" value="false" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="douyin-like" options="-parameters" />
+      <module name="douyin-like" options="" />
       <module name="douyin-like-api" options="-parameters" />
       <module name="douyin-like-common" options="-parameters" />
       <module name="douyin-like-mapper" options="-parameters" />

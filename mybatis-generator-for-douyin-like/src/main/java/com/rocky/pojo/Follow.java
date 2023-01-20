@@ -8,25 +8,25 @@ public class Follow {
     private Long id;
 
     /**
-     * 鍙戣捣鍏虫敞鐨勭敤鎴穒d
+     * 发起关注的用户id
      */
     @Column(name = "from_id")
     private Long fromId;
 
     /**
-     * 琚叧娉ㄧ殑鐢ㄦ埛id
+     * 被关注的用户id
      */
     @Column(name = "to_id")
     private Long toId;
 
     /**
-     * 浜掑叧涓�1锛屽惁鍒欎负0
+     * 互关为1，否则为0
      */
     @Column(name = "is_friend")
     private Byte isFriend;
 
     /**
-     * 鍏虫敞鏃堕棿
+     * 关注时间
      */
     @Column(name = "create_time")
     private Date createTime;
@@ -46,72 +46,72 @@ public class Follow {
     }
 
     /**
-     * 获取鍙戣捣鍏虫敞鐨勭敤鎴穒d
+     * 获取发起关注的用户id
      *
-     * @return from_id - 鍙戣捣鍏虫敞鐨勭敤鎴穒d
+     * @return from_id - 发起关注的用户id
      */
     public Long getFromId() {
         return fromId;
     }
 
     /**
-     * 设置鍙戣捣鍏虫敞鐨勭敤鎴穒d
+     * 设置发起关注的用户id
      *
-     * @param fromId 鍙戣捣鍏虫敞鐨勭敤鎴穒d
+     * @param fromId 发起关注的用户id
      */
     public void setFromId(Long fromId) {
         this.fromId = fromId;
     }
 
     /**
-     * 获取琚叧娉ㄧ殑鐢ㄦ埛id
+     * 获取被关注的用户id
      *
-     * @return to_id - 琚叧娉ㄧ殑鐢ㄦ埛id
+     * @return to_id - 被关注的用户id
      */
     public Long getToId() {
         return toId;
     }
 
     /**
-     * 设置琚叧娉ㄧ殑鐢ㄦ埛id
+     * 设置被关注的用户id
      *
-     * @param toId 琚叧娉ㄧ殑鐢ㄦ埛id
+     * @param toId 被关注的用户id
      */
     public void setToId(Long toId) {
         this.toId = toId;
     }
 
     /**
-     * 获取浜掑叧涓�1锛屽惁鍒欎负0
+     * 获取互关为1，否则为0
      *
-     * @return is_friend - 浜掑叧涓�1锛屽惁鍒欎负0
+     * @return is_friend - 互关为1，否则为0
      */
     public Byte getIsFriend() {
         return isFriend;
     }
 
     /**
-     * 设置浜掑叧涓�1锛屽惁鍒欎负0
+     * 设置互关为1，否则为0
      *
-     * @param isFriend 浜掑叧涓�1锛屽惁鍒欎负0
+     * @param isFriend 互关为1，否则为0
      */
     public void setIsFriend(Byte isFriend) {
         this.isFriend = isFriend;
     }
 
     /**
-     * 获取鍏虫敞鏃堕棿
+     * 获取关注时间
      *
-     * @return create_time - 鍏虫敞鏃堕棿
+     * @return create_time - 关注时间
      */
     public Date getCreateTime() {
         return createTime;
     }
 
     /**
-     * 设置鍏虫敞鏃堕棿
+     * 设置关注时间
      *
-     * @param createTime 鍏虫敞鏃堕棿
+     * @param createTime 关注时间
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;

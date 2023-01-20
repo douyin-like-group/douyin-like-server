@@ -12,13 +12,15 @@
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
+
 CREATE DATABASE IF NOT EXISTS douyin;
+ALTER DATABASE douyin CHARACTER SET utf8mb4;
 USE douyin;
 DROP TABLE IF EXISTS `fans`;
 DROP TABLE IF EXISTS `my_liked_vlog`;
 DROP TABLE IF EXISTS `vlog`;
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL COMMENT '用户名',
