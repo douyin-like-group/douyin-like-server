@@ -1,14 +1,2 @@
-com\rocky\mapper\FavoriteMapper.class
-com\rocky\mapper\MessageMapper.class
-com\rocky\pojo\Video.class
-com\rocky\pojo\Follow.class
-com\rocky\pojo\Users.class
-com\rocky\pojo\Comment.class
-com\rocky\pojo\Favorite.class
-com\rocky\mybatis\utils\GeneratorDisplay.class
-com\rocky\mapper\FollowMapper.class
-com\rocky\mapper\UsersMapper.class
 com\rocky\my\mapper\MyMapper.class
-com\rocky\pojo\Message.class
-com\rocky\mapper\VideoMapper.class
-com\rocky\mapper\CommentMapper.class
+com\rocky\mybatis\utils\GeneratorDisplay.class
