@@ -6,6 +6,7 @@ import com.rocky.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -27,7 +28,11 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users findByEmail(String email) {
-        return null;
+        Example userExample= new Example(Users.class);
+        Example.Criteria criteria = userExample.createCriteria();
+        criteria.andEqualTo("email",email);
+        Users user = usersMapper.selectOneByExample(userExample);
+        return user;
     }
     //todo
 
