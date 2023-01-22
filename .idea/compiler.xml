@@ -10,7 +10,7 @@
         <module name="douyin-like-api" />
         <module name="douyin-like-service" />
         <module name="mybatis-generator-for-douyin-like" />
-        <module name="douyin-like-common" />
+        <module name="douyin-like-mapper (1)" />
         <module name="douyin-like-model" />
         <module name="douyin-like-mapper" />
       </profile>
@@ -23,8 +23,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="douyin-like" options="" />
       <module name="douyin-like-api" options="-parameters" />
-      <module name="douyin-like-common" options="-parameters" />
       <module name="douyin-like-mapper" options="-parameters" />
+      <module name="douyin-like-mapper (1)" options="-parameters" />
       <module name="douyin-like-model" options="-parameters" />
       <module name="douyin-like-service" options="-parameters" />
       <module name="mybatis-generator-for-douyin-like" options="" />

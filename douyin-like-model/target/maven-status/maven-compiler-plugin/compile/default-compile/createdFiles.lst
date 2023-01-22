@@ -1,3 +1,4 @@
+com\rocky\vo\UsersVO.class
 com\rocky\bo\RegistLoginBO.class
 com\rocky\pojo\Video.class
 com\rocky\pojo\Follow.class

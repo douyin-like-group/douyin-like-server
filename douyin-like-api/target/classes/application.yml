@@ -38,6 +38,11 @@ mapper:
   mappers: com.rocky.my.mapper.MyMapper      # 配置MyMapper，包含了一些封装好的CRUD方法
   not-empty: false                            # 在进行数据库操作的时候，username != null 是否会追加 username != ''
   identity: MYSQL
+redis:
+  host: localhost
+  port: 6379
+  database: 0
+  password: zhu123
 
 # 分页插件助手的配置
 pagehelper:

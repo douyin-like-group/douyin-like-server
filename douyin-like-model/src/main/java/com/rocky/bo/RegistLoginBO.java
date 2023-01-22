@@ -16,7 +16,7 @@ public class RegistLoginBO {
      * 注册登录传递的邮件地址和密码BO
      */
     @NotBlank(message = "邮件不能为空")
-    private String email;
+    private String username;
     @NotBlank(message = "密码不能为空")
     private String password;
 

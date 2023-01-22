@@ -1,5 +1,6 @@
 package com.rocky.service;
 
+import com.rocky.bo.RegistLoginBO;
 import com.rocky.pojo.Users;
 
 public interface UsersService {
@@ -9,7 +10,7 @@ public interface UsersService {
     /**
      * 创建用户并且返回用户信息
      */
-    public Users createUser(String email);
+    public Users createUser(RegistLoginBO registLoginBO);
 
     /**
      * 根据用户主键查询用户
