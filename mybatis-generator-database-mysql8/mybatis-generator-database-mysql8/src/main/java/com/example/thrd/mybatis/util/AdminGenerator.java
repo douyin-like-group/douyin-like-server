@@ -22,7 +22,8 @@ public class AdminGenerator {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
 		//指定 逆向工程配置文件 generatorConfig-th_advert.xml
-		File configFile = new File("generatorConfig-th_admin.xml");
+		File configFile = new File("mybatis-generator-database-mysql8/"
+				+"generatorConfig-th_admin.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);
