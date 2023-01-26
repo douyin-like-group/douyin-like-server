@@ -5,42 +5,22 @@ import javax.persistence.*;
 
 public class Comment {
     @Id
-    private String id;
-
-    /**
-     * 评论的视频是哪个作者（vloger）的关联id
-     */
-    @Column(name = "vloger_id")
-    private String vlogerId;
-
-    /**
-     * 如果是回复留言，则本条为子留言，需要关联查询
-     */
-    @Column(name = "father_comment_id")
-    private String fatherCommentId;
-
-    /**
-     * 回复的那个视频id
-     */
-    @Column(name = "vlog_id")
-    private String vlogId;
+    private Long id;
 
     /**
      * 发布留言的用户id
      */
-    @Column(name = "comment_user_id")
-    private String commentUserId;
+    private Long uid;
+
+    /**
+     * 评论的视频作者id
+     */
+    private Long vid;
 
     /**
      * 留言内容
      */
     private String content;
-
-    /**
-     * 留言的点赞总数
-     */
-    @Column(name = "like_counts")
-    private Integer likeCounts;
 
     /**
      * 留言时间
@@ -51,87 +31,51 @@ public class Comment {
     /**
      * @return id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * 获取评论的视频是哪个作者（vloger）的关联id
-     *
-     * @return vloger_id - 评论的视频是哪个作者（vloger）的关联id
-     */
-    public String getVlogerId() {
-        return vlogerId;
-    }
-
-    /**
-     * 设置评论的视频是哪个作者（vloger）的关联id
-     *
-     * @param vlogerId 评论的视频是哪个作者（vloger）的关联id
-     */
-    public void setVlogerId(String vlogerId) {
-        this.vlogerId = vlogerId;
-    }
-
-    /**
-     * 获取如果是回复留言，则本条为子留言，需要关联查询
-     *
-     * @return father_comment_id - 如果是回复留言，则本条为子留言，需要关联查询
-     */
-    public String getFatherCommentId() {
-        return fatherCommentId;
-    }
-
-    /**
-     * 设置如果是回复留言，则本条为子留言，需要关联查询
-     *
-     * @param fatherCommentId 如果是回复留言，则本条为子留言，需要关联查询
-     */
-    public void setFatherCommentId(String fatherCommentId) {
-        this.fatherCommentId = fatherCommentId;
-    }
-
-    /**
-     * 获取回复的那个视频id
-     *
-     * @return vlog_id - 回复的那个视频id
-     */
-    public String getVlogId() {
-        return vlogId;
-    }
-
-    /**
-     * 设置回复的那个视频id
-     *
-     * @param vlogId 回复的那个视频id
-     */
-    public void setVlogId(String vlogId) {
-        this.vlogId = vlogId;
     }
 
     /**
      * 获取发布留言的用户id
      *
-     * @return comment_user_id - 发布留言的用户id
+     * @return uid - 发布留言的用户id
      */
-    public String getCommentUserId() {
-        return commentUserId;
+    public Long getUid() {
+        return uid;
     }
 
     /**
      * 设置发布留言的用户id
      *
-     * @param commentUserId 发布留言的用户id
+     * @param uid 发布留言的用户id
      */
-    public void setCommentUserId(String commentUserId) {
-        this.commentUserId = commentUserId;
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    /**
+     * 获取评论的视频作者id
+     *
+     * @return vid - 评论的视频作者id
+     */
+    public Long getVid() {
+        return vid;
+    }
+
+    /**
+     * 设置评论的视频作者id
+     *
+     * @param vid 评论的视频作者id
+     */
+    public void setVid(Long vid) {
+        this.vid = vid;
     }
 
     /**
@@ -150,24 +94,6 @@ public class Comment {
      */
     public void setContent(String content) {
         this.content = content;
-    }
-
-    /**
-     * 获取留言的点赞总数
-     *
-     * @return like_counts - 留言的点赞总数
-     */
-    public Integer getLikeCounts() {
-        return likeCounts;
-    }
-
-    /**
-     * 设置留言的点赞总数
-     *
-     * @param likeCounts 留言的点赞总数
-     */
-    public void setLikeCounts(Integer likeCounts) {
-        this.likeCounts = likeCounts;
     }
 
     /**

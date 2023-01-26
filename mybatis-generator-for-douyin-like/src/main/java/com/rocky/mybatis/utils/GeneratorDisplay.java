@@ -17,7 +17,7 @@ public class GeneratorDisplay {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
 		//指定 逆向工程配置文件
-		File configFile = new File("mybatis-generator-for-imooc"
+		File configFile = new File("mybatis-generator-for-douyin-like"
 											+ File.separator
 											+"generatorConfig.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
