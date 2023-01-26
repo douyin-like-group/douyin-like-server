@@ -1,1 +1,7 @@
+com\rocky\mapper\FavoriteMapper.class
+com\rocky\mapper\MessageMapper.class
+com\rocky\mapper\FollowMapper.class
+com\rocky\mapper\UsersMapper.class
 com\rocky\my\mapper\MyMapper.class
+com\rocky\mapper\VideoMapper.class
+com\rocky\mapper\CommentMapper.class

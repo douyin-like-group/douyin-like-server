@@ -6,10 +6,10 @@
     <file url="file://$PROJECT_DIR$/douyin-like-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/douyin-like-model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/douyin-like-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mybatis-generator-database-mysql8/mybatis-generator-database-mysql8/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mybatis-generator-database-mysql8/mybatis-generator-database-mysql8/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-generator-for-douyin-like/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis-generator-for-douyin-like/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis-generator-mysql8/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis-generator-mysql8/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

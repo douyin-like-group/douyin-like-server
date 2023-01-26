@@ -19,10 +19,10 @@ import java.util.Map;
 public class GraceJSONResult {
 
     // 响应业务状态码
-    private Integer status;
+    private Integer status_code;
 
     // 响应消息
-    private String msg;
+    private String status_msg;
 
     // 是否成功
     private Boolean success;
@@ -46,8 +46,8 @@ public class GraceJSONResult {
         return new GraceJSONResult(com.rocky.result.ResponseStatusEnum.SUCCESS);
     }
     public GraceJSONResult(Object data) {
-        this.status = com.rocky.result.ResponseStatusEnum.SUCCESS.status();
-        this.msg = com.rocky.result.ResponseStatusEnum.SUCCESS.msg();
+        this.status_code = com.rocky.result.ResponseStatusEnum.SUCCESS.status();
+        this.status_msg = com.rocky.result.ResponseStatusEnum.SUCCESS.msg();
         this.success = com.rocky.result.ResponseStatusEnum.SUCCESS.success();
         this.data = data;
     }
@@ -100,19 +100,19 @@ public class GraceJSONResult {
     }
 
     public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus) {
-        this.status = responseStatus.status();
-        this.msg = responseStatus.msg();
+        this.status_code = responseStatus.status();
+        this.status_msg = responseStatus.msg();
         this.success = responseStatus.success();
     }
     public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus, Object data) {
-        this.status = responseStatus.status();
-        this.msg = responseStatus.msg();
+        this.status_code = responseStatus.status();
+        this.status_msg = responseStatus.msg();
         this.success = responseStatus.success();
         this.data = data;
     }
-    public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus, String msg) {
-        this.status = responseStatus.status();
-        this.msg = msg;
+    public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus, String status_msg) {
+        this.status_code = responseStatus.status();
+        this.status_msg = status_msg;
         this.success = responseStatus.success();
     }
 
@@ -120,19 +120,19 @@ public class GraceJSONResult {
     }
 
     public Integer getStatus() {
-        return status;
+        return status_code;
     }
 
     public void setStatus(Integer status) {
-        this.status = status;
+        this.status_code = status;
     }
 
     public String getMsg() {
-        return msg;
+        return status_msg;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+        this.status_msg = msg;
     }
 
     public Object getData() {

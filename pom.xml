@@ -13,7 +13,7 @@
         <module>douyin-like-mapper</module>
         <module>douyin-like-service</module>
         <module>douyin-like-api</module>
-        <module>mybatis-generator-for-douyin-like</module>
+        <module>mybatis-generator-mysql8</module>
     </modules>
 
 
