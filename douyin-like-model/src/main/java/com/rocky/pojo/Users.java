@@ -1,8 +1,8 @@
 package com.rocky.pojo;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Users implements Serializable {
     @Id
@@ -31,22 +31,26 @@ public class Users implements Serializable {
     /**
      * 鍏虫敞鎬绘暟
      */
-    private Long follow_count;
+    @Column(name = "follow_count")
+    private Long followCount;
 
     /**
      * 绮変笣鎬绘暟
      */
-    private Long follower_count;
+    @Column(name = "follower_count")
+    private Long followerCount;
 
     /**
      * 鍒涘缓鏃堕棿
      */
-    private Date created_time;
+    @Column(name = "created_time")
+    private Date createdTime;
 
     /**
      * 鏇存柊鏃堕棿
      */
-    private Date updated_time;
+    @Column(name = "updated_time")
+    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -141,17 +145,17 @@ public class Users implements Serializable {
      *
      * @return follow_count - 鍏虫敞鎬绘暟
      */
-    public Long getFollow_count() {
-        return follow_count;
+    public Long getFollowCount() {
+        return followCount;
     }
 
     /**
      * 设置鍏虫敞鎬绘暟
      *
-     * @param follow_count 鍏虫敞鎬绘暟
+     * @param followCount 鍏虫敞鎬绘暟
      */
-    public void setFollow_count(Long follow_count) {
-        this.follow_count = follow_count;
+    public void setFollowCount(Long followCount) {
+        this.followCount = followCount;
     }
 
     /**
@@ -159,17 +163,17 @@ public class Users implements Serializable {
      *
      * @return follower_count - 绮変笣鎬绘暟
      */
-    public Long getFollower_count() {
-        return follower_count;
+    public Long getFollowerCount() {
+        return followerCount;
     }
 
     /**
      * 设置绮変笣鎬绘暟
      *
-     * @param follower_count 绮変笣鎬绘暟
+     * @param followerCount 绮変笣鎬绘暟
      */
-    public void setFollower_count(Long follower_count) {
-        this.follower_count = follower_count;
+    public void setFollowerCount(Long followerCount) {
+        this.followerCount = followerCount;
     }
 
     /**
@@ -177,17 +181,17 @@ public class Users implements Serializable {
      *
      * @return created_time - 鍒涘缓鏃堕棿
      */
-    public Date getCreated_time() {
-        return created_time;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
     /**
      * 设置鍒涘缓鏃堕棿
      *
-     * @param created_time 鍒涘缓鏃堕棿
+     * @param createdTime 鍒涘缓鏃堕棿
      */
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     /**
@@ -195,16 +199,16 @@ public class Users implements Serializable {
      *
      * @return updated_time - 鏇存柊鏃堕棿
      */
-    public Date getUpdated_time() {
-        return updated_time;
+    public Date getUpdatedTime() {
+        return updatedTime;
     }
 
     /**
      * 设置鏇存柊鏃堕棿
      *
-     * @param updated_time 鏇存柊鏃堕棿
+     * @param updatedTime 鏇存柊鏃堕棿
      */
-    public void setUpdated_time(Date updated_time) {
-        this.updated_time = updated_time;
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }

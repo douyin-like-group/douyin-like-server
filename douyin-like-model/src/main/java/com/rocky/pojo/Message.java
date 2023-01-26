@@ -1,8 +1,8 @@
 package com.rocky.pojo;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Message implements Serializable {
     @Id
@@ -21,7 +21,8 @@ public class Message implements Serializable {
     /**
      * 互关为1，否则为0
      */
-    private Byte is_friend;
+    @Column(name = "is_friend")
+    private Byte isFriend;
 
     /**
      * 留言内容
@@ -31,12 +32,14 @@ public class Message implements Serializable {
     /**
      * 关注时间
      */
-    private Date create_time;
+    @Column(name = "create_time")
+    private Date createTime;
 
     /**
      * 0-未读，1-已读，2-删除
      */
-    private Byte message_status;
+    @Column(name = "message_status")
+    private Byte messageStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -95,17 +98,17 @@ public class Message implements Serializable {
      *
      * @return is_friend - 互关为1，否则为0
      */
-    public Byte getIs_friend() {
-        return is_friend;
+    public Byte getIsFriend() {
+        return isFriend;
     }
 
     /**
      * 设置互关为1，否则为0
      *
-     * @param is_friend 互关为1，否则为0
+     * @param isFriend 互关为1，否则为0
      */
-    public void setIs_friend(Byte is_friend) {
-        this.is_friend = is_friend;
+    public void setIsFriend(Byte isFriend) {
+        this.isFriend = isFriend;
     }
 
     /**
@@ -131,17 +134,17 @@ public class Message implements Serializable {
      *
      * @return create_time - 关注时间
      */
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
     /**
      * 设置关注时间
      *
-     * @param create_time 关注时间
+     * @param createTime 关注时间
      */
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     /**
@@ -149,16 +152,16 @@ public class Message implements Serializable {
      *
      * @return message_status - 0-未读，1-已读，2-删除
      */
-    public Byte getMessage_status() {
-        return message_status;
+    public Byte getMessageStatus() {
+        return messageStatus;
     }
 
     /**
      * 设置0-未读，1-已读，2-删除
      *
-     * @param message_status 0-未读，1-已读，2-删除
+     * @param messageStatus 0-未读，1-已读，2-删除
      */
-    public void setMessage_status(Byte message_status) {
-        this.message_status = message_status;
+    public void setMessageStatus(Byte messageStatus) {
+        this.messageStatus = messageStatus;
     }
 }

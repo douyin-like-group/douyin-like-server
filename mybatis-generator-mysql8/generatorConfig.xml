@@ -30,33 +30,21 @@
         </jdbcConnection>
 
         <!-- 对应生成的pojo所在包 -->
-        <javaModelGenerator targetPackage="com.rocky.pojo" targetProject="mybatis-generator-mysql8/src/main/java"/>
+        <javaModelGenerator targetPackage="com.rocky.pojo" targetProject="douyin-like-model/src/main/java"/>
 
 		<!-- 对应生成的mapper所在目录 mapper src/main/resources/mapper -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="mybatis-generator-mysql8//src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="douyin-like-mapper/src/main/resources"/>
 
 		<!-- 配置mapper对应的java映射 -->
-        <javaClientGenerator targetPackage="com.rocky.mapper" targetProject="mybatis-generator-mysql8//src/main/java" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.rocky.mapper" targetProject="douyin-like-mapper/src/main/java" type="XMLMAPPER"/>
 
         <!-- 数据库表 -->
-        <table  tableName="users">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table  tableName="video">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table  tableName="comment">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table  tableName="follow">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table  tableName="favorite">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
-        <table  tableName="message">
-            <property name="useActualColumnNames" value="true"/>
-        </table>
+        <table  tableName="users"></table>
+        <table  tableName="video"></table>
+        <table  tableName="comment"></table>
+        <table  tableName="follow"></table>
+        <table  tableName="favorite"></table>
+        <table  tableName="message"></table>
 
 
     </context>

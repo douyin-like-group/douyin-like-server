@@ -1,8 +1,8 @@
 package com.rocky.pojo;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Comment implements Serializable {
     @Id
@@ -26,7 +26,8 @@ public class Comment implements Serializable {
     /**
      * 留言时间
      */
-    private Date create_time;
+    @Column(name = "create_time")
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -103,16 +104,16 @@ public class Comment implements Serializable {
      *
      * @return create_time - 留言时间
      */
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
     /**
      * 设置留言时间
      *
-     * @param create_time 留言时间
+     * @param createTime 留言时间
      */
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

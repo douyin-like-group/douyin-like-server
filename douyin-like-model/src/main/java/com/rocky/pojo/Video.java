@@ -1,8 +1,8 @@
 package com.rocky.pojo;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Video implements Serializable {
     @Id
@@ -16,12 +16,14 @@ public class Video implements Serializable {
     /**
      * 视频播放地址
      */
-    private String play_url;
+    @Column(name = "play_url")
+    private String playUrl;
 
     /**
      * 视频封面地址
      */
-    private String cover_url;
+    @Column(name = "cover_url")
+    private String coverUrl;
 
     /**
      * 视频标题，可以为空
@@ -31,22 +33,26 @@ public class Video implements Serializable {
     /**
      * 评论总数
      */
-    private Long comments_count;
+    @Column(name = "comments_count")
+    private Long commentsCount;
 
     /**
      * 点赞总数
      */
-    private Long favorite_count;
+    @Column(name = "favorite_count")
+    private Long favoriteCount;
 
     /**
      * 创建时间
      */
-    private Date created_time;
+    @Column(name = "created_time")
+    private Date createdTime;
 
     /**
      * 更新时间
      */
-    private Date updated_time;
+    @Column(name = "updated_time")
+    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -87,17 +93,17 @@ public class Video implements Serializable {
      *
      * @return play_url - 视频播放地址
      */
-    public String getPlay_url() {
-        return play_url;
+    public String getPlayUrl() {
+        return playUrl;
     }
 
     /**
      * 设置视频播放地址
      *
-     * @param play_url 视频播放地址
+     * @param playUrl 视频播放地址
      */
-    public void setPlay_url(String play_url) {
-        this.play_url = play_url;
+    public void setPlayUrl(String playUrl) {
+        this.playUrl = playUrl;
     }
 
     /**
@@ -105,17 +111,17 @@ public class Video implements Serializable {
      *
      * @return cover_url - 视频封面地址
      */
-    public String getCover_url() {
-        return cover_url;
+    public String getCoverUrl() {
+        return coverUrl;
     }
 
     /**
      * 设置视频封面地址
      *
-     * @param cover_url 视频封面地址
+     * @param coverUrl 视频封面地址
      */
-    public void setCover_url(String cover_url) {
-        this.cover_url = cover_url;
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
     /**
@@ -141,17 +147,17 @@ public class Video implements Serializable {
      *
      * @return comments_count - 评论总数
      */
-    public Long getComments_count() {
-        return comments_count;
+    public Long getCommentsCount() {
+        return commentsCount;
     }
 
     /**
      * 设置评论总数
      *
-     * @param comments_count 评论总数
+     * @param commentsCount 评论总数
      */
-    public void setComments_count(Long comments_count) {
-        this.comments_count = comments_count;
+    public void setCommentsCount(Long commentsCount) {
+        this.commentsCount = commentsCount;
     }
 
     /**
@@ -159,17 +165,17 @@ public class Video implements Serializable {
      *
      * @return favorite_count - 点赞总数
      */
-    public Long getFavorite_count() {
-        return favorite_count;
+    public Long getFavoriteCount() {
+        return favoriteCount;
     }
 
     /**
      * 设置点赞总数
      *
-     * @param favorite_count 点赞总数
+     * @param favoriteCount 点赞总数
      */
-    public void setFavorite_count(Long favorite_count) {
-        this.favorite_count = favorite_count;
+    public void setFavoriteCount(Long favoriteCount) {
+        this.favoriteCount = favoriteCount;
     }
 
     /**
@@ -177,17 +183,17 @@ public class Video implements Serializable {
      *
      * @return created_time - 创建时间
      */
-    public Date getCreated_time() {
-        return created_time;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
     /**
      * 设置创建时间
      *
-     * @param created_time 创建时间
+     * @param createdTime 创建时间
      */
-    public void setCreated_time(Date created_time) {
-        this.created_time = created_time;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     /**
@@ -195,16 +201,16 @@ public class Video implements Serializable {
      *
      * @return updated_time - 更新时间
      */
-    public Date getUpdated_time() {
-        return updated_time;
+    public Date getUpdatedTime() {
+        return updatedTime;
     }
 
     /**
      * 设置更新时间
      *
-     * @param updated_time 更新时间
+     * @param updatedTime 更新时间
      */
-    public void setUpdated_time(Date updated_time) {
-        this.updated_time = updated_time;
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }

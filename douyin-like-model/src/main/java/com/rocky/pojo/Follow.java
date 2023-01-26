@@ -1,8 +1,8 @@
 package com.rocky.pojo;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
 public class Follow implements Serializable {
     @Id
@@ -11,22 +11,26 @@ public class Follow implements Serializable {
     /**
      * 发起关注的用户id
      */
-    private Long from_id;
+    @Column(name = "from_id")
+    private Long fromId;
 
     /**
      * 被关注的用户id
      */
-    private Long to_id;
+    @Column(name = "to_id")
+    private Long toId;
 
     /**
      * 互关为1，否则为0
      */
-    private Byte is_friend;
+    @Column(name = "is_friend")
+    private Byte isFriend;
 
     /**
      * 关注时间
      */
-    private Date create_time;
+    @Column(name = "create_time")
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,17 +53,17 @@ public class Follow implements Serializable {
      *
      * @return from_id - 发起关注的用户id
      */
-    public Long getFrom_id() {
-        return from_id;
+    public Long getFromId() {
+        return fromId;
     }
 
     /**
      * 设置发起关注的用户id
      *
-     * @param from_id 发起关注的用户id
+     * @param fromId 发起关注的用户id
      */
-    public void setFrom_id(Long from_id) {
-        this.from_id = from_id;
+    public void setFromId(Long fromId) {
+        this.fromId = fromId;
     }
 
     /**
@@ -67,17 +71,17 @@ public class Follow implements Serializable {
      *
      * @return to_id - 被关注的用户id
      */
-    public Long getTo_id() {
-        return to_id;
+    public Long getToId() {
+        return toId;
     }
 
     /**
      * 设置被关注的用户id
      *
-     * @param to_id 被关注的用户id
+     * @param toId 被关注的用户id
      */
-    public void setTo_id(Long to_id) {
-        this.to_id = to_id;
+    public void setToId(Long toId) {
+        this.toId = toId;
     }
 
     /**
@@ -85,17 +89,17 @@ public class Follow implements Serializable {
      *
      * @return is_friend - 互关为1，否则为0
      */
-    public Byte getIs_friend() {
-        return is_friend;
+    public Byte getIsFriend() {
+        return isFriend;
     }
 
     /**
      * 设置互关为1，否则为0
      *
-     * @param is_friend 互关为1，否则为0
+     * @param isFriend 互关为1，否则为0
      */
-    public void setIs_friend(Byte is_friend) {
-        this.is_friend = is_friend;
+    public void setIsFriend(Byte isFriend) {
+        this.isFriend = isFriend;
     }
 
     /**
@@ -103,16 +107,16 @@ public class Follow implements Serializable {
      *
      * @return create_time - 关注时间
      */
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
     /**
      * 设置关注时间
      *
-     * @param create_time 关注时间
+     * @param createTime 关注时间
      */
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

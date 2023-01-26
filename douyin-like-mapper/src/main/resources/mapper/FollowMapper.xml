@@ -1,14 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rocky.mapper.FollowMapper" >
-  <resultMap id="BaseResultMap" type="com.rocky.pojo.Follow" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rocky.mapper.FollowMapper">
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.Follow">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="from_id" property="from_id" jdbcType="BIGINT" />
-    <result column="to_id" property="to_id" jdbcType="BIGINT" />
-    <result column="is_friend" property="is_friend" jdbcType="TINYINT" />
-    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="from_id" jdbcType="BIGINT" property="fromId" />
+    <result column="to_id" jdbcType="BIGINT" property="toId" />
+    <result column="is_friend" jdbcType="TINYINT" property="isFriend" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.Follow">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="from_id" jdbcType="BIGINT" property="fromId" />
+    <result column="to_id" jdbcType="BIGINT" property="toId" />
+    <result column="is_friend" jdbcType="TINYINT" property="isFriend" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.Follow">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="from_id" jdbcType="BIGINT" property="from_id" />
+    <result column="to_id" jdbcType="BIGINT" property="to_id" />
+    <result column="is_friend" jdbcType="TINYINT" property="is_friend" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
   </resultMap>
 </mapper>
