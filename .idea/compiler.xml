@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="douyin-like-model" />
         <module name="douyin-like-api" />
         <module name="douyin-like-service" />
         <module name="mybatis-generator-mysql8" />
         <module name="douyin-like-common" />
+        <module name="douyin-like-model" />
         <module name="douyin-like-mapper" />
       </profile>
     </annotationProcessing>

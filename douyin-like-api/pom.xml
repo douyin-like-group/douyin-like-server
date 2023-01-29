@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>com.rocky</groupId>
-            <artifactId>douyin-like-common</artifactId>
+            <artifactId>douyin-like-mapper</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

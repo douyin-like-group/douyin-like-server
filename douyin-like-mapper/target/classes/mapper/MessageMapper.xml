@@ -8,9 +8,9 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="uid" property="uid" jdbcType="BIGINT" />
     <result column="vid" property="vid" jdbcType="BIGINT" />
-    <result column="is_friend" property="is_friend" jdbcType="TINYINT" />
+    <result column="is_friend" property="isFriend" jdbcType="TINYINT" />
     <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
-    <result column="message_status" property="message_status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="message_status" property="messageStatus" jdbcType="TINYINT" />
   </resultMap>
 </mapper>

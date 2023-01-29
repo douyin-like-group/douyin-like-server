@@ -6,26 +6,20 @@ import java.util.Map;
  * 自定义响应数据类型枚举升级版本
  *
  * @Title: IMOOCJSONResult.java
- * @Package com.imooc.utils
+ * @Package com.rocky.utils
  * @Description: 自定义响应数据结构
  * 				本类可提供给 H5/ios/安卓/公众号/小程序 使用
  * 				前端接受此类数据（json object)后，可自行根据业务去实现相关功能
  *
- * @Copyright: Copyright (c) 2020
- * @Company: www.imooc.com
- * @author 慕课网 - 风间影月
- * @version V2.0
+ *
  */
 public class GraceJSONResult {
 
-    // 响应业务状态码
+    // 是否成功，1-0
     private Integer status_code;
 
     // 响应消息
     private String status_msg;
-
-    // 是否成功
-    private Boolean success;
 
     // 响应数据，可以是Object，也可以是List或Map等
     private Object data;
@@ -48,7 +42,6 @@ public class GraceJSONResult {
     public GraceJSONResult(Object data) {
         this.status_code = com.rocky.result.ResponseStatusEnum.SUCCESS.status();
         this.status_msg = com.rocky.result.ResponseStatusEnum.SUCCESS.msg();
-        this.success = com.rocky.result.ResponseStatusEnum.SUCCESS.success();
         this.data = data;
     }
 
@@ -102,18 +95,15 @@ public class GraceJSONResult {
     public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus) {
         this.status_code = responseStatus.status();
         this.status_msg = responseStatus.msg();
-        this.success = responseStatus.success();
-    }
+}
     public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus, Object data) {
         this.status_code = responseStatus.status();
         this.status_msg = responseStatus.msg();
-        this.success = responseStatus.success();
         this.data = data;
     }
     public GraceJSONResult(com.rocky.result.ResponseStatusEnum responseStatus, String status_msg) {
         this.status_code = responseStatus.status();
         this.status_msg = status_msg;
-        this.success = responseStatus.success();
     }
 
     public GraceJSONResult() {
@@ -143,11 +133,4 @@ public class GraceJSONResult {
         this.data = data;
     }
 
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
 }

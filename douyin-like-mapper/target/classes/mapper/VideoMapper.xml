@@ -7,12 +7,12 @@
     -->
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="uid" property="uid" jdbcType="BIGINT" />
-    <result column="play_url" property="play_url" jdbcType="VARCHAR" />
-    <result column="cover_url" property="cover_url" jdbcType="VARCHAR" />
+    <result column="play_url" property="playUrl" jdbcType="VARCHAR" />
+    <result column="cover_url" property="coverUrl" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="comments_count" property="comments_count" jdbcType="BIGINT" />
-    <result column="favorite_count" property="favorite_count" jdbcType="BIGINT" />
-    <result column="created_time" property="created_time" jdbcType="TIMESTAMP" />
-    <result column="updated_time" property="updated_time" jdbcType="TIMESTAMP" />
+    <result column="comments_count" property="commentsCount" jdbcType="BIGINT" />
+    <result column="favorite_count" property="favoriteCount" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

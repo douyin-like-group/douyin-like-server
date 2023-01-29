@@ -32,7 +32,7 @@
         <java.version>1.8</java.version>
 
         <mysql-connector-java.version>8.0.22</mysql-connector-java.version>
-        <mybatis-spring-boot-starter.version>2.1.0</mybatis-spring-boot-starter.version>
+        <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
         <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
         <pagehelper-spring-boot-starter.version>1.2.12</pagehelper-spring-boot-starter.version>
 
@@ -153,6 +153,16 @@
                 <artifactId>minio</artifactId>
                 <version>8.2.1</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>2.5.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>2.2.2</version>
+            </dependency>
 
         </dependencies>
 
@@ -173,5 +183,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
+
+
 </project>

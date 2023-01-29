@@ -9,6 +9,6 @@
     <result column="uid" property="uid" jdbcType="BIGINT" />
     <result column="vid" property="vid" jdbcType="BIGINT" />
     <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

@@ -6,9 +6,9 @@
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="from_id" property="from_id" jdbcType="BIGINT" />
-    <result column="to_id" property="to_id" jdbcType="BIGINT" />
-    <result column="is_friend" property="is_friend" jdbcType="TINYINT" />
-    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="from_id" property="fromId" jdbcType="BIGINT" />
+    <result column="to_id" property="toId" jdbcType="BIGINT" />
+    <result column="is_friend" property="isFriend" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

@@ -2,6 +2,7 @@ package com.rocky.service;
 
 import com.rocky.bo.RegistLoginBO;
 import com.rocky.pojo.Users;
+import com.rocky.vo.RegisterLoginVO;
 
 public interface UsersService {
 
@@ -23,6 +24,10 @@ public interface UsersService {
      * 判断邮件是否存在，返回用户信息
      */
     public Users findByEmail(String email);
+
+    public RegisterLoginVO login(RegistLoginBO registLoginBO);
+
+    public RegisterLoginVO register(RegistLoginBO registLoginBO);
 
 
 

@@ -10,9 +10,14 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="CHAR" />
-    <result column="follow_count" property="follow_count" jdbcType="BIGINT" />
-    <result column="follower_count" property="follower_count" jdbcType="BIGINT" />
-    <result column="created_time" property="created_time" jdbcType="TIMESTAMP" />
-    <result column="updated_time" property="updated_time" jdbcType="TIMESTAMP" />
+    <result column="follow_count" property="followCount" jdbcType="BIGINT" />
+    <result column="follower_count" property="followerCount" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="id" parameterType="com.rocky.pojo.Users">
+    insert into users(username,password,email,phone,follow_count,follower_count,created_time,updated_time)
+    values(#{username},#{password},#{email},#{phone},#{followCount},#{followerCount},#{createdTime},#{updatedTime})
+  </insert>
+
 </mapper>

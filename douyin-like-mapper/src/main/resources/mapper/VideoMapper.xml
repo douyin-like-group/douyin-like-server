@@ -1,46 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rocky.mapper.VideoMapper">
-  <resultMap id="BaseResultMap" type="com.rocky.pojo.Video">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rocky.mapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.Video" >
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="uid" jdbcType="BIGINT" property="uid" />
-    <result column="play_url" jdbcType="VARCHAR" property="playUrl" />
-    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="comments_count" jdbcType="BIGINT" property="commentsCount" />
-    <result column="favorite_count" jdbcType="BIGINT" property="favoriteCount" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.rocky.pojo.Video">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="uid" jdbcType="BIGINT" property="uid" />
-    <result column="play_url" jdbcType="VARCHAR" property="playUrl" />
-    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="comments_count" jdbcType="BIGINT" property="commentsCount" />
-    <result column="favorite_count" jdbcType="BIGINT" property="favoriteCount" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.rocky.pojo.Video">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="uid" jdbcType="BIGINT" property="uid" />
-    <result column="play_url" jdbcType="VARCHAR" property="play_url" />
-    <result column="cover_url" jdbcType="VARCHAR" property="cover_url" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="comments_count" jdbcType="BIGINT" property="comments_count" />
-    <result column="favorite_count" jdbcType="BIGINT" property="favorite_count" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
-    <result column="updated_time" jdbcType="TIMESTAMP" property="updated_time" />
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="play_url" property="playUrl" jdbcType="VARCHAR" />
+    <result column="cover_url" property="coverUrl" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="comments_count" property="commentsCount" jdbcType="BIGINT" />
+    <result column="favorite_count" property="favoriteCount" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>
