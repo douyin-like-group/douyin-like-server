@@ -17,7 +17,7 @@ public class UsersVO {
     private Integer status_code;
     private String status_msg;
     private long id;
-    private String username;
+    private String name;
     private long follow_count;
     private long follower_count;
     private boolean is_follow;

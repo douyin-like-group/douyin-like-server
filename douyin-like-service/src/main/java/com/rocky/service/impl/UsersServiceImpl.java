@@ -58,7 +58,8 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
 
     @Override
     public Users findById(long userId) {
-        return null;
+
+        return usersMapper.selectByPrimaryKey(userId);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         Users user = findByEmail(registLoginBO.getUsername());
         RegisterLoginVO registerLoginVO = new RegisterLoginVO();
         if(user==null){
-            registerLoginVO.setStatus_code(HttpServletResponse.SC_NOT_FOUND);
+            registerLoginVO.setStatus_code(1);
             registerLoginVO.setStatus_msg("用户不存在");
             return registerLoginVO;
         }
@@ -85,7 +86,8 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
             return registerLoginVO;
         }
         String uToken = UUID.randomUUID().toString();
-        redis.set(REDIS_USER_TOKEN+":"+user.getId(), uToken);
+        //token作为key存储用户ID
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         registerLoginVO.setStatus_code(0);
@@ -97,15 +99,15 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     public RegisterLoginVO register(RegistLoginBO registLoginBO) {
 
         RegisterLoginVO registerLoginVO = new RegisterLoginVO();
-        Users user = findByEmail(registLoginBO.getUsername());
-        if(user != null){
+        Users tempUser = findByEmail(registLoginBO.getUsername());
+        if(tempUser != null){
             registerLoginVO.setStatus_code(1);
             registerLoginVO.setStatus_msg("邮件地址已存在");
             return registerLoginVO;
         }
-        user = createUser(registLoginBO);
+        Users user = createUser(registLoginBO);
         String uToken = UUID.randomUUID().toString();
-        redis.set(REDIS_USER_TOKEN+":"+user.getId(), uToken);
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
         //log.info("设置redis");
         registerLoginVO.setStatus_code(0);
         registerLoginVO.setStatus_msg("注册成功");

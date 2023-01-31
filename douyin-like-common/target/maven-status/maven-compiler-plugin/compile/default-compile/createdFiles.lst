@@ -1,6 +1,9 @@
 com\rocky\result\IMOOCJSONResult.class
+com\rocky\exceptions\GraceExceptionHandler.class
 com\rocky\result\ResponseStatusEnum.class
 com\rocky\utils\RedisOperator$1.class
+com\rocky\exceptions\GraceException.class
+com\rocky\exceptions\MyCustomException.class
 com\rocky\utils\RedisOperator.class
 com\rocky\result\UserR.class
 com\rocky\result\GraceJSONResult.class
