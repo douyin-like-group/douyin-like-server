@@ -9,7 +9,7 @@ spring:
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource      # 数据源的类型，可以更改为其他的数据源配置，比如druid
     driver-class-name: com.mysql.cj.jdbc.Driver     # mysql/MariaDB 的数据库驱动类名称
-    url: jdbc:mysql://localhost:3306/douyin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B7
+    url: jdbc:mysql://82.156.2.33:3306/douyin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B7
     username: root
     password: zhu123
     hikari:
@@ -21,6 +21,12 @@ spring:
       pool-name: DataSourceHikariCP           # 连接池的名字
       max-lifetime: 18000000                  # 连接池的最大生命时长（毫秒），超时则会被释放（retired）
       connection-test-query: SELECT 1
+
+  redis:
+    host: 82.156.2.33
+    port: 6379
+    database: 0
+    password: zhu123
 
   servlet:
     multipart:
@@ -39,11 +45,6 @@ mapper:
   mappers: com.rocky.my.mapper.MyMapper      # 配置MyMapper，包含了一些封装好的CRUD方法
   not-empty: false                            # 在进行数据库操作的时候，username != null 是否会追加 username != ''
   identity: MYSQL
-redis:
-  host: localhost
-  port: 6379
-  database: 0
-  password: zhu123
 
 # 分页插件助手的配置
 pagehelper:
