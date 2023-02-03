@@ -12,14 +12,19 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class UsersVO {
-    private Integer status_code;
-    private String status_msg;
+
     private long id;
+
     private String name;
-    private long follow_count;
-    private long follower_count;
-    private boolean is_follow;
+
+    @JsonProperty("follow_count")
+    private long followCount;
+
+    @JsonProperty("follower_count")
+    private long followerCount;
+
+    @JsonProperty("is_follow")
+    private boolean isFollow;
 
 }

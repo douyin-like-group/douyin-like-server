@@ -11,9 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterLoginVO {
 
-    private Integer status_code;
+    @JsonProperty("status_code")
+    private Integer statusCode;
 
-    private String status_msg;
+    @JsonProperty("status_msg")
+    private String statusMsg;
 
     @JsonProperty("user_id")
     private long userId;

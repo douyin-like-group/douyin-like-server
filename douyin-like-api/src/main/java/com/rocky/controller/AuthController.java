@@ -6,6 +6,7 @@ import com.rocky.pojo.Users;
 import com.rocky.result.GraceJSONResult;
 import com.rocky.service.UsersService;
 import com.rocky.vo.RegisterLoginVO;
+import com.rocky.vo.ResultVO;
 import com.rocky.vo.UsersVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class AuthController extends BaseInfoProperties {
         registLoginBO.setPassword(password);
         registLoginBO.setUsername(username);
         RegisterLoginVO registerLoginVO = usersService.register(registLoginBO);
-        if(registerLoginVO.getStatus_code().equals(1)){
+        if(registerLoginVO.getStatusCode().equals(1)){
             return new ResponseEntity<>(registerLoginVO,HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(registerLoginVO);
@@ -46,34 +47,39 @@ public class AuthController extends BaseInfoProperties {
         registLoginBO.setPassword(password);
         registLoginBO.setUsername(username);
         RegisterLoginVO registerLoginVO = usersService.login(registLoginBO);
-        if(registerLoginVO.getStatus_code().equals(1)){
+        if(registerLoginVO.getStatusCode().equals(1)){
             return new ResponseEntity<>(registerLoginVO,HttpStatus.BAD_REQUEST);
         }
          return ResponseEntity.ok(registerLoginVO);
     }
     @GetMapping("/")
-    public ResponseEntity<UsersVO> query(@RequestParam String user_id,String token){
+    public ResponseEntity<ResultVO> query(@RequestParam String user_id,String token){
 
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
         UsersVO usersVO = new UsersVO();
-        usersVO.setStatus_msg("没有权限访问");
+        ResultVO resultVO = new ResultVO();
+
         if(value==null){
-            return new ResponseEntity<>(usersVO, HttpStatus.BAD_REQUEST);
+            resultVO.setStatusMsg("没有权限访问");
+            resultVO.setStatusCode(1);
+
+            return new ResponseEntity<>(resultVO, HttpStatus.BAD_REQUEST);
         }
         long sourceUserId = Long.valueOf(value);
         long targetUserId = Long.valueOf(user_id);
-        usersVO.setStatus_code(0);
-        usersVO.setStatus_msg("成功访问用户页面");
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("成功访问用户页面");
         usersVO.setId(targetUserId);
         Users user = usersService.findById(targetUserId);
         usersVO.setName(user.getUsername());
-        usersVO.setFollow_count(user.getFollowCount());
-        usersVO.setFollower_count(user.getFollowerCount());
+        usersVO.setFollowCount(user.getFollowCount());
+        usersVO.setFollowerCount(user.getFollowerCount());
         //todo find by sourceId and targetId
         Boolean isFollow = true;
-        usersVO.set_follow(isFollow);
+        usersVO.setFollow(isFollow);
+        resultVO.setData(usersVO);
 
-        return  ResponseEntity.ok(usersVO);
+        return  ResponseEntity.ok(resultVO);
     }
 
 }

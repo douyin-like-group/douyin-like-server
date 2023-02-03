@@ -75,14 +75,14 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         Users user = findByEmail(registLoginBO.getUsername());
         RegisterLoginVO registerLoginVO = new RegisterLoginVO();
         if(user==null){
-            registerLoginVO.setStatus_code(1);
-            registerLoginVO.setStatus_msg("用户不存在");
+            registerLoginVO.setStatusCode(1);
+            registerLoginVO.setStatusMsg("用户不存在");
             return registerLoginVO;
         }
         if(!passwordEncoder.matches(registLoginBO.getPassword(),user.getPassword())){
             // todo
-            registerLoginVO.setStatus_code(1);
-            registerLoginVO.setStatus_msg("密码错误");
+            registerLoginVO.setStatusCode(1);
+            registerLoginVO.setStatusMsg("密码错误");
             return registerLoginVO;
         }
         String uToken = UUID.randomUUID().toString();
@@ -90,8 +90,8 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
-        registerLoginVO.setStatus_code(0);
-        registerLoginVO.setStatus_msg("登陆成功");
+        registerLoginVO.setStatusCode(0);
+        registerLoginVO.setStatusMsg("登陆成功");
         return registerLoginVO;
     }
 
@@ -101,16 +101,16 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         RegisterLoginVO registerLoginVO = new RegisterLoginVO();
         Users tempUser = findByEmail(registLoginBO.getUsername());
         if(tempUser != null){
-            registerLoginVO.setStatus_code(1);
-            registerLoginVO.setStatus_msg("邮件地址已存在");
+            registerLoginVO.setStatusCode(1);
+            registerLoginVO.setStatusMsg("邮件地址已存在");
             return registerLoginVO;
         }
         Users user = createUser(registLoginBO);
         String uToken = UUID.randomUUID().toString();
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
         //log.info("设置redis");
-        registerLoginVO.setStatus_code(0);
-        registerLoginVO.setStatus_msg("注册成功");
+        registerLoginVO.setStatusCode(0);
+        registerLoginVO.setStatusMsg("注册成功");
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         return registerLoginVO;
