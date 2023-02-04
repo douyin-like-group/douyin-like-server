@@ -1,4 +1,6 @@
+com\rocky\MinIOConfig.class
+com\rocky\controller\HelloController.class
 com\rocky\Application.class
 com\rocky\NoWarnMapper.class
+com\rocky\controller\FileController.class
 com\rocky\controller\AuthController.class
-com\rocky\controller\HelloController.class
