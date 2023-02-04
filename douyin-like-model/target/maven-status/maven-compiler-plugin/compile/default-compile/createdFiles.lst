@@ -1,5 +1,13 @@
-com\rocky\pojo\MyLikedVlog.class
-com\rocky\pojo\Comment.class
-com\rocky\pojo\Fans.class
-com\rocky\pojo\Vlog.class
+com\rocky\vo\RegisterLoginVO.class
+com\rocky\vo\UsersVO.class
+com\rocky\bo\RegistLoginBO.class
+com\rocky\pojo\Video.class
+com\rocky\pojo\Follow.class
 com\rocky\pojo\Users.class
+com\rocky\vo\CommentVO.class
+com\rocky\pojo\Comment.class
+com\rocky\pojo\Favorite.class
+com\rocky\vo\ResultVO.class
+com\rocky\vo\VideoVO.class
+com\rocky\pojo\Message.class
+com\rocky\vo\MessageVO.class

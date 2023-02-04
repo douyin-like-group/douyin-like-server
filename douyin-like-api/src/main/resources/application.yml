@@ -1,5 +1,6 @@
 server:
   port: 8099
+  address: 0.0.0.0
   tomcat:
     uri-encoding: UTF-8
     max-swallow-size: -1  # tomcat默认大小2M，超过2M的文件不会被捕获，需要调整此处大小为100MB或者-1即可
@@ -7,10 +8,10 @@ server:
 spring:
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource      # 数据源的类型，可以更改为其他的数据源配置，比如druid
-    driver-class-name: com.mysql.jdbc.Driver      # mysql/MariaDB 的数据库驱动类名称
-    url: jdbc:mysql://192.168.31.208:3306/dy-like?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    driver-class-name: com.mysql.cj.jdbc.Driver     # mysql/MariaDB 的数据库驱动类名称
+    url: jdbc:mysql://82.156.2.33:3306/douyin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B7
     username: root
-    password: 123456
+    password: zhu123
     hikari:
       connection-timeout: 30000               # 等待连接池分配连接的最大时间（毫秒），超过这个时长还没有可用的连接，则会抛出SQLException
       minimum-idle: 5                         # 最小连接数
@@ -21,6 +22,12 @@ spring:
       max-lifetime: 18000000                  # 连接池的最大生命时长（毫秒），超时则会被释放（retired）
       connection-test-query: SELECT 1
 
+  redis:
+    host: 82.156.2.33
+    port: 6379
+    database: 0
+    password: zhu123
+
   servlet:
     multipart:
       max-file-size: 2MB      # 文件上传大小限制，设置最大值，不能超过该值，否则报错
@@ -30,7 +37,7 @@ spring:
 
 # 整合mybatis
 mybatis:
-  type-aliases-package: com.imooc.pojo       # 所有pojo类所在的包路径
+  type-aliases-package: com.rocky.pojo       # 所有pojo类所在的包路径
   mapper-locations: classpath:mapper/*.xml    # mapper映射文件
 
 # 通用mapper工具的配置
@@ -48,3 +55,12 @@ pagehelper:
 logging:
   level:
     root: info
+# MinIO 配置
+minio:
+  endpoint: http://82.156.2.33:9000      # MinIO服务地址
+  fileHost: http://82.156.2.33:9000      # 文件地址host
+  bucketName: douyin                      # 存储桶bucket名称
+  accessKey: root                         # 用户名
+  secretKey: douyin123                     # 密码
+  imgSize: 1024                           # 图片大小限制，单位：m
+  fileSize: 1024                          # 文件大小限制，单位：m

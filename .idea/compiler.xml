@@ -7,14 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mybatis-generator-for-douyin-like" />
-        <module name="douyin-like-model" />
         <module name="douyin-like-api" />
         <module name="douyin-like-service" />
+        <module name="mybatis-generator-mysql8" />
         <module name="douyin-like-common" />
+        <module name="douyin-like-model" />
         <module name="douyin-like-mapper" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatis-generator-database-mysql8" target="1.8" />
+      <module name="mybatis-generator-for-douyin-like" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

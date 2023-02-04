@@ -1,0 +1,13 @@
+com\rocky\service\FavoriteService.class
+com\rocky\service\MessageService.class
+com\rocky\service\impl\FavoriteServiceImpl.class
+com\rocky\service\impl\MessageServiceImpl.class
+com\rocky\service\impl\VideoServiceImpl.class
+com\rocky\service\CommentService.class
+com\rocky\service\FollowService.class
+com\rocky\service\impl\CommentServiceImpl.class
+com\rocky\service\impl\UsersServiceImpl.class
+com\rocky\service\VideoService.class
+com\rocky\service\impl\FollowServiceImpl.class
+com\rocky\service\UsersService.class
+com\rocky\base\BaseInfoProperties.class
