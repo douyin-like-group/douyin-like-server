@@ -9,12 +9,12 @@ public class Users implements Serializable {
     private Long id;
 
     /**
-     * 鐢ㄦ埛鍚
+     * 用户名
      */
     private String username;
 
     /**
-     * 鐢ㄦ埛瀵嗙爜
+     * 用户密码
      */
     private String password;
 
@@ -24,30 +24,30 @@ public class Users implements Serializable {
     private String email;
 
     /**
-     * 鎵嬫満鍙风爜
+     * 手机号码
      */
     private String phone;
 
     /**
-     * 鍏虫敞鎬绘暟
+     * 关注总数
      */
     @Column(name = "follow_count")
     private Long followCount;
 
     /**
-     * 绮変笣鎬绘暟
+     * 粉丝总数
      */
     @Column(name = "follower_count")
     private Long followerCount;
 
     /**
-     * 鍒涘缓鏃堕棿
+     * 创建时间
      */
     @Column(name = "created_time")
     private Date createdTime;
 
     /**
-     * 鏇存柊鏃堕棿
+     * 更新时间
      */
     @Column(name = "updated_time")
     private Date updatedTime;
@@ -69,36 +69,36 @@ public class Users implements Serializable {
     }
 
     /**
-     * 获取鐢ㄦ埛鍚
+     * 获取用户名
      *
-     * @return username - 鐢ㄦ埛鍚
+     * @return username - 用户名
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * 设置鐢ㄦ埛鍚
+     * 设置用户名
      *
-     * @param username 鐢ㄦ埛鍚
+     * @param username 用户名
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * 获取鐢ㄦ埛瀵嗙爜
+     * 获取用户密码
      *
-     * @return password - 鐢ㄦ埛瀵嗙爜
+     * @return password - 用户密码
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * 设置鐢ㄦ埛瀵嗙爜
+     * 设置用户密码
      *
-     * @param password 鐢ㄦ埛瀵嗙爜
+     * @param password 用户密码
      */
     public void setPassword(String password) {
         this.password = password;
@@ -123,90 +123,90 @@ public class Users implements Serializable {
     }
 
     /**
-     * 获取鎵嬫満鍙风爜
+     * 获取手机号码
      *
-     * @return phone - 鎵嬫満鍙风爜
+     * @return phone - 手机号码
      */
     public String getPhone() {
         return phone;
     }
 
     /**
-     * 设置鎵嬫満鍙风爜
+     * 设置手机号码
      *
-     * @param phone 鎵嬫満鍙风爜
+     * @param phone 手机号码
      */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
     /**
-     * 获取鍏虫敞鎬绘暟
+     * 获取关注总数
      *
-     * @return follow_count - 鍏虫敞鎬绘暟
+     * @return follow_count - 关注总数
      */
     public Long getFollowCount() {
         return followCount;
     }
 
     /**
-     * 设置鍏虫敞鎬绘暟
+     * 设置关注总数
      *
-     * @param followCount 鍏虫敞鎬绘暟
+     * @param followCount 关注总数
      */
     public void setFollowCount(Long followCount) {
         this.followCount = followCount;
     }
 
     /**
-     * 获取绮変笣鎬绘暟
+     * 获取粉丝总数
      *
-     * @return follower_count - 绮変笣鎬绘暟
+     * @return follower_count - 粉丝总数
      */
     public Long getFollowerCount() {
         return followerCount;
     }
 
     /**
-     * 设置绮変笣鎬绘暟
+     * 设置粉丝总数
      *
-     * @param followerCount 绮変笣鎬绘暟
+     * @param followerCount 粉丝总数
      */
     public void setFollowerCount(Long followerCount) {
         this.followerCount = followerCount;
     }
 
     /**
-     * 获取鍒涘缓鏃堕棿
+     * 获取创建时间
      *
-     * @return created_time - 鍒涘缓鏃堕棿
+     * @return created_time - 创建时间
      */
     public Date getCreatedTime() {
         return createdTime;
     }
 
     /**
-     * 设置鍒涘缓鏃堕棿
+     * 设置创建时间
      *
-     * @param createdTime 鍒涘缓鏃堕棿
+     * @param createdTime 创建时间
      */
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
     /**
-     * 获取鏇存柊鏃堕棿
+     * 获取更新时间
      *
-     * @return updated_time - 鏇存柊鏃堕棿
+     * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
         return updatedTime;
     }
 
     /**
-     * 设置鏇存柊鏃堕棿
+     * 设置更新时间
      *
-     * @param updatedTime 鏇存柊鏃堕棿
+     * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;

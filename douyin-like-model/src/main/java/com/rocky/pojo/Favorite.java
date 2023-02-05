@@ -19,6 +19,12 @@ public class Favorite implements Serializable {
     private Long vid;
 
     /**
+     * 0未点赞，1已点赞
+     */
+    @Column(name = "favorite_status")
+    private Byte favoriteStatus;
+
+    /**
      * 关注时间
      */
     @Column(name = "create_time")
@@ -74,6 +80,24 @@ public class Favorite implements Serializable {
      */
     public void setVid(Long vid) {
         this.vid = vid;
+    }
+
+    /**
+     * 获取0未点赞，1已点赞
+     *
+     * @return favorite_status - 0未点赞，1已点赞
+     */
+    public Byte getFavoriteStatus() {
+        return favoriteStatus;
+    }
+
+    /**
+     * 设置0未点赞，1已点赞
+     *
+     * @param favoriteStatus 0未点赞，1已点赞
+     */
+    public void setFavoriteStatus(Byte favoriteStatus) {
+        this.favoriteStatus = favoriteStatus;
     }
 
     /**
