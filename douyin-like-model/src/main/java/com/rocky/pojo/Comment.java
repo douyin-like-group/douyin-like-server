@@ -19,6 +19,12 @@ public class Comment implements Serializable {
     private Long vid;
 
     /**
+     * 0已删除，1已评论
+     */
+    @Column(name = "comment_status")
+    private Byte commentStatus;
+
+    /**
      * 留言内容
      */
     private String content;
@@ -79,6 +85,24 @@ public class Comment implements Serializable {
      */
     public void setVid(Long vid) {
         this.vid = vid;
+    }
+
+    /**
+     * 获取0已删除，1已评论
+     *
+     * @return comment_status - 0已删除，1已评论
+     */
+    public Byte getCommentStatus() {
+        return commentStatus;
+    }
+
+    /**
+     * 设置0已删除，1已评论
+     *
+     * @param commentStatus 0已删除，1已评论
+     */
+    public void setCommentStatus(Byte commentStatus) {
+        this.commentStatus = commentStatus;
     }
 
     /**
