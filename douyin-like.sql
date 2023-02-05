@@ -4,7 +4,7 @@
 
  Source Server Type    : MySQL
  Source Server Version :  8.0.31
- Source Host           : localhost:3306
+ Source Host           : 82.156.2.33:3306
 
  Date: 2023/1/19
 */
@@ -16,11 +16,13 @@
 CREATE DATABASE IF NOT EXISTS douyin;
 ALTER DATABASE douyin CHARACTER SET utf8mb4;
 USE douyin;
-DROP TABLE IF EXISTS `fans`;
-DROP TABLE IF EXISTS `my_liked_vlog`;
-DROP TABLE IF EXISTS `vlog`;
+DROP TABLE users;
+DROP TABLE `follow`;
+DROP TABLE `video`;
+DROP TABLE  `favorite`;
+DROP TABLE `message`;
+DROP TABLE `comment`;
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL COMMENT '用户名',
@@ -57,6 +59,7 @@ CREATE TABLE `video` (
   `play_url` varchar(255) NOT NULL COMMENT '视频播放地址',
   `cover_url` varchar(255) NOT NULL COMMENT '视频封面地址',
   `title` varchar(128) DEFAULT NULL COMMENT '视频标题，可以为空',
+   `video_status` tinyint NOT NULL COMMENT '0已删除，1已发布',
   `comments_count` bigint NOT NULL COMMENT '评论总数',
   `favorite_count` bigint NOT NULL COMMENT '点赞总数',
   `created_time` datetime NOT NULL COMMENT '创建时间',
@@ -75,6 +78,7 @@ CREATE TABLE `comment` (
   `id` bigint AUTO_INCREMENT NOT NULL,
   `uid` bigint NOT NULL COMMENT '发布留言的用户id',
   `vid` bigint NOT NULL COMMENT '评论的视频作者id',
+  `comment_status` tinyint NOT NULL COMMENT '0已删除，1已评论',
   `content` varchar(128) NOT NULL COMMENT '留言内容',
   `create_time` datetime NOT NULL COMMENT '留言时间',
   PRIMARY KEY (`id`)
@@ -93,8 +97,9 @@ CREATE TABLE `follow` (
   `id` bigint   AUTO_INCREMENT NOT NULL,
   `from_id` bigint NOT NULL COMMENT '发起关注的用户id',
   `to_id` bigint NOT NULL COMMENT '被关注的用户id',
+  `follow_status` tinyint NOT NULL COMMENT '0未关注，1关注',
   `is_friend` tinyint NOT NULL COMMENT '互关为1，否则为0',
-   `create_time` datetime NOT NULL COMMENT '关注时间',
+  `create_time` datetime NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `writer_id`  USING BTREE (`from_id`,`to_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='粉丝表\n\n';
@@ -112,7 +117,8 @@ CREATE TABLE `favorite` (
   `id` bigint   AUTO_INCREMENT NOT NULL,
   `uid` bigint NOT NULL COMMENT '用户id',
   `vid` bigint NOT NULL COMMENT '喜欢的短视频id',
-   `create_time` datetime NOT NULL COMMENT '关注时间',
+  `favorite_status` tinyint NOT NULL COMMENT '0未点赞，1已点赞',
+  `create_time` datetime NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`) ,
   UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞短视频关联表\n';
@@ -131,8 +137,8 @@ CREATE TABLE `message` (
   `vid` bigint NOT NULL COMMENT '接受者 id',
   `is_friend` tinyint NOT NULL COMMENT '互关为1，否则为0',
   `content` varchar(128) NOT NULL COMMENT '留言内容',
-    `create_time` datetime NOT NULL COMMENT '关注时间',
-    `message_status` tinyint COMMENT '0-未读，1-已读，2-删除',
+  `create_time` datetime NOT NULL COMMENT '关注时间',
+  `message_status` tinyint COMMENT '0-未读，1-已读，2-删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞短视频关联表\n';

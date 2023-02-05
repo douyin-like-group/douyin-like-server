@@ -31,6 +31,12 @@ public class Video implements Serializable {
     private String title;
 
     /**
+     * 0已删除，1已发布
+     */
+    @Column(name = "video_status")
+    private Byte videoStatus;
+
+    /**
      * 评论总数
      */
     @Column(name = "comments_count")
@@ -140,6 +146,24 @@ public class Video implements Serializable {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * 获取0已删除，1已发布
+     *
+     * @return video_status - 0已删除，1已发布
+     */
+    public Byte getVideoStatus() {
+        return videoStatus;
+    }
+
+    /**
+     * 设置0已删除，1已发布
+     *
+     * @param videoStatus 0已删除，1已发布
+     */
+    public void setVideoStatus(Byte videoStatus) {
+        this.videoStatus = videoStatus;
     }
 
     /**

@@ -21,6 +21,12 @@ public class Follow implements Serializable {
     private Long toId;
 
     /**
+     * 0未关注，1关注
+     */
+    @Column(name = "follow_status")
+    private Byte followStatus;
+
+    /**
      * 互关为1，否则为0
      */
     @Column(name = "is_friend")
@@ -82,6 +88,24 @@ public class Follow implements Serializable {
      */
     public void setToId(Long toId) {
         this.toId = toId;
+    }
+
+    /**
+     * 获取0未关注，1关注
+     *
+     * @return follow_status - 0未关注，1关注
+     */
+    public Byte getFollowStatus() {
+        return followStatus;
+    }
+
+    /**
+     * 设置0未关注，1关注
+     *
+     * @param followStatus 0未关注，1关注
+     */
+    public void setFollowStatus(Byte followStatus) {
+        this.followStatus = followStatus;
     }
 
     /**
