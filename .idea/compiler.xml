@@ -22,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="douyin-like" options="-parameters" />
       <module name="douyin-like-api" options="-parameters" />
       <module name="douyin-like-common" options="-parameters" />
       <module name="douyin-like-mapper" options="-parameters" />

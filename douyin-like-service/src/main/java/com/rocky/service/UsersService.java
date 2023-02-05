@@ -9,7 +9,6 @@ public interface UsersService {
 
     //todo
 
-    public boolean doesUserExist()
 
     /**
      * 创建用户并且返回用户信息
