@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @MapperScan(basePackages = "com.rocky.mapper")
 public class Application {
     public static void main(String[] args) {
+        int a = 1;
             SpringApplication.run(Application.class, args);
     }
 }
