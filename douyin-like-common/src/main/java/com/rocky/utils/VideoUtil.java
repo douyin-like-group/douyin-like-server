@@ -1,6 +1,7 @@
 package com.rocky.utils;
 
 import cn.hutool.core.io.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Frame;
@@ -20,10 +21,10 @@ import java.util.Map;
 /**
  * 视频工具类
  *
- * @Author: szw
- * @Date: 2020/7/9 9:42
+ * @Author:
+ * @Date:
  */
-
+@Slf4j
 @Component
 public class VideoUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(VideoUtil.class);
@@ -46,7 +47,7 @@ public class VideoUtil {
             String absolutePath = FileUtil.getAbsolutePath(deviceFile);
 
 //            // 第一帧图片存储位置
-//            String targerFilePath = filePath.substring(0, filePath.lastIndexOf("\\"));
+            String targerFilePath = absolutePath.substring(0, absolutePath.lastIndexOf("\\"));
 //            // 视频文件名
 //            String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
             // 图片名称
@@ -80,10 +81,12 @@ public class VideoUtil {
             //图片的类型
             String imageMat = "jpg";
             //图片的完整路径
-            String imagePath = absolutePath + File.separator + targetFileName + "." + imageMat;
+            String imagePath = targerFilePath+ File.separator + targetFileName + "." + imageMat;
             //创建文件
             File output = new File(imagePath);
             ImageIO.write(bi, imageMat, output);
+            // todo
+            //这里如何关闭数据流
 
 //            //拼接Map信息
 //            result.put("videoWide", bi.getWidth());

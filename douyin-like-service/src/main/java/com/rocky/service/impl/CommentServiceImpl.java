@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public long getVideoCommentsCount(long vid) {
-        return commentMapper.getVideoCommentsCountByVid(123);
+        return 100L;
     }
 
 }

@@ -19,6 +19,6 @@ public class VideoBO {
 
     private String coverUrl;
 
-    private byte video_status;
+    private byte videoStatus;
 
 }

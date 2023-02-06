@@ -45,7 +45,7 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
     @Override
     public boolean isFollow(long fromId, long toId) {
-        return false;
+        return true;
     }
     //todo
 
