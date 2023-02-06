@@ -13,4 +13,35 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
+  <sql id="selectFields">
+    id, uid, vid, comment_status, content, create_time
+  </sql>
+
+  <sql id="insertFields">
+    uid, vid, comment_status, content, create_time
+  </sql>
+
+  <insert id="insertComment" parameterType="Comment" keyProperty="id">
+      insert into comment (<include refid="insertFields"></include>)
+      values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
+  </insert>
+
+  <update id="updateCommentState" parameterType="Comment">
+    update comment
+    set comment_status = #{commentStatus}
+    where id = #{id}
+  </update>
+
+  <select id="selectCommentsByVid" resultType="Comment">
+    select (<include refid="selectFields"></include>)
+    from comment
+    where vid = #{vid}
+  </select>
+
+  <select id="getVideoCommentsCountByVid" resultType="int">
+    select count(*)
+    from comment
+    where vid = #{vid}
+  </select>
+
 </mapper>

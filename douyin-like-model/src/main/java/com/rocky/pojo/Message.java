@@ -1,5 +1,7 @@
 package com.rocky.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -33,6 +35,7 @@ public class Message implements Serializable {
      * 关注时间
      */
     @Column(name = "create_time")
+    @JsonProperty("create_time")
     private Date createTime;
 
     /**

@@ -8,4 +8,5 @@ com\rocky\utils\RedisOperator.class
 com\rocky\result\UserR.class
 com\rocky\result\GraceJSONResult.class
 com\rocky\utils\MinIOUtils.class
+com\rocky\utils\VideoUtil.class
 com\rocky\utils\PagedGridResult.class
