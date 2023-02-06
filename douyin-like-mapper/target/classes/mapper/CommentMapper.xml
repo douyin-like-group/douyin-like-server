@@ -1,14 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rocky.mapper.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.rocky.pojo.Comment" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rocky.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.rocky.pojo.Comment">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="uid" property="uid" jdbcType="BIGINT" />
-    <result column="vid" property="vid" jdbcType="BIGINT" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="vid" jdbcType="BIGINT" property="vid" />
+    <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+
+  <sql id="selectFields">
+    id, uid, vid, comment_status, content, create_time
+  </sql>
+
+  <sql id="insertFields">
+    uid, vid, comment_status, content, create_time
+  </sql>
+
+  <insert id="insertComment" parameterType="Comment" keyProperty="id">
+      insert into comment (<include refid="insertFields"></include>)
+      values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
+  </insert>
+
+  <update id="updateCommentState" parameterType="Comment">
+    update comment
+    set comment_status = #{commentStatus}
+    where id = #{id}
+  </update>
+
+  <select id="selectCommentsByVid" resultType="Comment">
+    select (<include refid="selectFields"></include>)
+    from comment
+    where vid = #{vid}
+  </select>
+
+  <select id="getVideoCommentsCountByVid" resultType="int">
+    select count(*)
+    from comment
+    where vid = #{vid}
+  </select>
+
 </mapper>

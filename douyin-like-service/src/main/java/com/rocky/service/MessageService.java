@@ -1,9 +1,14 @@
 package com.rocky.service;
 
+
 import com.rocky.pojo.Message;
 
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+
 
 public interface MessageService {
     // todo
