@@ -4,9 +4,11 @@ import com.rocky.base.BaseInfoProperties;
 import com.rocky.bo.VideoBO;
 import com.rocky.service.VideoService;
 import com.rocky.vo.VideoVO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VideoServiceImpl extends BaseInfoProperties implements VideoService {
     //todo
 

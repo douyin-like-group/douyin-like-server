@@ -3,7 +3,10 @@ package com.rocky.service.impl;
 import com.rocky.base.BaseInfoProperties;
 import com.rocky.service.FollowService;
 import com.rocky.vo.ResultVO;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class FollowServiceImpl extends BaseInfoProperties implements FollowService  {
     @Override
     public ResultVO follow(long fromUID, long toUID) {

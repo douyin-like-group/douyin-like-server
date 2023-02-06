@@ -4,8 +4,10 @@ import com.rocky.bo.VideoBO;
 import com.rocky.pojo.Video;
 import com.rocky.vo.ResultVO;
 import com.rocky.vo.VideoVO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface VideoService {
     // todo
@@ -16,6 +18,8 @@ public interface VideoService {
     public VideoVO getVideoDetail(long id);
 
     public List<VideoVO> getAllVideoList();
+
+
 
 
 

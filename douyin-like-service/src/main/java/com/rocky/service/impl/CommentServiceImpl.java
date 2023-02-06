@@ -6,9 +6,12 @@ import com.rocky.service.CommentService;
 import com.rocky.vo.CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public class CommentServiceImpl implements CommentService {
     //todo
     @Autowired

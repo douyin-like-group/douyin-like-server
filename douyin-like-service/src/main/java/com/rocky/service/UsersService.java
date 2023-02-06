@@ -4,6 +4,8 @@ import com.rocky.bo.RegistLoginBO;
 import com.rocky.pojo.Users;
 import com.rocky.vo.RegisterLoginVO;
 import com.rocky.vo.UsersVO;
+import org.springframework.stereotype.Service;
+
 
 public interface UsersService {
 

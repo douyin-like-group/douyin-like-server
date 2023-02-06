@@ -1,6 +1,8 @@
 package com.rocky.service;
 
 import com.rocky.vo.ResultVO;
+import org.springframework.stereotype.Service;
+
 
 public interface FavoriteService {
     //todo

@@ -3,7 +3,10 @@ package com.rocky.service.impl;
 import com.rocky.base.BaseInfoProperties;
 import com.rocky.service.FavoriteService;
 import com.rocky.vo.ResultVO;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteService {
     @Override
     public ResultVO like(long uid, long vid) {
