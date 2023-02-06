@@ -22,6 +22,6 @@ public interface CommentMapper extends MyMapper<Comment> {
     long getVideoCommentsCountByVid(long vid);
 
     // 获得评论cid
-    long getCommentID(Comment comment);
+    //long getCommentID(Comment comment);
 
 }

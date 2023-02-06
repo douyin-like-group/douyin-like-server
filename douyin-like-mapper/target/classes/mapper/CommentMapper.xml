@@ -23,12 +23,20 @@
 
   <insert id="insertComment" parameterType="Comment" keyProperty="id">
       insert into comment (<include refid="insertFields"></include>)
+<<<<<<< HEAD
       values(#{uid}, #{vid}, #{}, #{content}, #{createTime})
+=======
+      values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
+>>>>>>> 5e38dce8a96d2ee7c777b06586b8a555bde452c4
   </insert>
 
   <update id="updateCommentState" parameterType="Comment">
     update comment
+<<<<<<< HEAD
     set comment_status = #{}
+=======
+    set comment_status = #{commentStatus}
+>>>>>>> 5e38dce8a96d2ee7c777b06586b8a555bde452c4
     where id = #{id}
   </update>
 

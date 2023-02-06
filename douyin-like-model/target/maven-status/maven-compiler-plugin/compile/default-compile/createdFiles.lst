@@ -5,6 +5,7 @@ com\rocky\pojo\Video.class
 com\rocky\bo\CommentBO.class
 com\rocky\pojo\Follow.class
 com\rocky\pojo\Users.class
+com\rocky\bo\VideoBO.class
 com\rocky\vo\CommentVO.class
 com\rocky\pojo\Comment.class
 com\rocky\pojo\Favorite.class

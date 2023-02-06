@@ -23,12 +23,12 @@
 
   <insert id="insertComment" parameterType="Comment" keyProperty="id">
       insert into comment (<include refid="insertFields"></include>)
-      values(#{uid}, #{vid}, #{}, #{content}, #{createTime})
+      values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
   </insert>
 
   <update id="updateCommentState" parameterType="Comment">
     update comment
-    set comment_status = #{}
+    set comment_status = #{commentStatus}
     where id = #{id}
   </update>
 
@@ -44,10 +44,10 @@
     where vid = #{vid}
   </select>
 
-  <select id="getCommentID" parameterType="Comment">
-    select id
-    from comment
-    where uid = #{uid} and vid = #{vid} and create_time = #{createTime}
-  </select>
+<!--  <select id="getCommentID" parameterType="Comment">-->
+<!--    select id-->
+<!--    from comment-->
+<!--    where uid = #{uid} and vid = #{vid} and create_time = #{createTime}-->
+<!--  </select>-->
 
 </mapper>

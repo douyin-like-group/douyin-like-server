@@ -4,9 +4,11 @@ import com.rocky.base.BaseInfoProperties;
 import com.rocky.bo.RegistLoginBO;
 import com.rocky.mapper.UsersMapper;
 import com.rocky.pojo.Users;
+import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
 
 import com.rocky.vo.RegisterLoginVO;
+import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +37,9 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private FollowService followService;
+
 
     @Transactional
     @Override
@@ -57,9 +62,19 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     }
 
     @Override
-    public Users findById(long userId) {
+    public UsersVO findById(long sourceId,long targetId ) {
 
-        return usersMapper.selectByPrimaryKey(userId);
+       Users user = usersMapper.selectByPrimaryKey(targetId);
+       UsersVO usersVO = new UsersVO();
+       usersVO.setId(targetId);
+       usersVO.setName(user.getUsername());
+       // 从follow service获取
+       usersVO.setFollowCount(followService.getFollowCount(user.getId()));
+       usersVO.setFollowerCount(followService.getFollowerCount(user.getId()));
+       usersVO.setFollow(followService.isFollow(sourceId,targetId));
+       return usersVO;
+
+
     }
 
     @Override

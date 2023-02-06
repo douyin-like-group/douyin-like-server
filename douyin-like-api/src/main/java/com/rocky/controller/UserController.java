@@ -2,28 +2,20 @@ package com.rocky.controller;
 
 import com.rocky.base.BaseInfoProperties;
 import com.rocky.bo.RegistLoginBO;
-import com.rocky.pojo.Users;
-import com.rocky.result.GraceJSONResult;
 import com.rocky.service.UsersService;
 import com.rocky.vo.RegisterLoginVO;
 import com.rocky.vo.ResultVO;
 import com.rocky.vo.UsersVO;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-import lombok.extern.slf4j.Slf4j;
-
-
-
 
 @RestController
 @RequestMapping("/douyin/user")
-public class AuthController extends BaseInfoProperties {
+public class UserController extends BaseInfoProperties {
 
     @Autowired
     private UsersService usersService;
@@ -56,7 +48,7 @@ public class AuthController extends BaseInfoProperties {
     public ResponseEntity<ResultVO> query(@RequestParam String user_id,String token){
 
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
-        UsersVO usersVO = new UsersVO();
+
         ResultVO resultVO = new ResultVO();
 
         if(value==null){
@@ -69,14 +61,10 @@ public class AuthController extends BaseInfoProperties {
         long targetUserId = Long.valueOf(user_id);
         resultVO.setStatusCode(0);
         resultVO.setStatusMsg("成功访问用户页面");
-        usersVO.setId(targetUserId);
-        Users user = usersService.findById(targetUserId);
-        usersVO.setName(user.getUsername());
-        usersVO.setFollowCount(user.getFollowCount());
-        usersVO.setFollowerCount(user.getFollowerCount());
+        UsersVO usersVO = usersService.findById(sourceUserId,targetUserId);
+
         //todo find by sourceId and targetId
-        Boolean isFollow = true;
-        usersVO.setFollow(isFollow);
+
         resultVO.setData(usersVO);
 
         return  ResponseEntity.ok(resultVO);

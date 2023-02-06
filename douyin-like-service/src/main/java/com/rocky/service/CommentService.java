@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface CommentService {
     //todo
     //Lai
@@ -14,9 +14,9 @@ public interface CommentService {
     /**
      * 添加新的评论/
      */
-    public CommentVO queryComment(CommentBO commentBO);
+    public CommentVO queryComment(long sourceId, CommentBO commentBO);
 
-    public List<CommentVO> getCommentList(long vid);
+    public List<CommentVO> getCommentList(long sourceId, long vid);
 
     public long getVideoCommentsCount(long vid);
 }
