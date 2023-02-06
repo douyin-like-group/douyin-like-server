@@ -2,28 +2,20 @@ package com.rocky.controller;
 
 import com.rocky.base.BaseInfoProperties;
 import com.rocky.bo.RegistLoginBO;
-import com.rocky.pojo.Users;
-import com.rocky.result.GraceJSONResult;
 import com.rocky.service.UsersService;
 import com.rocky.vo.RegisterLoginVO;
 import com.rocky.vo.ResultVO;
 import com.rocky.vo.UsersVO;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-import lombok.extern.slf4j.Slf4j;
-
-
-
 
 @RestController
 @RequestMapping("/douyin/user")
-public class AuthController extends BaseInfoProperties {
+public class UserController extends BaseInfoProperties {
 
     @Autowired
     private UsersService usersService;

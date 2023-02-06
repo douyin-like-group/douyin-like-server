@@ -7,15 +7,12 @@ import com.rocky.MinIOConfig;
 import com.rocky.result.GraceJSONResult;
 import com.rocky.utils.MinIOUtils;
 import com.rocky.utils.VideoUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +23,7 @@ import java.util.Map;
 // test for file upload
 @RequestMapping("/douyin/publish")
 @RestController
-public class FileController {
+public class VideoController {
 
     @Autowired
     private MinIOConfig minIOConfig;
