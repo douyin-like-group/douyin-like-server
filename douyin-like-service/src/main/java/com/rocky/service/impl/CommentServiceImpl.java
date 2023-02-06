@@ -22,7 +22,6 @@ import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-    //todo
     @Autowired
     CommentMapper commentMapper;
 
