@@ -1,4 +1,4 @@
-FROM openjdk:11 # FROM: 基础镜像，基于jdk8镜像开始
+FROM openjdk:8 # FROM: 基础镜像，基于jdk8镜像开始
 
 COPY *.jar /app.jar  # COPY: 将应用的配置文件也拷贝到镜像中。
 
