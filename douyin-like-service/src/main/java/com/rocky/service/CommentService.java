@@ -16,7 +16,7 @@ public interface CommentService {
      */
     public CommentVO queryComment(long sourceId, CommentBO commentBO);
 
-    public List<CommentVO> getCommentList(long sourceId, long vid);
+    public List<CommentVO> getCommentList(long vid);
 
     public long getVideoCommentsCount(long vid);
 }

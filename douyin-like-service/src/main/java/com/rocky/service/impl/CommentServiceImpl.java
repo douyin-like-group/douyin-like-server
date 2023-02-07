@@ -8,6 +8,7 @@ import com.rocky.pojo.Users;
 import com.rocky.service.CommentService;
 import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
+import com.rocky.service.VideoService;
 import com.rocky.vo.CommentVO;
 import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     UsersService usersService;
+
+    @Autowired
+    VideoService videoService;
 
     @Autowired
     FollowService followService;
@@ -60,17 +64,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentVO> getCommentList(long sourceId, long vid) {
+    public List<CommentVO> getCommentList(long vid) {
         if (vid < 0) {
             return null;
         }
+        Users videoCreater = null;
+        //Users videoCreater = videoService.findUserIdByVideoId();
         List<Comment> comments = commentMapper.selectCommentsByVid(vid);
         List<CommentVO> commentVOList = null;
 
         if (comments != null) {
             commentVOList = new ArrayList<>();
             for (Comment comment : comments) {
-                UsersVO usersVO = usersService.findById(sourceId, comment.getUid());
+                UsersVO usersVO = usersService.findById(videoCreater.getId(), comment.getUid());
                 CommentVO commentVO = new CommentVO(comment.getId(), usersVO, comment.getContent(), comment.getCreateTime().toString());
                 commentVOList.add(commentVO);
             }

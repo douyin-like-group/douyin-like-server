@@ -6,6 +6,7 @@ import com.rocky.vo.ResultVO;
 import com.rocky.vo.VideoVO;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,7 +20,7 @@ public interface VideoService {
 
     public List<VideoVO> getAllVideoList();
 
-
+    //public List<Video> getVideoFeedByTime(Date time);
 
 
 
