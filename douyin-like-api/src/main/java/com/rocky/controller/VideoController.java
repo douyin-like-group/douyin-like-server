@@ -25,13 +25,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 // test for file upload
-@RequestMapping("/douyin/publish")
+@RequestMapping("/douyin/")
 @RestController
 public class VideoController extends BaseInfoProperties {
 
@@ -47,13 +49,53 @@ public class VideoController extends BaseInfoProperties {
 
     /**
      * 获取某个用户的视频发布列表
+     * @param latest_time
      * @param token
-     * @param user_id
      * @return
      * @throws Exception
      */
+    @GetMapping("feed/")
+    public ResponseEntity<ResultVO> getVideoFeed(@RequestParam(required = false) String latest_time,
+                                                 @RequestParam(required = false) String token  )throws Exception{
 
-    @GetMapping("/list")
+        String userId = redis.get(REDIS_USER_TOKEN+":"+token);
+        long sourceUserId;
+        if(userId==null){
+            sourceUserId = 0L;
+        }else{
+            sourceUserId = Long.valueOf(userId);
+        }
+
+        ResultVO resultVO = new ResultVO();
+        String format = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Date endTime;
+        if(latest_time==null||latest_time.length()<=0){
+             endTime = new Date();
+        }else{
+             endTime = null;
+            try { endTime = sdf.parse(latest_time); } catch (ParseException e) { e.printStackTrace(); }
+        }
+
+        log.info(String.valueOf(endTime));
+        List<VideoVO> videoVOList = videoService.findVideoFeed(sourceUserId,endTime);
+        Date nextTime;
+        if(videoVOList==null|| videoVOList.isEmpty()||videoVOList.size()==0){
+            nextTime = new Date();
+        }else{
+            nextTime =videoService.findDateById(videoVOList.get(0).getId());
+        }
+
+        String next_time=sdf.format(nextTime);
+        resultVO.setStatusMsg("访问成功");
+        resultVO.setStatusCode(0);
+        resultVO.setData(videoVOList);
+        resultVO.setObjectName("video_list");
+        resultVO.setNextTime(next_time);
+        return ResponseEntity.ok(resultVO);
+
+    }
+    @GetMapping("publish/list")
     public ResponseEntity<ResultVO> getVideoList(
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
@@ -78,7 +120,7 @@ public class VideoController extends BaseInfoProperties {
         return ResponseEntity.ok(resultVO);
 
     }
-    @PostMapping("/action")
+    @PostMapping("publish/action")
     public ResponseEntity<ResultVO> upload(
             @RequestPart(value="data") MultipartFile data,
             @RequestPart(value="token") String token,

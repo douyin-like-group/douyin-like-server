@@ -38,7 +38,7 @@
     where vid = #{vid}
   </select>
 
-  <select id="getVideoCommentsCountByVid" resultType="int">
+  <select id="getVideoCommentsCountByVid" resultType="long">
     select count(*)
     from comment
     where vid = #{vid}

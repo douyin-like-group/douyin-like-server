@@ -77,4 +77,32 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
         }
         return videoVOList;
     }
+
+    @Override
+    public List<VideoVO> findVideoFeed(long sourceUserId, Date endTime) {
+
+        List<Video> videoList = videoMapper.selectVideoFeedByTime(endTime);
+        List<VideoVO> videoVOList = new ArrayList<VideoVO>();
+        for(Video video: videoList){
+            VideoVO videoVO = getVideoVODetail(video,sourceUserId);
+            videoVOList.add(videoVO);
+        }
+        return videoVOList;
+
+    }
+
+    @Override
+    public Date findDateById(long videoId) {
+
+        Video video = videoMapper.selectByPrimaryKey(videoId);
+        return video.getCreatedTime();
+    }
+
+    @Override
+    public long findUserIdByVideoId(long videoId) {
+
+        Video video = videoMapper.selectByPrimaryKey(videoId);
+
+        return video.getUid();
+    }
 }
