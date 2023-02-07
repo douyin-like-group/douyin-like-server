@@ -32,12 +32,9 @@ spring:
     multipart:
       max-file-size: -1     # 文件上传大小限制，设置最大值，不能超过该值，否则报错
 #      max-file-size: 500KB      # 文件上传大小限制，设置最大值，不能超过该值，否则报错
-<<<<<<< Updated upstream
       max-request-size: -1     # 文件最大请求限制，用于批量上传
-=======
-      max-request-size: 2M B     # 文件最大请求限制，用于批量上传
->>>>>>> Stashed changes
-#      max-request-size: 500KB
+
+
 
 # 整合mybatis
 mybatis:
