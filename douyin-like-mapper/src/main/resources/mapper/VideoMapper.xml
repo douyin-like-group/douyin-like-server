@@ -16,5 +16,14 @@
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
   </resultMap>
+  
+<!--  <select id="selectVideoFeedByTime" parameterType="Date" resultType="com.rocky.pojo.Video">-->
+<!--    select *-->
+<!--    from video-->
+<!--&lt;!&ndash;    where created_time &lt;= #{endTime}&ndash;&gt;-->
+<!--    order by created_time-->
+<!--    desc-->
+<!--    limit 30;-->
+<!--  </select>-->
 
 </mapper>

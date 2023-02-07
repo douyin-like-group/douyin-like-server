@@ -16,7 +16,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mybatis-generator-database-mysql8" target="1.8" />
       <module name="mybatis-generator-for-douyin-like" target="1.5" />
     </bytecodeTargetLevel>
   </component>

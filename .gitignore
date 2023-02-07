@@ -1,0 +1,7 @@
+/.idea/
+/douyin-like-api/target/
+/douyin-like-common/target/
+/douyin-like-mapper/target/
+/douyin-like-model/target/
+/douyin-like-service/target/
+/mybatis-generator-mysql8/

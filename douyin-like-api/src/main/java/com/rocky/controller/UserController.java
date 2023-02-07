@@ -66,6 +66,7 @@ public class UserController extends BaseInfoProperties {
         //todo find by sourceId and targetId
 
         resultVO.setData(usersVO);
+        resultVO.setObjectName("user");
 
         return  ResponseEntity.ok(resultVO);
     }

@@ -44,6 +44,7 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6">
       <session name="Session 1" id="d37962f6-52ed-4467-be09-bcc53501dad0" />
+      <session name="Session 1" id="d37962f6-52ed-4467-be09-bcc53501dad0" />
     </connection>
     <connection id="b72ae1ee-cb07-4886-9670-a342c3e2639f" />
   </component>
