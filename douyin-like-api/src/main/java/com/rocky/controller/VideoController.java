@@ -74,6 +74,7 @@ public class VideoController extends BaseInfoProperties {
         resultVO.setStatusMsg("访问成功");
         resultVO.setStatusCode(0);
         resultVO.setData(videoVOList);
+        resultVO.setObjectName("video_list");
         return ResponseEntity.ok(resultVO);
 
     }
@@ -140,6 +141,7 @@ public class VideoController extends BaseInfoProperties {
         Boolean success = videoService.createVideo(videoBO);
         resultVO.setStatusMsg("投稿成功");
         resultVO.setStatusCode(0);
+
         return ResponseEntity.ok(resultVO);
 
     }
