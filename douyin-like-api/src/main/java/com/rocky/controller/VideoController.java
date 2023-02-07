@@ -54,7 +54,7 @@ public class VideoController extends BaseInfoProperties {
      */
 
     @GetMapping("/list")
-    public ResponseEntity<ResultVO> getVideoList(
+    public ResultVO getVideoList(
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
     )throws Exception{
@@ -65,7 +65,7 @@ public class VideoController extends BaseInfoProperties {
         if(value==null){
             resultVO.setStatusMsg("没有权限访问");
             resultVO.setStatusCode(1);
-            return new ResponseEntity<>(resultVO, HttpStatus.BAD_REQUEST);
+            return resultVO;
         }
         long sourceUserId = Long.valueOf(value);
         long targetUserId = Long.valueOf(user_id);
@@ -75,7 +75,7 @@ public class VideoController extends BaseInfoProperties {
         resultVO.setStatusCode(0);
         resultVO.setData(videoVOList);
         resultVO.setObjectName("video_list");
-        return ResponseEntity.ok(resultVO);
+        return resultVO;
 
     }
     @PostMapping("/action")
