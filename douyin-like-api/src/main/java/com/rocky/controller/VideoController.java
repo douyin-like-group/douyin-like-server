@@ -77,7 +77,8 @@ public class VideoController extends BaseInfoProperties {
             try { endTime = sdf.parse(latest_time); } catch (ParseException e) { e.printStackTrace(); }
         }
 
-        log.info(String.valueOf(endTime));
+
+//        log.info(String.valueOf(endTime));
         List<VideoVO> videoVOList = videoService.findVideoFeed(sourceUserId,endTime);
         Date nextTime;
         if(videoVOList==null|| videoVOList.isEmpty()||videoVOList.size()==0){
@@ -95,8 +96,9 @@ public class VideoController extends BaseInfoProperties {
         return ResponseEntity.ok(resultVO);
 
     }
-    @GetMapping("publish/list")
-    public ResponseEntity<ResultVO> getVideoList(
+
+    @GetMapping("/list")
+    public ResultVO getVideoList(
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
     )throws Exception{
@@ -107,7 +109,7 @@ public class VideoController extends BaseInfoProperties {
         if(value==null){
             resultVO.setStatusMsg("没有权限访问");
             resultVO.setStatusCode(1);
-            return new ResponseEntity<>(resultVO, HttpStatus.BAD_REQUEST);
+            return resultVO;
         }
         long sourceUserId = Long.valueOf(value);
         long targetUserId = Long.valueOf(user_id);
@@ -117,7 +119,7 @@ public class VideoController extends BaseInfoProperties {
         resultVO.setStatusCode(0);
         resultVO.setData(videoVOList);
         resultVO.setObjectName("video_list");
-        return ResponseEntity.ok(resultVO);
+        return resultVO;
 
     }
     @PostMapping("publish/action")
