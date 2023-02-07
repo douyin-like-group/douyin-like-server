@@ -5,5 +5,5 @@ import com.rocky.pojo.Users;
 
 public interface UsersMapper extends MyMapper<Users> {
 
-    public long insertAndGetId(Users user);
+   public long insertAndGetId(Users user);
 }
