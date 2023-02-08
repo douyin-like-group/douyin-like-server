@@ -7,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.jws.Oneway;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,8 +30,6 @@ public class ResultVO {
     @JsonIgnore
     private String objectName;
 
-    @JsonIgnore
-    private String nextTime;
 
     @JsonAnyGetter
     public Map<String, Object> getDataMap(){
@@ -44,10 +41,7 @@ public class ResultVO {
             data="";
         }
         map.put(objectName,data);
-        if(nextTime==null){
-            nextTime="";
-        }
-        map.put("next_time",nextTime);
+
         return map;
     }
 
