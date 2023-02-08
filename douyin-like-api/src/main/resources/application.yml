@@ -40,6 +40,8 @@ spring:
 mybatis:
   type-aliases-package: com.rocky.pojo       # 所有pojo类所在的包路径
   mapper-locations: classpath:mapper/*.xml    # mapper映射文件
+  configuration:
+    map-underscore-to-camel-case: true
 
 # 通用mapper工具的配置
 mapper:

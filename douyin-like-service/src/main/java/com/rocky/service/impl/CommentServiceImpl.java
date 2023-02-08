@@ -68,15 +68,14 @@ public class CommentServiceImpl implements CommentService {
         if (vid < 0) {
             return null;
         }
-        Users videoCreater = null;
-        //Users videoCreater = videoService.findUserIdByVideoId();
+        long uid = videoService.findUserIdByVideoId(vid);
         List<Comment> comments = commentMapper.selectCommentsByVid(vid);
         List<CommentVO> commentVOList = null;
 
         if (comments != null) {
             commentVOList = new ArrayList<>();
             for (Comment comment : comments) {
-                UsersVO usersVO = usersService.findById(videoCreater.getId(), comment.getUid());
+                UsersVO usersVO = usersService.findById(uid, comment.getUid());
                 CommentVO commentVO = new CommentVO(comment.getId(), usersVO, comment.getContent(), comment.getCreateTime().toString());
                 commentVOList.add(commentVO);
             }
