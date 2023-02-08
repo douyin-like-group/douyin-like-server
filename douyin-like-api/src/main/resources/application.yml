@@ -1,11 +1,13 @@
 server:
-  port: 8099
+  port: 8080
   address: 0.0.0.0
   tomcat:
     uri-encoding: UTF-8
     max-swallow-size: -1  # tomcat默认大小2M，超过2M的文件不会被捕获，需要调整此处大小为100MB或者-1即可
 
 spring:
+  mvc:
+    static-path-pattern: /video/**
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource      # 数据源的类型，可以更改为其他的数据源配置，比如druid
     driver-class-name: com.mysql.cj.jdbc.Driver     # mysql/MariaDB 的数据库驱动类名称
@@ -40,6 +42,8 @@ spring:
 mybatis:
   type-aliases-package: com.rocky.pojo       # 所有pojo类所在的包路径
   mapper-locations: classpath:mapper/*.xml    # mapper映射文件
+  configuration:
+    map-underscore-to-camel-case: true
 
 # 通用mapper工具的配置
 mapper:
