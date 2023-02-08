@@ -17,6 +17,7 @@
     <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
   </resultMap>
   
+
   <select id="selectVideoFeedByTime" parameterType="Date" resultType="com.rocky.pojo.Video">
     select *
     from video

@@ -14,7 +14,7 @@ public interface CommentService {
     /**
      * 添加新的评论/
      */
-    public CommentVO queryComment(CommentBO commentBO);
+    public CommentVO queryComment(long sourceId, CommentBO commentBO);
 
     public List<CommentVO> getCommentList(long vid);
 

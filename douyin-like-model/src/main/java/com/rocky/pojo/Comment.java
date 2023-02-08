@@ -98,8 +98,6 @@ public class Comment implements Serializable {
 
     /**
      * 设置0已删除，1已评论
-     *
-     * @param commentStatus 0已删除，1已评论
      */
     public void setCommentStatus(Byte commentStatus) {
         this.commentStatus = commentStatus;
@@ -138,6 +136,14 @@ public class Comment implements Serializable {
      * @param createTime 留言时间
      */
     public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Comment(Long uid, Long vid, Byte commentStatus, String content, Date createTime) {
+        this.uid = uid;
+        this.vid = vid;
+        this.commentStatus = commentStatus;
+        this.content = content;
         this.createTime = createTime;
     }
 }
