@@ -1,6 +1,8 @@
 package com.rocky.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rocky.pojo.Users;
+import com.rocky.pojo.Video;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ public class VideoVO {
 
     private UsersVO author;
 
+
     @JsonProperty("play_url")
     private String playUrl;
 
@@ -28,7 +31,27 @@ public class VideoVO {
     private long commentCount;
 
     @JsonProperty("is_favorite")
-    private boolean is_favorite;
+    private boolean isFavorite;
 
+    @JsonProperty("title")
     private String title;
+
+
+
+    public VideoVO(Video video,
+                   UsersVO usersVO,
+                   long favoriteCount,
+                   long commentCount,
+                   boolean isFavorite){
+
+        this.id = video.getId();
+        this.author = usersVO;
+        this.playUrl=video.getPlayUrl();
+        this.coverUrl=video.getCoverUrl();
+        this.title=video.getTitle();
+        this.favoriteCount=favoriteCount;
+        this.commentCount=commentCount;
+        this.isFavorite=isFavorite;
+
+    }
 }

@@ -8,7 +8,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="vid" jdbcType="BIGINT" property="vid" />
-    <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
+    <result column="comment_status" jdbcType="TINYINT" property="" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -38,10 +38,17 @@
     where vid = #{vid}
   </select>
 
-  <select id="getVideoCommentsCountByVid" resultType="int">
+  <select id="getVideoCommentsCountByVid" resultType="long">
     select count(*)
     from comment
     where vid = #{vid}
+    and comment_status = 1
   </select>
+
+<!--  <select id="getCommentID" parameterType="Comment">-->
+<!--    select id-->
+<!--    from comment-->
+<!--    where uid = #{uid} and vid = #{vid} and create_time = #{createTime}-->
+<!--  </select>-->
 
 </mapper>

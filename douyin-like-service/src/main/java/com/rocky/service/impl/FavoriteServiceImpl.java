@@ -25,7 +25,7 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
 
     @Override
     public long getVideoBeLIkedCount(long vid) {
-        return 0;
+        return 10L;
     }
 
     @Override

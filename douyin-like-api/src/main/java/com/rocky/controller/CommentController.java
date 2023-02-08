@@ -1,11 +1,14 @@
 package com.rocky.controller;
 
 import com.rocky.service.CommentService;
+import com.rocky.vo.CommentVO;
 import com.rocky.vo.RegisterLoginVO;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @description:
@@ -19,10 +22,11 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @GetMapping("/count")
+    @GetMapping("/list")
     @ResponseBody
-    public long getCounts(long vid) {
-        return commentService.getVideoCommentsCount(vid);
+    public List<CommentVO> getCommentList(long vid) {
+        List<CommentVO> commentList = commentService.getCommentList(vid);
+        return commentList;
     }
 
 }
