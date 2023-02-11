@@ -10,9 +10,7 @@ import com.rocky.result.GraceJSONResult;
 import com.rocky.service.VideoService;
 import com.rocky.utils.MinIOUtils;
 import com.rocky.utils.VideoUtil;
-import com.rocky.vo.ResultVO;
-import com.rocky.vo.UsersVO;
-import com.rocky.vo.VideoVO;
+import com.rocky.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.checkerframework.checker.units.qual.A;
@@ -54,8 +52,8 @@ public class VideoController extends BaseInfoProperties {
      * @return
      * @throws Exception
      */
-    @GetMapping("feed/")
-    public ResponseEntity<ResultVO> getVideoFeed(@RequestParam(required = false) String latest_time,
+    @GetMapping("feed")
+    public VideoFeedVO getVideoFeed(@RequestParam(required = false) String latest_time,
                                                  @RequestParam(required = false) String token  )throws Exception{
 
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
@@ -66,38 +64,36 @@ public class VideoController extends BaseInfoProperties {
             sourceUserId = Long.valueOf(userId);
         }
 
-        ResultVO resultVO = new ResultVO();
-        String format = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
+
         Date endTime;
-        if(latest_time==null||latest_time.length()<=0){
+        if(latest_time==null||latest_time.length()<=0||latest_time.equals(0)){
              endTime = new Date();
         }else{
-             endTime = null;
-            try { endTime = sdf.parse(latest_time); } catch (ParseException e) { e.printStackTrace(); }
+             endTime = new Date(Long.valueOf(latest_time));
+
         }
 
 
 //        log.info(String.valueOf(endTime));
         List<VideoVO> videoVOList = videoService.findVideoFeed(sourceUserId,endTime);
-        Date nextTime;
+        long nextTime;
         if(videoVOList==null|| videoVOList.isEmpty()||videoVOList.size()==0){
-            nextTime = new Date();
+            nextTime = new Date().getTime();
         }else{
-            nextTime =videoService.findDateById(videoVOList.get(0).getId());
+            nextTime =videoService.findDateById(videoVOList.get(0).getId()).getTime();
         }
+        nextTime /= 1000;
 
-        String next_time=sdf.format(nextTime);
-        resultVO.setStatusMsg("访问成功");
-        resultVO.setStatusCode(0);
-        resultVO.setData(videoVOList);
-        resultVO.setObjectName("video_list");
-        resultVO.setNextTime(next_time);
+        VideoFeedVO videoFeedVO = new VideoFeedVO();
+        videoFeedVO.setStatusMsg("访问成功");
+        videoFeedVO.setStatusCode(0);
+        videoFeedVO.setVideoList(videoVOList);
+        videoFeedVO.setNextTime(nextTime);
+        return videoFeedVO;
 
-        return ResponseEntity.ok(resultVO);
     }
 
-    @GetMapping("/list")
+    @GetMapping("publish/list")
     public ResultVO getVideoList(
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
@@ -123,7 +119,7 @@ public class VideoController extends BaseInfoProperties {
 
     }
     @PostMapping("publish/action")
-    public ResponseEntity<ResultVO> upload(
+    public PublishResultVO upload(
             @RequestPart(value="data") MultipartFile data,
             @RequestPart(value="token") String token,
             @RequestPart(value="title") String title
@@ -133,12 +129,13 @@ public class VideoController extends BaseInfoProperties {
 //        log.info("访问");
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
-        ResultVO resultVO = new ResultVO();
+
+        PublishResultVO publishResultVO = new PublishResultVO();
 
         if(value==null){
-            resultVO.setStatusMsg("没有权限访问");
-            resultVO.setStatusCode(1);
-            return new ResponseEntity<>(resultVO, HttpStatus.BAD_REQUEST);
+            publishResultVO.setStatusMsg("没有权限访问");
+            publishResultVO.setStatusCode(1);
+            return publishResultVO;
         }
         long userId = Long.valueOf(value);
 
@@ -148,6 +145,7 @@ public class VideoController extends BaseInfoProperties {
         // 文件存储的目录结构
 
         String videoName =videoType+"/"+date+"/"+fileName;
+
 
         String imgPath = this.ffmpegGetScreenshot(data);
         String imgPathName = DateUtil.currentSeconds()+imgPath.substring(imgPath.lastIndexOf("."));
@@ -168,7 +166,6 @@ public class VideoController extends BaseInfoProperties {
         MinIOUtils.uploadFile(minIOConfig.getBucketName(),
                 imgName,
                 imgInputStream );
-        // delete files
         //todo
         // 这里没删除
         File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
@@ -183,10 +180,10 @@ public class VideoController extends BaseInfoProperties {
 
         VideoBO videoBO = new VideoBO(userId,title,videoPath,imgFinalPath,(byte)1);
         Boolean success = videoService.createVideo(videoBO);
-        resultVO.setStatusMsg("投稿成功");
-        resultVO.setStatusCode(0);
+        publishResultVO.setStatusMsg("发布成功");
+        publishResultVO.setStatusCode(0);
 
-        return ResponseEntity.ok(resultVO);
+        return publishResultVO;
 
     }
     public String ffmpegGetScreenshot(MultipartFile file) throws IOException {

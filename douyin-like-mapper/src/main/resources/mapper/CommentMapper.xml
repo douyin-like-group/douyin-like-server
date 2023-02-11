@@ -21,14 +21,14 @@
     uid, vid, comment_status, content, create_time
   </sql>
 
-  <insert id="insertComment" parameterType="Comment" keyProperty="id">
+  <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
       insert into comment (<include refid="insertFields"></include>)
       values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
   </insert>
 
   <update id="updateCommentState" parameterType="Comment">
     update comment
-    set comment_status = #{commentStatus}
+    set comment_status = 0
     where id = #{id}
   </update>
 

@@ -44,11 +44,16 @@ public class CommentServiceImpl implements CommentService {
         if (commentBO.getCommentStatus() == 1) {
             res = commentMapper.insertComment(comment);
         //  情况二：删除评论
-        }else if (commentBO.getCommentStatus() == 0) {
+        }else if (commentBO.getCommentStatus() == 2) {
             res = commentMapper.updateCommentState(commentBO.getCid());
         }
 
         if (res > 0) {
+            //todo：这里返回值未知
+            if (commentBO.getCommentStatus() == 2) {
+                return commentVO;
+            }
+
             UsersVO usersVO = usersService.findById(sourceId, commentBO.getUid());
             //todo：日期格式转化？
             //todo: 检查是否进行数据回填

@@ -43,9 +43,6 @@ public class CommentController extends BaseInfoProperties {
             sourceUserId = Long.valueOf(userId);
         }
 
-        //String s = redis.get(REDIS_USER_TOKEN + ":" + token);
-        System.out.println("sourceUserId:" + sourceUserId);
-
         Byte action = Byte.valueOf(actionType);
         CommentBO commentBO = new CommentBO(sourceUserId, Long.valueOf(videoId),
                 commentId.equals("") ? -1 : Long.valueOf(commentId), action, commentText);
@@ -62,8 +59,10 @@ public class CommentController extends BaseInfoProperties {
     }
 
     @GetMapping("/list")
-    public List<CommentVO> getCommentList(long vid) {
-        List<CommentVO> commentList = commentService.getCommentList(vid);
+    public List<CommentVO> getCommentList(
+            @RequestParam(required = true, value = "token") String token,
+            @RequestParam(required = true, value = "video_id") String videoId) {
+        List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(videoId));
         return commentList;
     }
 

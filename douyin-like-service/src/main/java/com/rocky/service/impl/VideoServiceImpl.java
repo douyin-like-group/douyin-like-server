@@ -82,11 +82,13 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
     public List<VideoVO> findVideoFeed(long sourceUserId, Date endTime) {
 
 
-        //Example videoExample= new Example(Video.class);
-        //Example.Criteria criteria = videoExample.createCriteria();
-        //videoExample.orderBy("createdTime");
-        //List<Video> videoList = videoMapper.selectByExample(videoExample);
-        List<Video> videoList = videoMapper.selectVideoFeedByTime(endTime);
+//        Example videoExample= new Example(Video.class);
+//        Example.Criteria criteria = videoExample.createCriteria();
+//        videoExample.orderBy("createdTime");
+//        List<Video> videoList = videoMapper.selectByExample(videoExample);
+        List<Video> videoList  = videoMapper.selectVideoFeedByTime(endTime);
+
+
         List<VideoVO> videoVOList = new ArrayList<VideoVO>();
         for(Video video: videoList){
             VideoVO videoVO = getVideoVODetail(video,sourceUserId);
