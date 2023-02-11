@@ -66,6 +66,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
 
        Users user = usersMapper.selectByPrimaryKey(targetId);
        UsersVO usersVO = new UsersVO();
+
        usersVO.setId(targetId);
        usersVO.setName(user.getUsername());
        // 从follow service获取
@@ -102,7 +103,9 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         }
         String uToken = UUID.randomUUID().toString();
         //token作为key存储用户ID
-        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
+
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
+
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         registerLoginVO.setStatusCode(0);

@@ -8,7 +8,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="vid" jdbcType="BIGINT" property="vid" />
-    <result column="comment_status" jdbcType="TINYINT" property="" />
+    <result column="comment_status" jdbcType="TINYINT" property="commentStatus" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -21,7 +21,7 @@
     uid, vid, comment_status, content, create_time
   </sql>
 
-  <insert id="insertComment" parameterType="Comment" keyProperty="id">
+  <insert id="insertComment" parameterType="Comment" keyProperty="id" useGeneratedKeys="true">
       insert into comment (<include refid="insertFields"></include>)
       values(#{uid}, #{vid}, #{commentStatus}, #{content}, #{createTime})
   </insert>
@@ -32,8 +32,8 @@
     where id = #{id}
   </update>
 
-  <select id="selectCommentsByVid" resultType="Comment">
-    select (<include refid="selectFields"></include>)
+  <select id="selectCommentsByVid"   resultType="Comment" parameterType="java.lang.Long">
+    select <include refid="selectFields"></include>
     from comment
     where vid = #{vid}
   </select>
