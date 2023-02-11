@@ -55,12 +55,12 @@ public class CommentController extends BaseInfoProperties {
         resultVO.setData(commentVO);
         resultVO.setObjectName("comment");
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(resultVO);
     }
 
     @GetMapping("/list")
-    public List<CommentVO> getCommentList(long vid) {
-        List<CommentVO> commentList = commentService.getCommentList(vid);
+    public List<CommentVO> getCommentList( @RequestParam(required = true, value = "video_id") String vid) {
+        List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(vid));
         return commentList;
     }
 

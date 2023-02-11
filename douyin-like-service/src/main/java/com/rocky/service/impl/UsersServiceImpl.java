@@ -66,6 +66,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
 
        Users user = usersMapper.selectByPrimaryKey(targetId);
        UsersVO usersVO = new UsersVO();
+
        usersVO.setId(targetId);
        usersVO.setName(user.getUsername());
        // 从follow service获取
