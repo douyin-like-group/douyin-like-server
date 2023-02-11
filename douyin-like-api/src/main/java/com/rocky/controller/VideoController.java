@@ -93,8 +93,8 @@ public class VideoController extends BaseInfoProperties {
         resultVO.setData(videoVOList);
         resultVO.setObjectName("video_list");
         resultVO.setNextTime(next_time);
-        return ResponseEntity.ok(resultVO);
 
+        return ResponseEntity.ok(resultVO);
     }
 
     @GetMapping("/list")
