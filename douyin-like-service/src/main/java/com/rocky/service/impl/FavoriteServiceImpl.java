@@ -60,7 +60,7 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
     }
 
     @Override
-    public long getVideoBeLIkedCount(long vid) {
+    public long getVideoBeLikedCount(long vid) {
         return favoriteMapper.selectFavoriteCountByVID(vid);
     }
 
