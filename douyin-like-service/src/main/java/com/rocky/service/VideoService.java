@@ -26,7 +26,7 @@ public interface VideoService {
 
     public long findUserIdByVideoId(long videoId);
 
-
+    //public List<Video> getVideoFeedByTime(Date time);
 
 
 

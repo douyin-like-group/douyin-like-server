@@ -17,7 +17,6 @@ public class VideoVO {
 
     private UsersVO author;
 
-    private String title;
 
     @JsonProperty("play_url")
     private String playUrl;
@@ -33,6 +32,9 @@ public class VideoVO {
 
     @JsonProperty("is_favorite")
     private boolean isFavorite;
+
+    @JsonProperty("title")
+    private String title;
 
 
 
