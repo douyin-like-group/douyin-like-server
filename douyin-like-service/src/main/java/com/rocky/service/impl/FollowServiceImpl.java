@@ -5,11 +5,14 @@ import com.rocky.mapper.FollowMapper;
 import com.rocky.pojo.Favorite;
 import com.rocky.pojo.Follow;
 import com.rocky.service.FollowService;
+import com.rocky.service.UsersService;
 import com.rocky.vo.ResultVO;
+import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +21,9 @@ import java.util.List;
 public class FollowServiceImpl extends BaseInfoProperties implements FollowService {
     @Autowired
     private FollowMapper followMapper;
+
+    @Autowired
+    private UsersService usersService;
 
     @Override
     public ResultVO follow(long fromUID, long toUID) {
@@ -66,17 +72,56 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
     @Override
     public ResultVO getFollowList(long uid) {
-        return null;
+        List<Long> toIDList = followMapper.selectFollowListByUID(uid);
+
+        List<UsersVO> userList = new ArrayList<UsersVO>();
+        for (Long toID : toIDList) {
+            userList.add(usersService.findById(uid, toID));
+        }
+
+        ResultVO resultVO = new ResultVO();
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("成功获取关注列表");
+        resultVO.setData(userList);
+        resultVO.setObjectName("user_list");
+
+        return resultVO;
     }
 
     @Override
     public ResultVO getFollowerList(long uid) {
-        return null;
+        List<Long> fromIDList = followMapper.selectFollowerListByUID(uid);
+
+        List<UsersVO> userList = new ArrayList<UsersVO>();
+        for (Long fromID : fromIDList) {
+            userList.add(usersService.findById(uid, fromID));
+        }
+
+        ResultVO resultVO = new ResultVO();
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("成功获取粉丝列表");
+        resultVO.setData(userList);
+        resultVO.setObjectName("user_list");
+
+        return resultVO;
     }
 
     @Override
     public ResultVO getFriendList(long uid) {
-        return null;
+        List<Long> toIDList = followMapper.selectFriendListByUID(uid);
+
+        List<UsersVO> userList = new ArrayList<UsersVO>();
+        for (Long toID : toIDList) {
+            userList.add(usersService.findById(uid, toID));
+        }
+
+        ResultVO resultVO = new ResultVO();
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("成功获取朋友列表");
+        resultVO.setData(userList);
+        resultVO.setObjectName("user_list");
+
+        return resultVO;
     }
 
     @Override

@@ -36,4 +36,23 @@
     from follow
     where to_id = #{to_id} and follow_status = 1;
   </select>
+  
+  <select id="selectFollowListByUID" resultType="java.lang.Long">
+    select to_id
+    from follow
+    where from_id = #{from_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFollowerListByUID" resultType="java.lang.Long">
+    select from_id
+    from follow
+    where to_id = #{to_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFriendListByUID" resultType="java.lang.Long">
+    select to_id
+    from follow
+    where from_id = #{from_id} and is_friend = 1;
+  </select>
+
 </mapper>

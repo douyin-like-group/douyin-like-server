@@ -51,4 +51,52 @@ public class FollowController extends BaseInfoProperties {
 
         return new ResultVO(1, "操作失败", null, null);
     }
+
+    @GetMapping("/follow/list")
+    @ResponseBody
+    public ResultVO getFollowList(@RequestParam(name = "user_id") long userID,
+                                  @RequestParam String token) {
+        // 校验token
+        String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
+        if (fromUserIDStr == null) {
+            ResultVO resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+
+        return followService.getFollowList(userID);
+    }
+
+    @GetMapping("/follower/list")
+    @ResponseBody
+    public ResultVO getFollowerList(@RequestParam(name = "user_id") long userID,
+                                  @RequestParam String token) {
+        // 校验token
+        String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
+        if (fromUserIDStr == null) {
+            ResultVO resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+
+        return followService.getFollowerList(userID);
+    }
+
+    @GetMapping("/friend/list")
+    @ResponseBody
+    public ResultVO getFriendList(@RequestParam(name = "user_id") long userID,
+                                    @RequestParam String token) {
+        // 校验token
+        String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
+        if (fromUserIDStr == null) {
+            ResultVO resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+
+        return followService.getFriendList(userID);
+    }
 }
