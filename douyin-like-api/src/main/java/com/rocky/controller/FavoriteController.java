@@ -25,7 +25,7 @@ public class FavoriteController extends BaseInfoProperties {
         log.info("token = " + token + "\n"
                 + "video_id = " + videoID + "\n"
                 + "action_type = " + actionType);
-
+        System.out.println(favoriteService.doesUserLikeVideo(1, 101));
         return favoriteService.like(1, 101);
     }
 }

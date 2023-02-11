@@ -20,8 +20,25 @@
 
   <update id="updateUnlike" >
     update favorite
-    set favorite_status = 2
+    set favorite_status = 0
     where uid = #{uid} and vid = #{vid};
   </update>
 
+  <select id="selectFavoritesByUID" resultType="com.rocky.pojo.Favorite">
+    select *
+    from favorite
+    where uid = #{uid};
+  </select>
+
+  <select id="selectFavoriteCountByVID" resultType="java.lang.Long">
+    select count(*)
+    from favorite
+    where vid = #{vid} and favorite_status = 1;
+  </select>
+
+  <select id="selectFavoriteByUIDAndVID" resultType="com.rocky.pojo.Favorite">
+    select *
+    from favorite
+    where uid = #{uid} and vid = #{vid};
+  </select>
 </mapper>
