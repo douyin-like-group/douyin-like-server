@@ -22,10 +22,27 @@ public class FavoriteController extends BaseInfoProperties {
     public ResultVO action(@RequestParam String token,
                            @RequestParam(name = "video_id") long videoID,
                            @RequestParam(name = "action_type") int actionType) {
-        log.info("token = " + token + "\n"
-                + "video_id = " + videoID + "\n"
-                + "action_type = " + actionType);
-        System.out.println(favoriteService.doesUserLikeVideo(1, 101));
-        return favoriteService.like(1, 101);
+        ResultVO resultVO = null;
+
+        // 获取用户uid
+        String userIDStr = redis.get(REDIS_USER_TOKEN + ":" + token);
+        if (userIDStr == null) {
+            resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+        long userID = Long.parseLong(userIDStr);
+
+        if (actionType == 1) { // 点赞
+            return favoriteService.like(userID, videoID);
+        } else if (actionType == 2) { // 取消点赞
+            return favoriteService.unlike(userID, videoID);
+        }
+
+        resultVO = new ResultVO();
+        resultVO.setStatusCode(1);
+        resultVO.setStatusMsg("失败");
+        return resultVO;
     }
 }
