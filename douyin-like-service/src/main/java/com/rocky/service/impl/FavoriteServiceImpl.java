@@ -5,12 +5,14 @@ import com.rocky.mapper.FavoriteMapper;
 import com.rocky.mapper.UsersMapper;
 import com.rocky.pojo.Favorite;
 import com.rocky.service.FavoriteService;
+import com.rocky.service.VideoService;
 import com.rocky.vo.ResultVO;
 import com.rocky.vo.VideoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
     @Autowired
     private FavoriteMapper favoriteMapper;
 
+    @Autowired
+    private VideoService videoService;
 
     @Override
     public ResultVO like(long uid, long vid) {
@@ -49,14 +53,20 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
 
     @Override
     public ResultVO getlikeList(long uid) {
-        List<Favorite> favoriteList = null;
-        List<VideoVO> videoVOList = null;
+        List<Long> vidList = favoriteMapper.selectVIDByUID(uid);
 
-        favoriteList = favoriteMapper.selectFavoritesByUID(uid);
-        // todo
-        // 要用到zhu的getAllVideoList()？这个service作用是啥
+        List<VideoVO> videoVOList = new ArrayList<VideoVO>();
+        for (long vid : vidList) {
+            // todo 需要组合成List<Video>
+        }
 
-        return null;
+        ResultVO resultVO = new ResultVO();
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("成功获取喜欢列表");
+        resultVO.setData(videoVOList);
+        resultVO.setObjectName("video_list");
+
+        return resultVO;
     }
 
     @Override

@@ -148,6 +148,5 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
         Follow result = followList.get(0);
         return result.getFollowStatus() != (byte) 0;
     }
-    //todo
 
 }

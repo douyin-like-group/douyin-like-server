@@ -24,10 +24,10 @@
     where uid = #{uid} and vid = #{vid};
   </update>
 
-  <select id="selectFavoritesByUID" resultType="com.rocky.pojo.Favorite">
-    select *
+  <select id="selectVIDByUID" resultType="java.lang.Long">
+    select vid
     from favorite
-    where uid = #{uid};
+    where uid = #{uid} and favorite_status = 1;
   </select>
 
   <select id="selectFavoriteCountByVID" resultType="java.lang.Long">
