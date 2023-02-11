@@ -31,26 +31,23 @@ public class FollowController extends BaseInfoProperties {
     public ResultVO action(@RequestParam String token,
                            @RequestParam(name = "to_user_id") long toUserID,
                            @RequestParam(name = "action_type") int actionType) {
+         // 获取用户uid
+        String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
+        if (fromUserIDStr == null) {
+            ResultVO resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+        long fromUserID = Long.parseLong(fromUserIDStr);
 
-//        ResultVO resultVO = null;
-//
-//         // 获取用户uid
-//        String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
-//        if (fromUserIDStr == null) {
-//            resultVO = new ResultVO();
-//            resultVO.setStatusCode(1);
-//            resultVO.setStatusMsg("没有权限访问");
-//            return resultVO;
-//        }
-//        long fromUserID = Long.parseLong(fromUserIDStr);
-//
-//        // 根据actionType的值执行关注或取关操作
-//        if (actionType == 1) {
-//
-//        } else if (actionType == 2) {
-//
-//        }
-//
-//        return null;
+        // 根据actionType的值执行关注或取关操作
+        if (actionType == 1) {
+            return followService.follow(fromUserID, toUserID);
+        } else if (actionType == 2) {
+            return followService.unFollow(fromUserID, toUserID);
+        }
+
+        return new ResultVO(1, "操作失败", null, null);
     }
 }

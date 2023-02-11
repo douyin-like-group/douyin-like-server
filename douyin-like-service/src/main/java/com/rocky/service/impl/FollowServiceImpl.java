@@ -54,7 +54,15 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
     @Override
     public ResultVO unFollow(long fromUID, long toUID) {
-        return null;
+        // 先判断toUID有没有关注fromUID
+        boolean hasBeenFollowed = isFollow(toUID, fromUID);
+        if (hasBeenFollowed) {
+            followMapper.updateFollow(toUID, fromUID, (byte) 0);
+        }
+
+        followMapper.updateUnfollow(fromUID, toUID);
+
+        return new ResultVO(0, "取消关注成功", null, null);
     }
 
     @Override
