@@ -140,7 +140,7 @@ CREATE TABLE `message` (
   `create_time` datetime NOT NULL COMMENT '关注时间',
   `message_status` tinyint COMMENT '0-未读，1-已读，2-删除',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
+--  UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞短视频关联表\n';
 
 -- ----------------------------
