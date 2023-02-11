@@ -2,6 +2,7 @@ package com.rocky.mapper;
 
 import com.rocky.my.mapper.MyMapper;
 import com.rocky.pojo.Follow;
+import org.apache.ibatis.annotations.Param;
 
 public interface FollowMapper extends MyMapper<Follow> {
     /**
@@ -10,8 +11,9 @@ public interface FollowMapper extends MyMapper<Follow> {
      * @param toUserID
      * @return 受影响的行数
      */
-    int updateFollow(long fromUserID, long toUserID);
+    int updateFollow(@Param("from_id") long fromUserID,
+                     @Param("to_id") long toUserID,
+                     @Param("is_friend") Byte isFriend);
 
-    int insertFollow(long fromUserID, long toUserID);
 
 }

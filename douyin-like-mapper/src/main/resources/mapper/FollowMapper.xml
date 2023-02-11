@@ -13,4 +13,10 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
+  <update id="updateFollow">
+    update follow
+    set follow_status = 1, is_friend = #{is_friend}
+    where from_id = #{from_id} and to_id = #{to_id};
+  </update>
+
 </mapper>
