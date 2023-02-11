@@ -45,4 +45,20 @@ public class FavoriteController extends BaseInfoProperties {
         resultVO.setStatusMsg("失败");
         return resultVO;
     }
+
+    @GetMapping("/list")
+    @ResponseBody
+    public ResultVO getFavoriteList(@RequestParam(name = "user_id") long userID,
+                                    @RequestParam String token) {
+        // 校验用户token
+        String userIDStr = redis.get(REDIS_USER_TOKEN + ":" + token);
+        if (userIDStr == null) {
+            ResultVO resultVO = new ResultVO();
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("没有权限访问");
+            return resultVO;
+        }
+
+        return favoriteService.getlikeList(userID);
+    }
 }
