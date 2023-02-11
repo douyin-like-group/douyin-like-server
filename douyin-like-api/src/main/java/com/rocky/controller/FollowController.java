@@ -40,6 +40,7 @@ public class FollowController extends BaseInfoProperties {
             return resultVO;
         }
         long fromUserID = Long.parseLong(fromUserIDStr);
+        System.out.println("count = " + followService.getFollowCount(250));
 
         // 根据actionType的值执行关注或取关操作
         if (actionType == 1) {

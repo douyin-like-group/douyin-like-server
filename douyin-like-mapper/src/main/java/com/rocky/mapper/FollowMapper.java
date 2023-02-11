@@ -16,6 +16,6 @@ public interface FollowMapper extends MyMapper<Follow> {
                      @Param("is_friend") Byte isFriend);
     int updateUnfollow(@Param("from_id") long fromUserID,
                        @Param("to_id") long toUserID);
-
-
+    Long selectFollowCount(@Param("from_id") long uid);
+    Long selectFollowerCount(@Param("to_id") long uid);
 }

@@ -25,4 +25,15 @@
     where from_id = #{from_id} and to_id = #{to_id};
   </update>
 
+  <select id="selectFollowCount" resultType="java.lang.Long">
+    select count(*)
+    from follow
+    where from_id = #{from_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFollowerCount" resultType="java.lang.Long">
+    select count(*)
+    from follow
+    where to_id = #{to_id} and follow_status = 1;
+  </select>
 </mapper>

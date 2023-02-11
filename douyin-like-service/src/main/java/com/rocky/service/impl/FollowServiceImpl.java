@@ -33,7 +33,6 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
             lines = followMapper.updateFollow(fromUID, toUID, (byte) 0);
         }
 
-        System.out.println("lines = " + lines);
         if (lines == 0) { // 受影响行数为0，说明需insert关注记录到数据库中
             Follow follow = new Follow();
             follow.setFromId(fromUID);
@@ -82,12 +81,12 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
     @Override
     public long getFollowCount(long uid) {
-        return 0;
+        return followMapper.selectFollowCount(uid);
     }
 
     @Override
     public long getFollowerCount(long uid) {
-        return 0;
+        return followMapper.selectFollowerCount(uid);
     }
 
     @Override
