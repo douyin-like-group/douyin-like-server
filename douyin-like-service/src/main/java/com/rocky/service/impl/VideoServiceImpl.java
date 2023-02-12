@@ -58,7 +58,7 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
         long targetUserId = video.getUid();
         boolean isFavorite = favoriteService.doesUserLikeVideo(sourceUserId,videoId);
         long  commentCount = commentService.getVideoCommentsCount(videoId);
-        long favoriteCount = favoriteService.getVideoBeLIkedCount(videoId);
+        long favoriteCount = favoriteService.getVideoBeLikedCount(videoId);
         UsersVO usersVO = usersService.findById(sourceUserId,targetUserId);
         VideoVO videoVO = new VideoVO(video,usersVO,favoriteCount,commentCount,isFavorite);
         return videoVO;
