@@ -105,9 +105,13 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         }
         String uToken = UUID.randomUUID().toString();
         //token作为key存储用户ID
+<<<<<<< Updated upstream
 
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
 
+=======
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
+>>>>>>> Stashed changes
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         registerLoginVO.setStatusCode(0);
