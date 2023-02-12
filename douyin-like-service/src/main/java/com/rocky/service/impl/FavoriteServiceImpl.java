@@ -57,7 +57,10 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
 
         List<VideoVO> videoVOList = new ArrayList<VideoVO>();
         for (long vid : vidList) {
-            // todo 需要组合成List<Video>
+            // todo 需要组合成List<VideoVO>
+            // done
+            VideoVO videoVO = videoService.getVideoVODetail(uid,vid);
+            videoVOList.add(videoVO);
         }
 
         ResultVO resultVO = new ResultVO();

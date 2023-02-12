@@ -41,6 +41,10 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" />
+    <connection id="b72ae1ee-cb07-4886-9670-a342c3e2639f" />
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
