@@ -12,4 +12,33 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
+  <update id="updateLike" >
+    update favorite
+    set favorite_status = 1
+    where uid = #{uid} and vid = #{vid};
+  </update>
+
+  <update id="updateUnlike" >
+    update favorite
+    set favorite_status = 0
+    where uid = #{uid} and vid = #{vid};
+  </update>
+
+  <select id="selectVIDByUID" resultType="java.lang.Long">
+    select vid
+    from favorite
+    where uid = #{uid} and favorite_status = 1;
+  </select>
+
+  <select id="selectFavoriteCountByVID" resultType="java.lang.Long">
+    select count(*)
+    from favorite
+    where vid = #{vid} and favorite_status = 1;
+  </select>
+
+  <select id="selectFavoriteByUIDAndVID" resultType="com.rocky.pojo.Favorite">
+    select *
+    from favorite
+    where uid = #{uid} and vid = #{vid};
+  </select>
 </mapper>

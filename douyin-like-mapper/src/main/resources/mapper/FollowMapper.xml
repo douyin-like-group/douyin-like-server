@@ -13,4 +13,46 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
+  <update id="updateFollow">
+    update follow
+    set follow_status = 1, is_friend = #{is_friend}
+    where from_id = #{from_id} and to_id = #{to_id};
+  </update>
+
+  <update id="updateUnfollow">
+    update follow
+    set follow_status = 0, is_friend = 0
+    where from_id = #{from_id} and to_id = #{to_id};
+  </update>
+
+  <select id="selectFollowCount" resultType="java.lang.Long">
+    select count(*)
+    from follow
+    where from_id = #{from_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFollowerCount" resultType="java.lang.Long">
+    select count(*)
+    from follow
+    where to_id = #{to_id} and follow_status = 1;
+  </select>
+  
+  <select id="selectFollowListByUID" resultType="java.lang.Long">
+    select to_id
+    from follow
+    where from_id = #{from_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFollowerListByUID" resultType="java.lang.Long">
+    select from_id
+    from follow
+    where to_id = #{to_id} and follow_status = 1;
+  </select>
+
+  <select id="selectFriendListByUID" resultType="java.lang.Long">
+    select to_id
+    from follow
+    where from_id = #{from_id} and is_friend = 1;
+  </select>
+
 </mapper>
