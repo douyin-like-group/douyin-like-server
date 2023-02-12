@@ -1,6 +1,7 @@
 package com.rocky.service;
 
 
+import com.rocky.bo.MessageBO;
 import com.rocky.pojo.Message;
 
 import java.util.List;
@@ -16,10 +17,10 @@ public interface MessageService {
     /**
      * 创建消息
      */
-    public void createMsg(String fromUserId,String toUserId);
+    public int createMsg(MessageBO messageBO);
 
     /**
      * 查询消息列表
      */
-    public List<Message> queryList(String toUserId,Integer page,Integer pageSize);
+    public List<Message> queryList(long fromUserId,long toUserId);
 }
