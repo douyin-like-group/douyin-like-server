@@ -5,28 +5,6 @@
     <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
-  <component name="DBNavigator.Project.DataExportManager">
-    <export-instructions>
-      <create-header value="true" />
-      <friendly-headers value="false" />
-      <quote-values-containing-separator value="true" />
-      <quote-all-values value="false" />
-      <value-separator value="" />
-      <file-name value="" />
-      <file-location value="" />
-      <scope value="GLOBAL" />
-      <destination value="FILE" />
-      <format value="EXCEL" />
-      <charset value="GBK" />
-      <charset value="GBK" />
-    </export-instructions>
-  </component>
-  <component name="DBNavigator.Project.DatabaseBrowserManager">
-    <autoscroll-to-editor value="false" />
-    <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
-    <loaded-nodes />
-  </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
@@ -41,6 +19,7 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+<<<<<<< Updated upstream
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" />
     <connection id="b72ae1ee-cb07-4886-9670-a342c3e2639f" />
@@ -75,6 +54,8 @@
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces />
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="DBNavigator.Project.Settings">
     <connections>
       <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" active="true" signed="true">
@@ -643,8 +624,5 @@
         </visibility-settings>
       </environment>
     </general-settings>
-  </component>
-  <component name="DBNavigator.Project.StatementExecutionManager">
-    <execution-variables />
   </component>
 </project>
