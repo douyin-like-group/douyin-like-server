@@ -168,15 +168,15 @@ public class VideoController extends BaseInfoProperties {
                 imgInputStream );
         //todo
         // 这里没删除
-        File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
-        File videoFile = new File(fileName);
-        if(imgFile.exists()){
-            log.info("删除图片");
-            imgFile.delete();
-        }
-        if(videoFile.exists()){
-            videoFile.delete();
-        }
+//        File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
+//        File videoFile = new File(fileName);
+//        if(imgFile.exists()){
+//            log.info("删除图片");
+//            imgFile.delete();
+//        }
+//        if(videoFile.exists()){
+//            videoFile.delete();
+//        }
 
         VideoBO videoBO = new VideoBO(userId,title,videoPath,imgFinalPath,(byte)1);
         Boolean success = videoService.createVideo(videoBO);

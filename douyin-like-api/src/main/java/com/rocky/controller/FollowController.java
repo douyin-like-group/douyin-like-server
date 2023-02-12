@@ -29,8 +29,8 @@ public class FollowController extends BaseInfoProperties {
     @PostMapping("/action")
     @ResponseBody
     public ResultVO action(@RequestParam String token,
-                           @RequestParam(name = "to_user_id") long toUserID,
-                           @RequestParam(name = "action_type") int actionType) {
+                           @RequestParam(name = "to_user_id") String toUserIDStr,
+                           @RequestParam(name = "action_type") String actionTypeStr) {
          // 获取用户uid
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         if (fromUserIDStr == null) {
@@ -43,6 +43,8 @@ public class FollowController extends BaseInfoProperties {
         System.out.println("count = " + followService.getFollowCount(250));
 
         // 根据actionType的值执行关注或取关操作
+        long toUserID = Long.parseLong(toUserIDStr);
+        byte actionType = Byte.parseByte(actionTypeStr);
         if (actionType == 1) {
             return followService.follow(fromUserID, toUserID);
         } else if (actionType == 2) {
@@ -54,7 +56,7 @@ public class FollowController extends BaseInfoProperties {
 
     @GetMapping("/follow/list")
     @ResponseBody
-    public ResultVO getFollowList(@RequestParam(name = "user_id") long userID,
+    public ResultVO getFollowList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
         // 校验token
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
@@ -64,13 +66,15 @@ public class FollowController extends BaseInfoProperties {
             resultVO.setStatusMsg("没有权限访问");
             return resultVO;
         }
+
+        long userID = Long.parseLong(userIDStr);
 
         return followService.getFollowList(userID);
     }
 
     @GetMapping("/follower/list")
     @ResponseBody
-    public ResultVO getFollowerList(@RequestParam(name = "user_id") long userID,
+    public ResultVO getFollowerList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
         // 校验token
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
@@ -80,13 +84,14 @@ public class FollowController extends BaseInfoProperties {
             resultVO.setStatusMsg("没有权限访问");
             return resultVO;
         }
+        long userID = Long.parseLong(userIDStr);
 
         return followService.getFollowerList(userID);
     }
 
     @GetMapping("/friend/list")
     @ResponseBody
-    public ResultVO getFriendList(@RequestParam(name = "user_id") long userID,
+    public ResultVO getFriendList(@RequestParam(name = "user_id") String userIDStr,
                                     @RequestParam String token) {
         // 校验token
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
@@ -96,6 +101,7 @@ public class FollowController extends BaseInfoProperties {
             resultVO.setStatusMsg("没有权限访问");
             return resultVO;
         }
+        long userID = Long.parseLong(userIDStr);
 
         return followService.getFriendList(userID);
     }
