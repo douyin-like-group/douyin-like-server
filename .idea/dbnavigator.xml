@@ -35,6 +35,9 @@
       <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
+  </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
@@ -47,6 +50,9 @@
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/douyin-like.sql" connection-id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" session-id="MAIN" current-schema="mysql" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
