@@ -9,6 +9,7 @@ import com.rocky.service.UsersService;
 
 import com.rocky.vo.RegisterLoginVO;
 import com.rocky.vo.UsersVO;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,8 +47,9 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     public Users createUser(RegistLoginBO registLoginBO) {
 
         Users  user = new Users();
-        //todo 上传用户名与否
-        user.setUsername("tempUsername");
+        String name= RandomStringUtils.randomAlphanumeric(6);
+        //随机生成名字
+        user.setUsername(name);
         user.setPassword(passwordEncoder.encode(registLoginBO.getPassword()));
         user.setEmail(registLoginBO.getUsername());
         // 这里username 就是email
