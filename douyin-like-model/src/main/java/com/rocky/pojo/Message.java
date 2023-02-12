@@ -1,5 +1,6 @@
 package com.rocky.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -36,6 +37,8 @@ public class Message implements Serializable {
      */
     @Column(name = "create_time")
     @JsonProperty("create_time")
+    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date createTime;
 
     /**
