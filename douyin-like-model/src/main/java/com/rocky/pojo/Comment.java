@@ -139,6 +139,9 @@ public class Comment implements Serializable {
         this.createTime = createTime;
     }
 
+    public Comment() {
+    }
+
     public Comment(Long uid, Long vid, Byte commentStatus, String content, Date createTime) {
         this.uid = uid;
         this.vid = vid;
