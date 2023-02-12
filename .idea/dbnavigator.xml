@@ -19,43 +19,9 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
-<<<<<<< Updated upstream
-  <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" />
-    <connection id="b72ae1ee-cb07-4886-9670-a342c3e2639f" />
-  </component>
-  <component name="DBNavigator.Project.EditorStateManager">
-    <last-used-providers />
-  </component>
-  <component name="DBNavigator.Project.ExecutionManager">
-    <retain-sticky-names value="false" />
-  </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/douyin-like.sql" connection-id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" session-id="MAIN" current-schema="mysql" />
   </component>
-  <component name="DBNavigator.Project.MethodExecutionManager">
-    <method-browser />
-    <execution-history>
-      <group-entries value="true" />
-      <execution-inputs />
-    </execution-history>
-    <argument-values-cache />
-  </component>
-  <component name="DBNavigator.Project.ObjectDependencyManager">
-    <last-used-dependency-type value="INCOMING" />
-  </component>
-  <component name="DBNavigator.Project.ObjectQuickFilterManager">
-    <last-used-operator value="EQUAL" />
-    <filters />
-  </component>
-  <component name="DBNavigator.Project.ParserDiagnosticsManager">
-    <diagnostics-history />
-  </component>
-  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
-  </component>
-=======
->>>>>>> Stashed changes
   <component name="DBNavigator.Project.Settings">
     <connections>
       <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" active="true" signed="true">
