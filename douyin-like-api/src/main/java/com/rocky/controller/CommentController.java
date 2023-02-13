@@ -27,11 +27,7 @@ public class CommentController extends BaseInfoProperties {
     CommentService commentService;
 
     @PostMapping("/action")
-<<<<<<< HEAD
     public ResponseEntity<ResultVO> actionComment(
-=======
-    public ResultVO actionComment(
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
             @RequestParam(required = true, value = "token") String token,
             @RequestParam(required = true, value = "video_id") String videoId,
             @RequestParam(required = true, value = "action_type") String actionType,
@@ -40,7 +36,6 @@ public class CommentController extends BaseInfoProperties {
 
         // 检查用户状态
         String userId = redis.get(REDIS_USER_TOKEN + ":" + token);
-<<<<<<< HEAD
         long sourceUserId;
         if(userId==null){
             sourceUserId = 0L;
@@ -55,29 +50,16 @@ public class CommentController extends BaseInfoProperties {
         CommentVO commentVO = commentService.queryComment(sourceUserId, commentBO);
 
         ResultVO resultVO = new ResultVO();
-=======
-        ResultVO resultVO = new ResultVO();
         if(userId==null){
             resultVO.setStatusMsg("没有权限评论");
             resultVO.setStatusCode(1);
-            return resultVO;
+            return ResponseEntity.ok(resultVO);
         }
-        long  sourceUserId = Long.valueOf(userId);
 
-
-        Byte action = Byte.valueOf(actionType);
-        CommentBO commentBO = new CommentBO(sourceUserId, Long.valueOf(videoId),
-                (commentId==null)||commentId.equals("") ? -1 : Long.valueOf(commentId), action, commentText);
-
-        CommentVO commentVO = commentService.queryComment(sourceUserId, commentBO);
-
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
         resultVO.setStatusCode(0);
         resultVO.setStatusMsg(action == 1 ? "评论成功" : "删除评论成功");
         resultVO.setData(commentVO);
         resultVO.setObjectName("comment");
-
-<<<<<<< HEAD
         return ResponseEntity.ok(resultVO);
     }
 
@@ -87,8 +69,6 @@ public class CommentController extends BaseInfoProperties {
             @RequestParam(required = true, value = "video_id") String videoId) {
         List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(videoId));
         return commentList;
-=======
-        return resultVO;
     }
 
     @GetMapping("/list")
@@ -101,7 +81,6 @@ public class CommentController extends BaseInfoProperties {
         resultVO.setObjectName("comment_list");
 
         return resultVO;
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
     }
 
 }
