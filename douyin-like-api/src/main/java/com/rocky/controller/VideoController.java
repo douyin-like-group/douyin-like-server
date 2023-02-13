@@ -136,10 +136,6 @@ public class VideoController extends BaseInfoProperties {
 
 
         PublishResultVO publishResultVO = new PublishResultVO();
-<<<<<<< HEAD
-=======
-
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
 
         if(value==null){
             publishResultVO.setStatusMsg("没有权限访问");
@@ -192,12 +188,9 @@ public class VideoController extends BaseInfoProperties {
 //        }
 
         VideoBO videoBO = new VideoBO(userId,title,videoPath,imgFinalPath,(byte)1);
-<<<<<<< HEAD
         Boolean success = videoService.createVideo(videoBO);
-=======
         videoService.createVideo(videoBO);
         log.info("上传成功");
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
         publishResultVO.setStatusMsg("发布成功");
         publishResultVO.setStatusCode(0);
 

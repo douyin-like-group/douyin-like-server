@@ -105,12 +105,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         }
         String uToken = UUID.randomUUID().toString();
         //token作为key存储用户ID
-<<<<<<< HEAD
-        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
-        redis.expire(REDIS_USER_TOKEN+":"+uToken, 60 * 60);
-=======
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
->>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         registerLoginVO.setStatusCode(0);

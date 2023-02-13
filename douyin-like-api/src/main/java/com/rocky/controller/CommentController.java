@@ -64,15 +64,8 @@ public class CommentController extends BaseInfoProperties {
     }
 
     @GetMapping("/list")
-    public List<CommentVO> getCommentList(
-            @RequestParam(required = true, value = "token") String token,
-            @RequestParam(required = true, value = "video_id") String videoId) {
-        List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(videoId));
-        return commentList;
-    }
-
-    @GetMapping("/list")
-    public ResultVO getCommentList( @RequestParam(required = true, value = "video_id") String vid) {
+    public ResultVO getCommentList(@RequestParam(required = false, value = "token") String token,
+                           @RequestParam(required = true, value = "video_id") String vid) {
         List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(vid));
         ResultVO resultVO = new ResultVO();
         resultVO.setStatusCode(0);
