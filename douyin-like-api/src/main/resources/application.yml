@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8099
   address: 0.0.0.0
   tomcat:
     uri-encoding: UTF-8
@@ -59,7 +59,7 @@ pagehelper:
 # 日志级别
 logging:
   level:
-    root: debug
+    root: info
 # MinIO 配置
 minio:
   endpoint: http://82.156.2.33:9000      # MinIO服务地址
