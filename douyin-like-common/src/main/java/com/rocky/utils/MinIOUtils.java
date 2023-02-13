@@ -6,6 +6,7 @@ import io.minio.messages.Bucket;
 import io.minio.messages.DeleteObject;
 import io.minio.messages.Item;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
@@ -266,6 +267,8 @@ public class MinIOUtils {
      * @return
      * @throws Exception
      */
+
+ //
     public static ObjectWriteResponse uploadFile(String bucketName, MultipartFile file,
                                                 String objectName, String contentType) throws Exception {
         InputStream inputStream = file.getInputStream();
@@ -301,13 +304,18 @@ public class MinIOUtils {
      * @param objectName 文件对象
      * @param inputStream 文件流
      */
-    public static ObjectWriteResponse uploadFile(String bucketName, String objectName, InputStream inputStream) throws Exception {
-        return minioClient.putObject(
+
+
+    // ObjectWriteResponse
+    @Async
+    public  void uploadFile(String bucketName, String objectName, InputStream inputStream) throws Exception {
+         minioClient.putObject(
                 PutObjectArgs.builder()
                         .bucket(bucketName)
                         .object(objectName)
                         .stream(inputStream, inputStream.available(), -1)
                         .build());
+         return ;
     }
 
     /**

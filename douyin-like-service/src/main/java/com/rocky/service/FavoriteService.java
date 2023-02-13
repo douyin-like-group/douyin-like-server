@@ -35,7 +35,7 @@ public interface FavoriteService {
      * @param vid
      * @return
      */
-    public long getVideoBeLIkedCount(long vid);
+    public long getVideoBeLikedCount(long vid);
 
     /**
      * 判断用户是否点赞视频

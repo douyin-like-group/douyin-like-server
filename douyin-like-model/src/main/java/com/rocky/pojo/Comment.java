@@ -149,4 +149,7 @@ public class Comment implements Serializable {
         this.content = content;
         this.createTime = createTime;
     }
+    public Comment(){
+
+    }
 }

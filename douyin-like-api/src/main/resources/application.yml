@@ -1,5 +1,5 @@
 server:
-  port: 8099
+  port: 8080
   address: 0.0.0.0
   tomcat:
     uri-encoding: UTF-8
@@ -27,7 +27,7 @@ spring:
   redis:
     host: 82.156.2.33
     port: 6379
-    database: 0
+    database: 1
     password: zhu123
 
   servlet:

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,8 +58,10 @@ public class CommentServiceImpl implements CommentService {
             UsersVO usersVO = usersService.findById(sourceId, commentBO.getUid());
             //todo：日期格式转化？
             //todo: 检查是否进行数据回填
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
             commentVO = new CommentVO(comment.getId(), usersVO,
-                    comment.getContent(), comment.getCreateTime().toString());
+                    comment.getContent(), sdf.format(comment.getCreateTime()).substring(5));
             //CommentVO commentVO = new CommentVO(commentMapper.getCommentID(comment), usersVO,
             //        comment.getContent(), comment.getCreateTime().toString());
             return commentVO;
@@ -76,12 +79,13 @@ public class CommentServiceImpl implements CommentService {
         long uid = videoService.findUserIdByVideoId(vid);
         List<Comment> comments = commentMapper.selectCommentsByVid(vid);
         List<CommentVO> commentVOList = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         if (comments != null) {
             commentVOList = new ArrayList<>();
             for (Comment comment : comments) {
                 UsersVO usersVO = usersService.findById(uid, comment.getUid());
-                CommentVO commentVO = new CommentVO(comment.getId(), usersVO, comment.getContent(), comment.getCreateTime().toString());
+                CommentVO commentVO = new CommentVO(comment.getId(), usersVO, comment.getContent(),  sdf.format(comment.getCreateTime()).substring(5));
                 commentVOList.add(commentVO);
             }
             return commentVOList;

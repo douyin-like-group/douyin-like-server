@@ -9,6 +9,7 @@ import com.rocky.service.UsersService;
 
 import com.rocky.vo.RegisterLoginVO;
 import com.rocky.vo.UsersVO;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,8 +47,9 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     public Users createUser(RegistLoginBO registLoginBO) {
 
         Users  user = new Users();
-        //todo 上传用户名与否
-        user.setUsername("tempUsername");
+        String name= RandomStringUtils.randomAlphanumeric(6);
+        //随机生成名字
+        user.setUsername(name);
         user.setPassword(passwordEncoder.encode(registLoginBO.getPassword()));
         user.setEmail(registLoginBO.getUsername());
         // 这里username 就是email
@@ -66,6 +68,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
 
        Users user = usersMapper.selectByPrimaryKey(targetId);
        UsersVO usersVO = new UsersVO();
+
        usersVO.setId(targetId);
        usersVO.setName(user.getUsername());
        // 从follow service获取
@@ -102,8 +105,12 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         }
         String uToken = UUID.randomUUID().toString();
         //token作为key存储用户ID
+<<<<<<< HEAD
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
         redis.expire(REDIS_USER_TOKEN+":"+uToken, 60 * 60);
+=======
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
+>>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
         registerLoginVO.setUserId(user.getId());
         registerLoginVO.setToken(uToken);
         registerLoginVO.setStatusCode(0);

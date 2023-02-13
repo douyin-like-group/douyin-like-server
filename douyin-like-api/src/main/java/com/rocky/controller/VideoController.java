@@ -17,6 +17,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +34,7 @@ import java.util.Map;
 // test for file upload
 @RequestMapping("/douyin/")
 @RestController
+@EnableAsync //允许异步
 public class VideoController extends BaseInfoProperties {
 
     @Autowired
@@ -43,6 +45,9 @@ public class VideoController extends BaseInfoProperties {
 
     @Autowired
     private VideoService videoService;
+
+    @Autowired
+    private MinIOUtils minIOUtils;
 
 
     /**
@@ -126,11 +131,15 @@ public class VideoController extends BaseInfoProperties {
 
                                    ) throws Exception {
         //
-//        log.info("访问");
+        log.info("访问");
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
 
         PublishResultVO publishResultVO = new PublishResultVO();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
 
         if(value==null){
             publishResultVO.setStatusMsg("没有权限访问");
@@ -141,45 +150,54 @@ public class VideoController extends BaseInfoProperties {
 
         String date= DateUtil.formatDate(new Date());
         String fileName = data.getOriginalFilename();
-        String videoType = data.getContentType();
+
         // 文件存储的目录结构
 
-        String videoName =videoType+"/"+date+"/"+fileName;
+        String videoName =DateUtil.currentSeconds()+fileName;
+
 
 
         String imgPath = this.ffmpegGetScreenshot(data);
+        log.info(imgPath);
         String imgPathName = DateUtil.currentSeconds()+imgPath.substring(imgPath.lastIndexOf("."));
         BufferedInputStream imgInputStream = FileUtil.getInputStream(imgPath);
 
         String imgName="img"+"/"+date+"/"+imgPathName;
 
 
-//        log.info("图片文件上传成功!");
+//
 //        存储文件
 //        log.info("视频文件上传成功!");
         String videoPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + videoName;
         String imgFinalPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + imgName;
 
-        MinIOUtils.uploadFile(minIOConfig.getBucketName(),
+        minIOUtils.uploadFile(minIOConfig.getBucketName(),
                               videoName,
                               data.getInputStream());
-        MinIOUtils.uploadFile(minIOConfig.getBucketName(),
+        log.info("图片文件上传成功!");
+
+        minIOUtils.uploadFile(minIOConfig.getBucketName(),
                 imgName,
                 imgInputStream );
         //todo
         // 这里没删除
-        File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
-        File videoFile = new File(fileName);
-        if(imgFile.exists()){
-            log.info("删除图片");
-            imgFile.delete();
-        }
-        if(videoFile.exists()){
-            videoFile.delete();
-        }
+//        File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
+//        File videoFile = new File(fileName);
+//        if(imgFile.exists()){
+//            log.info("删除图片");
+//            imgFile.delete();
+//        }
+//        if(videoFile.exists()){
+//            videoFile.delete();
+//        }
 
         VideoBO videoBO = new VideoBO(userId,title,videoPath,imgFinalPath,(byte)1);
+<<<<<<< HEAD
         Boolean success = videoService.createVideo(videoBO);
+=======
+        videoService.createVideo(videoBO);
+        log.info("上传成功");
+>>>>>>> 3e10553ad4bd326a89528135d8c838e79f04fe08
         publishResultVO.setStatusMsg("发布成功");
         publishResultVO.setStatusCode(0);
 

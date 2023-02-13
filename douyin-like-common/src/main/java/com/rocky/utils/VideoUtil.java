@@ -66,7 +66,7 @@ public class VideoUtil {
                 // 过滤前300帧，避免出现全黑的图片，依自己情况而定
 //             f = grabber.grabFrame();
                 f = grabber.grabImage();
-                if ((i > 150) && (f.image != null)) {
+                if ((i > 1) && (f.image != null)) {
                     break;
                 }
                 i++;

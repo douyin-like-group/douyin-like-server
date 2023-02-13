@@ -1130,7 +1130,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="304" parent="298" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>13</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1340,7 +1340,7 @@ vid</ColNames>
       <UnderlyingIndexName>writer_id</UnderlyingIndexName>
     </key>
     <column id="342" parent="302" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1411,7 +1411,7 @@ vid</ColNames>
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
     <column id="355" parent="303" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>17</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1423,9 +1423,7 @@ vid</ColNames>
       <Position>2</Position>
     </column>
     <column id="357" parent="303" name="play_url">
-      <Comment>视频播放地址</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>text|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="358" parent="303" name="cover_url">

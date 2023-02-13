@@ -53,12 +53,13 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
     }
 
     @Override
-    public VideoVO getVideoVODetail(Video video,long sourceUserId) {
+    public VideoVO getVideoVODetail(long sourceUserId, long vid) {
+        Video video = videoMapper.selectByPrimaryKey(vid);
         long videoId = video.getId();
         long targetUserId = video.getUid();
         boolean isFavorite = favoriteService.doesUserLikeVideo(sourceUserId,videoId);
         long  commentCount = commentService.getVideoCommentsCount(videoId);
-        long favoriteCount = favoriteService.getVideoBeLIkedCount(videoId);
+        long favoriteCount = favoriteService.getVideoBeLikedCount(videoId);
         UsersVO usersVO = usersService.findById(sourceUserId,targetUserId);
         VideoVO videoVO = new VideoVO(video,usersVO,favoriteCount,commentCount,isFavorite);
         return videoVO;
@@ -72,7 +73,7 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
         List<Video> videoList = videoMapper.selectByExample(videoExample);
         List<VideoVO> videoVOList = new ArrayList<VideoVO>();
         for(Video video: videoList){
-            VideoVO videoVO = getVideoVODetail(video,sourceUserId);
+            VideoVO videoVO = getVideoVODetail(sourceUserId,video.getId());
             videoVOList.add(videoVO);
         }
         return videoVOList;
@@ -91,7 +92,7 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
 
         List<VideoVO> videoVOList = new ArrayList<VideoVO>();
         for(Video video: videoList){
-            VideoVO videoVO = getVideoVODetail(video,sourceUserId);
+            VideoVO videoVO = getVideoVODetail(sourceUserId,video.getId());
             videoVOList.add(videoVO);
         }
         return videoVOList;

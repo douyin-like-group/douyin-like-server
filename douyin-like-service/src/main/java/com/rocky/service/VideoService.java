@@ -16,7 +16,7 @@ public interface VideoService {
 
     public boolean createVideo(VideoBO videoBO);
 
-    public VideoVO getVideoVODetail(Video video,long sourceUserId);
+    public VideoVO getVideoVODetail(long sourceUserId, long vid);
 
     public List<VideoVO> getAllVideoList(long sourceUserId, long targetUserId);
 
