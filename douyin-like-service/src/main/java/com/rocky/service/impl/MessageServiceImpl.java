@@ -8,6 +8,7 @@ import com.rocky.service.MessageService;
 import com.rocky.vo.MessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class MessageServiceImpl implements MessageService {
     private MessageMapper messageMapper;
 
     @Override
+    @Transactional
     public int createMsg(MessageBO messageBO) {
         Message message = new Message();
         message.setUid(messageBO.getUid());
@@ -37,12 +39,21 @@ public class MessageServiceImpl implements MessageService {
 
 
     @Override
+    @Transactional
     public List<Message> queryList(long fromUserId, long toUserId) {
-        Example msgExample = new Example(Message.class);
-        Example.Criteria criteria = msgExample.createCriteria();
-        criteria.andEqualTo("uid",fromUserId);
-        criteria.andEqualTo("vid",toUserId);
-        List<Message> msgList = messageMapper.selectByExample(msgExample);
+//        Example msgExample = new Example(Message.class);
+//        Example.Criteria criteria = msgExample.createCriteria();
+//        criteria.andEqualTo("uid",fromUserId);
+//        criteria.andEqualTo("vid",toUserId);
+//        criteria.andEqualTo("messageStatus",(byte)0);
+        List<Message> msgList = messageMapper.findMessageByvidANDuid(fromUserId,toUserId);
+        for(Message message:msgList){
+////            if(message.getVid() == fromUserId){
+//                message.setMessageStatus((byte) 1);
+//                messageMapper.updateByPrimaryKey(message);
+////            }
+            System.out.println(message.toString());
+        }
         return msgList;
     }
 

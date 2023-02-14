@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 @RestController
 @RequestMapping("/douyin/message")
 @Slf4j
@@ -21,11 +23,18 @@ public class MsgController extends BaseInfoProperties {
     @Autowired
     private MessageService messageService;
 
+    /**
+     * 查询聊天记录
+     * @param token
+     * @param to_user_id
+     * @return
+     */
     @GetMapping("/chat")
-    public ResponseEntity<MessageVO> queryMsgList(@RequestParam String token, String to_user_id){
+    public ResponseEntity<MessageVO> queryMsgList(@RequestParam String token, String to_user_id) {
         log.info("/douyin/message/chat/ 接口捕获");
-        long from_user_id;
         MessageVO messageVO = new MessageVO();
+//        long from_user_id = Long.valueOf(token);
+        long from_user_id;
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
         if(userId==null){
             messageVO.setStatusCode("1");
@@ -34,7 +43,6 @@ public class MsgController extends BaseInfoProperties {
         }else{
             from_user_id = Long.valueOf(userId);
         }
-
         messageVO.setStatusCode("0");
         messageVO.setStatusMsg("查询成功！");
         List<Message> messageList = messageService.queryList(from_user_id, Long.parseLong(to_user_id));
@@ -42,6 +50,14 @@ public class MsgController extends BaseInfoProperties {
         return ResponseEntity.ok(messageVO);
     }
 
+    /**
+     * 存储发送消息
+     * @param token
+     * @param to_user_id
+     * @param action_type
+     * @param content
+     * @return
+     */
     @PostMapping("/action")
     public ResponseEntity<ResultVO> saveMsg(@RequestParam String token, String to_user_id, String action_type, String content){
         log.info("/douyin/message/action 接口捕获");
