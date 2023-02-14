@@ -1,5 +1,6 @@
 package com.rocky.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -13,11 +14,13 @@ public class Message implements Serializable {
     /**
      * 发送者 id
      */
+    @JsonProperty("from_user_id")
     private Long uid;
 
     /**
      * 接受者 id
      */
+    @JsonProperty("to_user_id")
     private Long vid;
 
     /**
@@ -36,6 +39,8 @@ public class Message implements Serializable {
      */
     @Column(name = "create_time")
     @JsonProperty("create_time")
+    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date createTime;
 
     /**
@@ -150,6 +155,7 @@ public class Message implements Serializable {
         this.createTime = createTime;
     }
 
+
     /**
      * 获取0-未读，1-已读，2-删除
      *
@@ -166,5 +172,19 @@ public class Message implements Serializable {
      */
     public void setMessageStatus(Byte messageStatus) {
         this.messageStatus = messageStatus;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Message{");
+        sb.append("id=").append(id);
+        sb.append(", uid=").append(uid);
+        sb.append(", vid=").append(vid);
+        sb.append(", isFriend=").append(isFriend);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", createTime=").append(createTime);
+        sb.append(", messageStatus=").append(messageStatus);
+        sb.append('}');
+        return sb.toString();
     }
 }
