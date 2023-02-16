@@ -1,6 +1,7 @@
 server:
   port: 8080
   address: 0.0.0.0
+
   tomcat:
     uri-encoding: UTF-8
     max-swallow-size: -1  # tomcat默认大小2M，超过2M的文件不会被捕获，需要调整此处大小为100MB或者-1即可
@@ -62,8 +63,8 @@ logging:
     root: info
 # MinIO 配置
 minio:
-  endpoint: http://82.156.2.33:9000      # MinIO服务地址
-  fileHost: http://82.156.2.33:9000      # 文件地址host
+  endpoint: http://conchincradle.top:9000      # MinIO服务地址
+  fileHost: http://conchincradle.top:9000      # 文件地址host
   bucketName: douyin                      # 存储桶bucket名称
   accessKey: root                         # 用户名
   secretKey: douyin123                     # 密码
