@@ -9,7 +9,7 @@ import com.rocky.bo.VideoBO;
 import com.rocky.result.GraceJSONResult;
 import com.rocky.service.VideoService;
 import com.rocky.utils.MinIOUtils;
-import com.rocky.utils.VideoUtil;
+
 import com.rocky.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 // test for file upload
@@ -40,8 +41,8 @@ public class VideoController extends BaseInfoProperties {
     @Autowired
     private MinIOConfig minIOConfig;
 
-    @Autowired
-    private VideoUtil videoUtil;
+//    @Autowired
+//    private VideoUtil videoUtil;
 
     @Autowired
     private VideoService videoService;
@@ -130,8 +131,8 @@ public class VideoController extends BaseInfoProperties {
             @RequestPart(value="title") String title
 
                                    ) throws Exception {
-        //
-        log.info("访问");
+
+        log.info("访问发布视频接口");
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
 
@@ -143,67 +144,39 @@ public class VideoController extends BaseInfoProperties {
             publishResultVO.setStatusCode(1);
             return publishResultVO;
         }
+        String contenType = data.getOriginalFilename().substring(data.getOriginalFilename().lastIndexOf("."));
+        if(!contenType.equals(".mp4")){
+            publishResultVO.setStatusMsg("请上传mp4类型的视频");
+            publishResultVO.setStatusCode(1);
+            return publishResultVO;
+        }
         long userId = Long.valueOf(value);
 
         String date= DateUtil.formatDate(new Date());
-        String fileName = data.getOriginalFilename();
-
         // 文件存储的目录结构
 
-        String videoName =DateUtil.currentSeconds()+fileName;
+        //String videoName =DateUtil.currentSeconds()+fileName;
 
-
-        String imgPath = this.ffmpegGetScreenshot(data);
-        log.info(imgPath);
-        String imgPathName = DateUtil.currentSeconds()+imgPath.substring(imgPath.lastIndexOf("."));
-        BufferedInputStream imgInputStream = FileUtil.getInputStream(imgPath);
-
-        String imgName="img"+"/"+date+"/"+imgPathName;
-
-
-//
-//        存储文件
-//        log.info("视频文件上传成功!");
+        String videoName = "video/"+date+ "/"+UUID.randomUUID().toString()+contenType;
+        String coverName = "cover/"+date+ "/"+UUID.randomUUID().toString()+".png";
+        minIOUtils.uploadVideoAndCutCover(minIOConfig.getBucketName(),
+                videoName,coverName,
+                data.getInputStream());
         String videoPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + videoName;
-        String imgFinalPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + imgName;
+        String coverPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + coverName;
 
-        minIOUtils.uploadFile(minIOConfig.getBucketName(),
-                              videoName,
-                              data.getInputStream());
-        log.info("图片文件上传成功!");
 
-        minIOUtils.uploadFile(minIOConfig.getBucketName(),
-                imgName,
-                imgInputStream );
-        //todo
-        // 这里没删除
-//        File imgFile = new File(fileName.substring(0,fileName.lastIndexOf("."))+".jpg");
-//        File videoFile = new File(fileName);
-//        if(imgFile.exists()){
-//            log.info("删除图片");
-//            imgFile.delete();
-//        }
-//        if(videoFile.exists()){
-//            videoFile.delete();
-//        }
-
-        VideoBO videoBO = new VideoBO(userId,title,videoPath,imgFinalPath,(byte)1);
+        // 插入地址
+        VideoBO videoBO = new VideoBO(userId,title,videoPath,coverPath,(byte)1);
         videoService.createVideo(videoBO);
-        log.info("上传成功");
+//        log.info("插入数据库成功");
         publishResultVO.setStatusMsg("发布成功");
         publishResultVO.setStatusCode(0);
 
         return publishResultVO;
 
     }
-    public String ffmpegGetScreenshot(MultipartFile file) throws IOException {
-        File toFile = new File("img/"+file.getOriginalFilename());
-        FileUtils.copyInputStreamToFile(file.getInputStream(),toFile);
-        //String absolutePath = toFile.getAbsoluteFile().getAbsolutePath();
-        Map<String, Object> screenshot = VideoUtil.getScreenshot(toFile);
-        String imgPath =(String) screenshot.get("imgPath");
-        return imgPath;
-    }
+
 
 }
 

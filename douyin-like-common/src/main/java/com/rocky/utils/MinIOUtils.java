@@ -6,12 +6,15 @@ import io.minio.messages.Bucket;
 import io.minio.messages.DeleteObject;
 import io.minio.messages.Item;
 import lombok.extern.slf4j.Slf4j;
+import org.bytedeco.javacv.FFmpegFrameGrabber;
+import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.Java2DFrameConverter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -299,23 +302,52 @@ public class MinIOUtils {
 
     /**
      * 通过流上传文件
-     *
-     * @param bucketName 存储桶
-     * @param objectName 文件对象
-     * @param inputStream 文件流
+     * @param bucketName
+     * @param videoName
+     * @param imgName
+     * @param inputStream
+     * @throws Exception
      */
 
 
     // ObjectWriteResponse
     @Async
-    public  void uploadFile(String bucketName, String objectName, InputStream inputStream) throws Exception {
-         minioClient.putObject(
+    public  void uploadVideoAndCutCover(String bucketName, String videoName,String imgName,  InputStream inputStream) throws Exception {
+        log.info("准备上传视频");
+        try{
+
+            minioClient.putObject(
                 PutObjectArgs.builder()
                         .bucket(bucketName)
-                        .object(objectName)
+                        .object(videoName)
                         .stream(inputStream, inputStream.available(), -1)
                         .build());
+             log.info("上传视频成功到"+endpoint+"/"+bucketName+"/"+videoName);
+
+            InputStream videoInputStream = getObject(bucketName,videoName);
+            FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(videoInputStream);
+            grabber.start();
+            Frame frame = grabber.grabImage();
+            // convert the first frame to inputstream
+            Java2DFrameConverter converter = new Java2DFrameConverter();
+            BufferedImage bufferedImage = converter.getBufferedImage(frame);
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", os);
+            InputStream imgInputStream = new ByteArrayInputStream(os.toByteArray());
+            grabber.stop();
+            minioClient.putObject(
+                    PutObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(imgName)
+                            .stream(imgInputStream, imgInputStream.available(), -1)
+                            .build());
+            log.info("封面上传成功");
          return ;
+        } catch (Exception e) {
+            log.error("封面图截图失败");
+            e.printStackTrace();
+            return;
+        }
     }
 
     /**

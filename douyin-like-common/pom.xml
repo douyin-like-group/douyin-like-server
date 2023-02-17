@@ -11,7 +11,9 @@
     <properties>
         <javacv.version>1.5.5</javacv.version>
         <system.windowsx64>windows-x86_64</system.windowsx64>
+        <system.linuxx64>linux-x86_64</system.linuxx64>
     </properties>
+
 
 
     <!--
@@ -109,10 +111,36 @@
         </dependency>
         <dependency>
             <groupId>org.bytedeco</groupId>
-            <artifactId>javacpp-platform</artifactId>
+            <artifactId>javacpp</artifactId>
             <version>${javacv.version}</version>
+            <classifier>${system.linuxx64}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>${javacv.version}</version>
+            <classifier>${system.windowsx64}</classifier>
         </dependency>
         <!-- ffmpeg最小依赖包，必须包含上面的javacv+javacpp核心库 -->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>ffmpeg</artifactId>-->
+<!--            <version>4.3.2-${javacv.version}</version>-->
+<!--            <classifier>${system.windowsx64}</classifier>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>ffmpeg</artifactId>-->
+<!--            <version>4.3.2-${javacv.version}</version>-->
+<!--            <classifier>${system.linuxx64}</classifier>-->
+<!--        </dependency>-->
+        <!-- 这里是ffmpeg而不是ffmpeg-platform        -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>4.3.2-${javacv.version}</version>
+            <classifier>${system.linuxx64}</classifier>
+        </dependency>
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>ffmpeg</artifactId>
