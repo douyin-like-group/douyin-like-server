@@ -40,7 +40,9 @@ public class Message implements Serializable {
     @Column(name = "create_time")
     @JsonProperty("create_time")
     //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    //    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+//    @JsonFormat(pattern = "HH:mm a" , locale = "en_US", timezone = "GMT+8")
+    @JsonFormat(pattern = "S")
     private Date createTime;
 
     /**
