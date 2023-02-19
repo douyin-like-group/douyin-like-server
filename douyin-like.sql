@@ -16,7 +16,7 @@
 CREATE DATABASE IF NOT EXISTS douyin;
 ALTER DATABASE douyin CHARACTER SET utf8mb4;
 USE douyin;
-DROP TABLE users;
+DROP TABLE `users`;
 DROP TABLE `follow`;
 DROP TABLE `video`;
 DROP TABLE  `favorite`;
