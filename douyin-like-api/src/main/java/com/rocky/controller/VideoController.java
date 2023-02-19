@@ -2,33 +2,27 @@ package com.rocky.controller;
 
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.FileUtil;
+
 import com.rocky.MinIOConfig;
 import com.rocky.base.BaseInfoProperties;
 import com.rocky.bo.VideoBO;
-import com.rocky.result.GraceJSONResult;
+
 import com.rocky.service.VideoService;
 import com.rocky.utils.MinIOUtils;
 
 import com.rocky.vo.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
-import org.checkerframework.checker.units.qual.A;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 import java.util.UUID;
 
 @Slf4j
@@ -41,8 +35,6 @@ public class VideoController extends BaseInfoProperties {
     @Autowired
     private MinIOConfig minIOConfig;
 
-//    @Autowired
-//    private VideoUtil videoUtil;
 
     @Autowired
     private VideoService videoService;
@@ -53,29 +45,31 @@ public class VideoController extends BaseInfoProperties {
 
     /**
      * 获取某个用户的视频发布列表
-     * @param latest_time
+     * @param latestTime
      * @param token
      * @return
      * @throws Exception
      */
+
+
+
     @GetMapping("feed")
-    public VideoFeedVO getVideoFeed(@RequestParam(required = false) String latest_time,
-                                                 @RequestParam(required = false) String token  )throws Exception{
+    public VideoFeedVO getVideoFeed(@RequestParam(required = false,value="latest_time") String latestTime,
+                                                 @RequestParam(required = false,value="token") String token  )throws Exception{
 
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
         long sourceUserId;
         if(userId==null){
             sourceUserId = 0L;
         }else{
-            sourceUserId = Long.valueOf(userId);
+            sourceUserId = Long.parseLong(userId);
         }
 
-
         Date endTime;
-        if(latest_time==null||latest_time.length()<=0||latest_time.equals(0)){
+        if(latestTime==null||latestTime.equals("")){
              endTime = new Date();
         }else{
-             endTime = new Date(Long.valueOf(latest_time));
+             endTime = new Date(Long.parseLong(latestTime));
 
         }
 
@@ -113,8 +107,8 @@ public class VideoController extends BaseInfoProperties {
             resultVO.setStatusCode(1);
             return resultVO;
         }
-        long sourceUserId = Long.valueOf(value);
-        long targetUserId = Long.valueOf(user_id);
+        long sourceUserId = Long.parseLong(value);
+        long targetUserId = Long.parseLong(user_id);
 
         List<VideoVO> videoVOList = videoService.getAllVideoList(sourceUserId,targetUserId);
         resultVO.setStatusMsg("访问成功");
@@ -150,15 +144,15 @@ public class VideoController extends BaseInfoProperties {
             publishResultVO.setStatusCode(1);
             return publishResultVO;
         }
-        long userId = Long.valueOf(value);
+        long userId = Long.parseLong(value);
 
         String date= DateUtil.formatDate(new Date());
         // 文件存储的目录结构
 
         //String videoName =DateUtil.currentSeconds()+fileName;
 
-        String videoName = "video/"+date+ "/"+UUID.randomUUID().toString()+contenType;
-        String coverName = "cover/"+date+ "/"+UUID.randomUUID().toString()+".png";
+        String videoName = "video/"+date+ "/"+UUID.randomUUID()+contenType;
+        String coverName = "cover/"+date+ "/"+UUID.randomUUID()+".png";
         minIOUtils.uploadVideoAndCutCover(minIOConfig.getBucketName(),
                 videoName,coverName,
                 data.getInputStream());
