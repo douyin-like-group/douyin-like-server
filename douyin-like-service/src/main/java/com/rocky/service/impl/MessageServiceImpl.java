@@ -52,7 +52,7 @@ public class MessageServiceImpl implements MessageService {
 //                message.setMessageStatus((byte) 1);
 //                messageMapper.updateByPrimaryKey(message);
 ////            }
-            System.out.println(message.toString());
+//            System.out.println(message.toString());
         }
         return msgList;
     }
