@@ -60,7 +60,7 @@ public class MsgController extends BaseInfoProperties {
      */
     @PostMapping("/action")
     public ResponseEntity<ResultVO> saveMsg(@RequestParam String token, String to_user_id, String action_type, String content){
-        log.info("/douyin/message/action 接口捕获");
+//        log.info("/douyin/message/action 接口捕获");
         //demo
         ResultVO resultVO = new ResultVO();
         long from_user_id ;
@@ -75,7 +75,7 @@ public class MsgController extends BaseInfoProperties {
         MessageBO messageBO = new MessageBO();
         messageBO.setUid(from_user_id);
         messageBO.setVid(Long.parseLong(to_user_id));
-        messageBO.setMessage_status(Byte.valueOf(action_type));
+        messageBO.setMessage_status((byte) 0);
         messageBO.setContent(content);
         int rs = messageService.createMsg(messageBO);
         if(rs > 0){
