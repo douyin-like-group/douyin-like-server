@@ -328,6 +328,12 @@ public class MinIOUtils {
             FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(videoInputStream);
             grabber.start();
             Frame frame = grabber.grabImage();
+            int i= 0 ;
+            // 跳过前12帧
+            while(i<12){
+                frame = grabber.grabImage();
+                i++;
+            }
             // convert the first frame to inputstream
             Java2DFrameConverter converter = new Java2DFrameConverter();
             BufferedImage bufferedImage = converter.getBufferedImage(frame);

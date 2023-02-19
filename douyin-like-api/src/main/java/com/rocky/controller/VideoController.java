@@ -160,8 +160,10 @@ public class VideoController extends BaseInfoProperties {
         String coverPath = minIOConfig.getFileHost() + "/" + minIOConfig.getBucketName() + "/" + coverName;
 
 
+
         // 插入地址
         VideoBO videoBO = new VideoBO(userId,title,videoPath,coverPath,(byte)1);
+
         videoService.createVideo(videoBO);
 //        log.info("插入数据库成功");
         publishResultVO.setStatusMsg("发布成功");
