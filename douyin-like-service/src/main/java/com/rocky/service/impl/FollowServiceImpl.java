@@ -114,7 +114,7 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
         List<FriendUserVO> userList = new ArrayList<FriendUserVO>();
         for (Long toID : toIDList) {
             UsersVO usersVO =  usersService.findById(uid, toID);
-            FriendUserVO friendUserVO = new FriendUserVO(usersVO,"hello",1L);
+            FriendUserVO friendUserVO = new FriendUserVO(usersVO,"hello",0L);
             userList.add(friendUserVO);
         }
 

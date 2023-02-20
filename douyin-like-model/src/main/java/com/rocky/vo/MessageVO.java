@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class MessageVO {
     private String content;
 
     @JsonProperty("create_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss")
-    private Date createTime;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss")
+    private long createTime;
     //消息发送时间 yyyy-MM-dd HH:MM:ss
 
 
@@ -37,7 +38,10 @@ public class MessageVO {
         this.toUserId = message.getVid();
         this.fromUserId = message.getUid();
         this.content = message.getContent();
-        this.createTime = message.getCreateTime();
+//        String pattern = "yyyy-MM-dd HH:MM:ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//        this.createTime = sdf.format(message.getCreateTime());
+        this.createTime = message.getCreateTime().getTime();
 
     }
 

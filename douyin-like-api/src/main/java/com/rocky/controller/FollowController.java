@@ -100,7 +100,9 @@ public class FollowController extends BaseInfoProperties {
             return resultVO;
         }
         long userID = Long.parseLong(userIDStr);
+        ResultVO resultVO = followService.getFriendList(userID);
 
-        return followService.getFriendList(userID);
+
+        return resultVO ;
     }
 }

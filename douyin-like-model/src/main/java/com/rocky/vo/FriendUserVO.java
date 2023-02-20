@@ -30,7 +30,7 @@ public class FriendUserVO {
     private long msgType;
     // message消息的类型，0 => 当前请求用户接收的消息， 1 => 当前请求用户发送的消息
 
-    private String content;
+    private String message;
 
     public FriendUserVO(UsersVO usersVO,String content,long msgType){
 
@@ -39,7 +39,7 @@ public class FriendUserVO {
         this.followCount =  usersVO.getFollowCount();
         this.followerCount =  usersVO.getFollowerCount();
         this.isFollow =  usersVO.isFollow();
-        this.content = content;
+        this.message = content;
         this.msgType = msgType;
 
 
