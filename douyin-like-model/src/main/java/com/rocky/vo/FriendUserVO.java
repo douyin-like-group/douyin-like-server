@@ -32,6 +32,14 @@ public class FriendUserVO {
 
     private String message;
 
+    private  final String signature = "欢迎访问我的个人主页！";
+
+    @JsonProperty("background_image")
+    private final String backgroundImage = "https://s3-ap-northeast-1.amazonaws.com/thegate/2021/01/05/13/09/02/Heianjingu-shrine.jpg";
+
+    private final String avatar = "https://cdn-icons-png.flaticon.com/512/3884/3884851.png";
+
+
     public FriendUserVO(UsersVO usersVO,String content,long msgType){
 
         this.id =  usersVO.getId();

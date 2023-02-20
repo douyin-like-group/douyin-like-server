@@ -17,18 +17,25 @@ import java.util.Date;
 //@JsonTypeInfo(use= JsonTypeInfo.Id.CLASS,property = "classname")
 public class UsersVO implements Serializable {
 
-    protected long id;
+    private long id;
 
-    protected String name;
+    private String name;
 
     @JsonProperty("follow_count")
-    protected long followCount;
+    private long followCount;
 
     @JsonProperty("follower_count")
-    protected long followerCount;
+    private long followerCount;
 
     @JsonProperty("is_follow")
-    protected boolean isFollow;
+    private boolean isFollow;
+
+    private  final String signature = "欢迎访问我的个人主页！";
+
+    @JsonProperty("background_image")
+    private final String backgroundImage = "https://s3-ap-northeast-1.amazonaws.com/thegate/2021/01/05/13/09/02/Heianjingu-shrine.jpg";
+
+    private final String avatar = "https://cdn-icons-png.flaticon.com/512/3884/3884851.png";
 
 
 
