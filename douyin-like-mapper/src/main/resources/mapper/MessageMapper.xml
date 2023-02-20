@@ -17,7 +17,9 @@
   <select id="findMessageByvidANDuid" resultType="com.rocky.pojo.Message">
     select *
     from message
-    where (vid=#{vid} and uid=#{uid} and message_status=0) or (vid=#{uid} and uid=#{vid} and message_status=0) order by create_time;
+    where ((vid=#{vid} and uid=#{uid} and message_status=0) or (vid=#{uid} and uid=#{vid} and message_status=0))
+    and create_time &gt; #{pre_msg_time}
+    order by create_time;
   </select>
 
 </mapper>

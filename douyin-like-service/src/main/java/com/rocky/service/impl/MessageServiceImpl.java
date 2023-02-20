@@ -14,6 +14,8 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -40,21 +42,20 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     @Transactional
-    public List<Message> queryList(long fromUserId, long toUserId) {
+    public List<MessageVO> queryList(long fromUserId, long toUserId, long preMsgTime) {
 //        Example msgExample = new Example(Message.class);
 //        Example.Criteria criteria = msgExample.createCriteria();
 //        criteria.andEqualTo("uid",fromUserId);
 //        criteria.andEqualTo("vid",toUserId);
 //        criteria.andEqualTo("messageStatus",(byte)0);
-        List<Message> msgList = messageMapper.findMessageByvidANDuid(fromUserId,toUserId);
+//        Date preTime = new Date(preMsgTime);
+        List<Message> msgList = messageMapper.findMessageByvidANDuid(fromUserId,toUserId,new Date(preMsgTime));
+        List<MessageVO> msgListVO = new ArrayList<>();
+        //msgListVO = msgList.stream().map(x -> new MessageVO(x)).collect(Collectors.toList());
         for(Message message:msgList){
-////            if(message.getVid() == fromUserId){
-//                message.setMessageStatus((byte) 1);
-//                messageMapper.updateByPrimaryKey(message);
-////            }
-//            System.out.println(message.toString());
+            msgListVO.add(new MessageVO(message));
         }
-        return msgList;
+        return msgListVO;
     }
 
 

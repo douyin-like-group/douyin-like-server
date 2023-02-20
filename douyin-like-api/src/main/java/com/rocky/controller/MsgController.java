@@ -30,24 +30,28 @@ public class MsgController extends BaseInfoProperties {
      * @return
      */
     @GetMapping("/chat")
-    public ResponseEntity<MessageVO> queryMsgList(@RequestParam String token, String to_user_id) {
+    public ResponseEntity<ResultVO> queryMsgList(@RequestParam(required = true,value = "token") String token,
+                                                  @RequestParam(required = true,value = "to_user_id") String toUserIdStr,
+                                                  @RequestParam(required = true,value = "pre_msg_time") String preMsgTimeStr ) {
         log.info("/douyin/message/chat/ 接口捕获");
         MessageVO messageVO = new MessageVO();
+        ResultVO resultVO = new ResultVO();
 //        long from_user_id = Long.valueOf(token);
-        long from_user_id;
+        long fromUserId;
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
         if(userId==null){
-            messageVO.setStatusCode("1");
-            messageVO.setStatusMsg("未找到该用户登陆记录！");
-            return ResponseEntity.ok(messageVO);
+            resultVO.setStatusCode(1);
+            resultVO.setStatusMsg("未找到该用户登陆记录！");
+            return ResponseEntity.ok(resultVO);
         }else{
-            from_user_id = Long.valueOf(userId);
+            fromUserId = Long.parseLong(userId);
         }
-        messageVO.setStatusCode("0");
-        messageVO.setStatusMsg("查询成功！");
-        List<Message> messageList = messageService.queryList(from_user_id, Long.parseLong(to_user_id));
-        messageVO.setMessageList(messageList);
-        return ResponseEntity.ok(messageVO);
+        resultVO.setStatusCode(0);
+        resultVO.setStatusMsg("查询成功！");
+        List<MessageVO> messageList = messageService.queryList(fromUserId, Long.parseLong(toUserIdStr),Long.parseLong(preMsgTimeStr));
+        resultVO.setData(messageList);
+        resultVO.setObjectName("message_list");
+        return ResponseEntity.ok(resultVO);
     }
 
     /**

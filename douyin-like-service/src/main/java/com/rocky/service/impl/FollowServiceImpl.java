@@ -6,6 +6,7 @@ import com.rocky.pojo.Favorite;
 import com.rocky.pojo.Follow;
 import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
+import com.rocky.vo.FriendUserVO;
 import com.rocky.vo.ResultVO;
 import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,9 +111,11 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
     public ResultVO getFriendList(long uid) {
         List<Long> toIDList = followMapper.selectFriendListByUID(uid);
 
-        List<UsersVO> userList = new ArrayList<UsersVO>();
+        List<FriendUserVO> userList = new ArrayList<FriendUserVO>();
         for (Long toID : toIDList) {
-            userList.add(usersService.findById(uid, toID));
+            UsersVO usersVO =  usersService.findById(uid, toID);
+            FriendUserVO friendUserVO = new FriendUserVO(usersVO,"hello",1L);
+            userList.add(friendUserVO);
         }
 
         ResultVO resultVO = new ResultVO();

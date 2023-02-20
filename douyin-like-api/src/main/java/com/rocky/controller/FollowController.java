@@ -27,7 +27,6 @@ public class FollowController extends BaseInfoProperties {
      * @return
      */
     @PostMapping("/action")
-    @ResponseBody
     public ResultVO action(@RequestParam String token,
                            @RequestParam(name = "to_user_id") String toUserIDStr,
                            @RequestParam(name = "action_type") String actionTypeStr) {
@@ -55,7 +54,6 @@ public class FollowController extends BaseInfoProperties {
     }
 
     @GetMapping("/follow/list")
-    @ResponseBody
     public ResultVO getFollowList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
         // 校验token
@@ -73,10 +71,10 @@ public class FollowController extends BaseInfoProperties {
     }
 
     @GetMapping("/follower/list")
-    @ResponseBody
     public ResultVO getFollowerList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
         // 校验token
+        log.info("/follower/list接口捕获");
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         if (fromUserIDStr == null) {
             ResultVO resultVO = new ResultVO();
@@ -90,10 +88,10 @@ public class FollowController extends BaseInfoProperties {
     }
 
     @GetMapping("/friend/list")
-    @ResponseBody
-    public ResultVO getFriendList(@RequestParam(name = "user_id") String userIDStr,
-                                    @RequestParam String token) {
+    public ResultVO getFriendList(@RequestParam(required = true, name = "user_id") String userIDStr,
+                                    @RequestParam(required = true ,name = "token") String token) throws  Exception{
         // 校验token
+        log.info("/friend/list接口捕获");
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         if (fromUserIDStr == null) {
             ResultVO resultVO = new ResultVO();

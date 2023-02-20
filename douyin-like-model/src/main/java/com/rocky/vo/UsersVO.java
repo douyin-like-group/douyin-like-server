@@ -1,30 +1,35 @@
 package com.rocky.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.checkerframework.checker.units.qual.A;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsersVO {
+//@JsonTypeInfo(use= JsonTypeInfo.Id.CLASS,property = "classname")
+public class UsersVO implements Serializable {
 
-    private long id;
+    protected long id;
 
-    private String name;
+    protected String name;
 
     @JsonProperty("follow_count")
-    private long followCount;
+    protected long followCount;
 
     @JsonProperty("follower_count")
-    private long followerCount;
+    protected long followerCount;
 
     @JsonProperty("is_follow")
-    private boolean isFollow;
+    protected boolean isFollow;
+
+
 
 }

@@ -67,18 +67,19 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     public UsersVO findById(long sourceId,long targetId ) {
 
        Users user = usersMapper.selectByPrimaryKey(targetId);
-       UsersVO usersVO = new UsersVO();
+       UsersVO usersVO = new UsersVO(targetId,
+               user.getUsername(),
+               followService.getFollowCount(user.getId()),
+               followService.getFollowerCount(user.getId()),
+               followService.isFollow(sourceId,targetId)
+       );
 
-       usersVO.setId(targetId);
-       usersVO.setName(user.getUsername());
-       // 从follow service获取
-       usersVO.setFollowCount(followService.getFollowCount(user.getId()));
-       usersVO.setFollowerCount(followService.getFollowerCount(user.getId()));
-       usersVO.setFollow(followService.isFollow(sourceId,targetId));
        return usersVO;
 
 
     }
+
+
 
     @Override
     public Users findByEmail(String email) {
