@@ -1,13 +1,15 @@
 package com.rocky.service.impl;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.result.ResultVO;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.RegistLoginBO;
 import com.rocky.mapper.UsersMapper;
 import com.rocky.pojo.Users;
 import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
 
-import com.rocky.vo.RegisterLoginVO;
+
 import com.rocky.vo.UsersVO;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Result;
 import java.util.Date;
 import java.util.UUID;
 
@@ -51,7 +53,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         //随机生成名字
         user.setUsername(name);
         user.setPassword(passwordEncoder.encode(registLoginBO.getPassword()));
-        user.setEmail(registLoginBO.getUsername());
+        user.setEmail(registLoginBO.getEmail());
         // 这里username 就是email
         user.setPhone("000-0000-0000");
         user.setFollowCount(0L);
@@ -76,9 +78,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
 
        return usersVO;
 
-
     }
-
 
 
     @Override
@@ -90,52 +90,43 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         return user;
     }
     @Override
-    public RegisterLoginVO login(RegistLoginBO registLoginBO){
-        Users user = findByEmail(registLoginBO.getUsername());
-        RegisterLoginVO registerLoginVO = new RegisterLoginVO();
+    public ResultVO login(RegistLoginBO registLoginBO){
+
+        Users user = findByEmail(registLoginBO.getEmail());
+
         if(user==null){
-            registerLoginVO.setStatusCode(1);
-            registerLoginVO.setStatusMsg("用户不存在");
-            return registerLoginVO;
+            return ResultVO.error(ResponseStatusEnum.USER_NOT_EXIST);
         }
         if(!passwordEncoder.matches(registLoginBO.getPassword(),user.getPassword())){
-            // todo
-            registerLoginVO.setStatusCode(1);
-            registerLoginVO.setStatusMsg("密码错误");
-            return registerLoginVO;
+            return ResultVO.error(ResponseStatusEnum.PASSWORD_ERROR );
         }
         String uToken = UUID.randomUUID().toString();
         //token作为key存储用户ID
         redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
-        registerLoginVO.setUserId(user.getId());
-        registerLoginVO.setToken(uToken);
-        registerLoginVO.setStatusCode(0);
-        registerLoginVO.setStatusMsg("登陆成功");
-        return registerLoginVO;
+        ResultVO resultVO = ResultVO.ok(ResponseStatusEnum.SUCCESS);
+        resultVO.setUserId(user.getId());
+        resultVO.setToken(uToken);
+        return resultVO;
     }
 
     @Override
-    public RegisterLoginVO register(RegistLoginBO registLoginBO) {
+    public ResultVO register(RegistLoginBO registLoginBO) {
 
-        RegisterLoginVO registerLoginVO = new RegisterLoginVO();
-        Users tempUser = findByEmail(registLoginBO.getUsername());
+
+        Users tempUser = findByEmail(registLoginBO.getEmail());
         if(tempUser != null){
-            registerLoginVO.setStatusCode(1);
-            registerLoginVO.setStatusMsg("邮件地址已存在");
-            return registerLoginVO;
+          return ResultVO.error(ResponseStatusEnum.EMAIL_EXISTED);
         }
         Users user = createUser(registLoginBO);
         String uToken = UUID.randomUUID().toString();
-        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString());
+        redis.set(REDIS_USER_TOKEN+":"+uToken,user.getId().toString(),3600);
         //log.info("设置redis");
-        registerLoginVO.setStatusCode(0);
-        registerLoginVO.setStatusMsg("注册成功");
-        registerLoginVO.setUserId(user.getId());
-        registerLoginVO.setToken(uToken);
-        return registerLoginVO;
+        ResultVO resultVO = ResultVO.ok(ResponseStatusEnum.SUCCESS);
+        resultVO.setUserId(user.getId());
+        resultVO.setToken(uToken);
+        return resultVO;
     }
 
 
-    //todo
 
 }

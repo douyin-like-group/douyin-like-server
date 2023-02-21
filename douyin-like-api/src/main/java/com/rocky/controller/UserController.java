@@ -1,20 +1,29 @@
 package com.rocky.controller;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.RegistLoginBO;
 import com.rocky.service.UsersService;
-import com.rocky.vo.RegisterLoginVO;
-import com.rocky.vo.ResultVO;
+
+import com.rocky.utils.UserAuth;
+
+import com.rocky.result.ResultVO;
 import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @RestController
 @RequestMapping("/douyin/user")
+@Validated
 public class UserController extends BaseInfoProperties {
 
     @Autowired
@@ -22,53 +31,29 @@ public class UserController extends BaseInfoProperties {
 
     @PostMapping("/register")
     @ResponseBody
-    public ResponseEntity<RegisterLoginVO> register(@RequestParam String username, String password) {
-        RegistLoginBO registLoginBO = new RegistLoginBO();
-        registLoginBO.setPassword(password);
-        registLoginBO.setUsername(username);
-        RegisterLoginVO registerLoginVO = usersService.register(registLoginBO);
-        if(registerLoginVO.getStatusCode().equals(1)){
-            return new ResponseEntity<>(registerLoginVO,HttpStatus.BAD_REQUEST);
-        }
-        return ResponseEntity.ok(registerLoginVO);
+    public ResultVO register(@RequestParam(name="username") @Email(message="请输入正确的邮箱地址")String email, String password) {
+
+        return usersService.register(new RegistLoginBO(email,password));
+
     }
 
     @PostMapping("/login")
-    public ResponseEntity<RegisterLoginVO> login(@RequestParam String username, String password) {
-        RegistLoginBO registLoginBO = new RegistLoginBO();
-        registLoginBO.setPassword(password);
-        registLoginBO.setUsername(username);
-        RegisterLoginVO registerLoginVO = usersService.login(registLoginBO);
-        if(registerLoginVO.getStatusCode().equals(1)){
-            return new ResponseEntity<>(registerLoginVO,HttpStatus.BAD_REQUEST);
-        }
-         return ResponseEntity.ok(registerLoginVO);
+    public ResultVO login(@RequestParam(name="username") String email, String password) {
+
+        return usersService.login(new RegistLoginBO(email,password));
+
     }
     @GetMapping("/")
-    public ResponseEntity<ResultVO> query(@RequestParam String user_id,String token){
+    @UserAuth // user authentication
+    public ResultVO query(@RequestParam(name="user_id") @NotEmpty(message="user_id不能为空") String targetUserIdStr,
+                                          String token) throws Exception{
 
-        String value = redis.get(REDIS_USER_TOKEN+":"+token);
-
-        ResultVO resultVO = new ResultVO();
-
-        if(value==null){
-            resultVO.setStatusMsg("没有权限访问");
-            resultVO.setStatusCode(1);
-
-            return new ResponseEntity<>(resultVO, HttpStatus.BAD_REQUEST);
-        }
-        long sourceUserId = Long.valueOf(value);
-        long targetUserId = Long.valueOf(user_id);
-        resultVO.setStatusCode(0);
-        resultVO.setStatusMsg("成功访问用户页面");
+        String userId = redis.get(REDIS_USER_TOKEN+":"+token);
+        long sourceUserId = Long.valueOf(userId);
+        long targetUserId = Long.valueOf(targetUserIdStr);
         UsersVO usersVO = usersService.findById(sourceUserId,targetUserId);
-
-        //todo find by sourceId and targetId
-
-        resultVO.setData(usersVO);
-        resultVO.setObjectName("user");
-
-        return  ResponseEntity.ok(resultVO);
+        //find user info by sourceId and targetId
+        return  ResultVO.ok(ResponseStatusEnum.SUCCESS,"user",usersVO);
     }
 
 

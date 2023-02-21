@@ -1,15 +1,13 @@
 package com.rocky.controller;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.CommentBO;
 import com.rocky.service.CommentService;
-import com.rocky.utils.RedisOperator;
+import com.rocky.utils.UserAuth;
 import com.rocky.vo.CommentVO;
-import com.rocky.vo.RegisterLoginVO;
-import com.rocky.vo.ResultVO;
-import org.checkerframework.checker.units.qual.A;
+import com.rocky.result.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +25,7 @@ public class CommentController extends BaseInfoProperties {
     CommentService commentService;
 
     @PostMapping("/action")
+    @UserAuth
     public ResultVO actionComment(
             @RequestParam(required = true, value = "token") String token,
             @RequestParam(required = true, value = "video_id") String videoId,
@@ -37,11 +36,6 @@ public class CommentController extends BaseInfoProperties {
         // 检查用户状态
         String userId = redis.get(REDIS_USER_TOKEN + ":" + token);
         ResultVO resultVO = new ResultVO();
-        if(userId==null){
-            resultVO.setStatusMsg("没有权限评论");
-            resultVO.setStatusCode(1);
-            return resultVO;
-        }
         long  sourceUserId = Long.valueOf(userId);
 
 
@@ -51,12 +45,10 @@ public class CommentController extends BaseInfoProperties {
 
         CommentVO commentVO = commentService.queryComment(sourceUserId, commentBO);
 
-        resultVO.setStatusCode(0);
-        resultVO.setStatusMsg(action == 1 ? "评论成功" : "删除评论成功");
-        resultVO.setData(commentVO);
-        resultVO.setObjectName("comment");
 
-        return resultVO;
+//        resultVO.setStatusMsg(action == 1 ? "评论成功" : "删除评论成功");
+
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS,"comment",commentVO);
     }
 
     @GetMapping("/list")

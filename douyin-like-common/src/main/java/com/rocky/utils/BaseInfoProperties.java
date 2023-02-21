@@ -1,6 +1,6 @@
-package com.rocky.base;
+package com.rocky.utils;
 
-import com.github.pagehelper.PageInfo;
+
 import com.rocky.utils.PagedGridResult;
 import com.rocky.utils.RedisOperator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,8 @@ public class BaseInfoProperties {
     @Autowired
     public RedisOperator redis;
 
-    public static final Integer COMMON_START_PAGE = 1;
-    public static final Integer COMMON_START_PAGE_ZERO = 0;
-    public static final Integer COMMON_PAGE_SIZE = 10;
 
-    // 这里修改
+
     public static final String EMAIL_PASSWORD = "email:password";
     public static final String REDIS_USER_TOKEN = "redis_user_token";
     public static final String REDIS_USER_INFO = "redis_user_info";
@@ -43,27 +40,5 @@ public class BaseInfoProperties {
     public static final String REDIS_USER_LIKE_VLOG = "redis_user_like_vlog";
 
 
-//    public Map<String, String> getErrors(BindingResult result) {
-//        Map<String, String> map = new HashMap<>();
-//        List<FieldError> errorList = result.getFieldErrors();
-//        for (FieldError ff : errorList) {
-//            // 错误所对应的属性字段名
-//            String field = ff.getField();
-//            // 错误的信息
-//            String msg = ff.getDefaultMessage();
-//            map.put(field, msg);
-//        }
-//        return map;
-//    }
 
-    public PagedGridResult setterPagedGrid(List<?> list,
-                                           Integer page) {
-        PageInfo<?> pageList = new PageInfo<>(list);
-        PagedGridResult gridResult = new PagedGridResult();
-        gridResult.setRows(list);
-        gridResult.setPage(page);
-        gridResult.setRecords(pageList.getTotal());
-        gridResult.setTotal(pageList.getPages());
-        return gridResult;
-    }
 }

@@ -1,11 +1,12 @@
 package com.rocky.controller;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.MessageBO;
-import com.rocky.pojo.Message;
 import com.rocky.service.MessageService;
+import com.rocky.utils.UserAuth;
 import com.rocky.vo.MessageVO;
-import com.rocky.vo.ResultVO;
+import com.rocky.result.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,32 +27,27 @@ public class MsgController extends BaseInfoProperties {
     /**
      * 查询聊天记录
      * @param token
-     * @param to_user_id
+     * @param toUserIdStr
+     * @param preMsgTimeStr
      * @return
      */
+
     @GetMapping("/chat")
-    public ResponseEntity<ResultVO> queryMsgList(@RequestParam(required = true,value = "token") String token,
+    @UserAuth
+    public ResultVO queryMsgList(@RequestParam(required = true,value = "token") String token,
                                                   @RequestParam(required = true,value = "to_user_id") String toUserIdStr,
                                                   @RequestParam(required = true,value = "pre_msg_time") String preMsgTimeStr ) {
         log.info("/douyin/message/chat/ 接口捕获");
-        MessageVO messageVO = new MessageVO();
-        ResultVO resultVO = new ResultVO();
+
 //        long from_user_id = Long.valueOf(token);
         long fromUserId;
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
-        if(userId==null){
-            resultVO.setStatusCode(1);
-            resultVO.setStatusMsg("未找到该用户登陆记录！");
-            return ResponseEntity.ok(resultVO);
-        }else{
-            fromUserId = Long.parseLong(userId);
-        }
-        resultVO.setStatusCode(0);
-        resultVO.setStatusMsg("查询成功！");
+
+        fromUserId = Long.parseLong(userId);
+
         List<MessageVO> messageList = messageService.queryList(fromUserId, Long.parseLong(toUserIdStr),Long.parseLong(preMsgTimeStr));
-        resultVO.setData(messageList);
-        resultVO.setObjectName("message_list");
-        return ResponseEntity.ok(resultVO);
+
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS,"message_list",messageList);
     }
 
     /**
@@ -63,19 +59,16 @@ public class MsgController extends BaseInfoProperties {
      * @return
      */
     @PostMapping("/action")
-    public ResponseEntity<ResultVO> saveMsg(@RequestParam String token, String to_user_id, String action_type, String content){
+    @UserAuth
+    public ResultVO saveMsg(@RequestParam String token, String to_user_id, String action_type, String content){
 //        log.info("/douyin/message/action 接口捕获");
         //demo
         ResultVO resultVO = new ResultVO();
         long from_user_id ;
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
-        if(userId==null){
-            resultVO.setStatusCode(1);
-            resultVO.setStatusMsg("未找到该用户登陆记录！消息发送失败");
-            return ResponseEntity.ok(resultVO);
-        }else{
-            from_user_id = Long.valueOf(userId);
-        }
+
+        from_user_id = Long.valueOf(userId);
+
         MessageBO messageBO = new MessageBO();
         messageBO.setUid(from_user_id);
         messageBO.setVid(Long.parseLong(to_user_id));
@@ -89,6 +82,6 @@ public class MsgController extends BaseInfoProperties {
             resultVO.setStatusCode(1);
             resultVO.setStatusMsg("消息发送失败-");
         }
-        return ResponseEntity.ok(resultVO);
+        return resultVO;
     }
 }

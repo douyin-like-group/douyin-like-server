@@ -11,7 +11,11 @@ public enum ResponseStatusEnum {
     FAILED(500, "操作失败！"),
 
     // 50x
-    UN_LOGIN(501, "请登录后再继续操作！"),
+    UN_LOGIN(501, "token失效,请重新登录后再继续操作！"),
+    UPLOAD_ERR(401,"请上传mp4类型的视频"),
+    USER_NOT_EXIST(402,"用户不存在"),
+    PASSWORD_ERROR(403,"用户密码错误"),
+    EMAIL_EXISTED(404,"邮箱已存在"),
     TICKET_INVALID(502, "会话失效，请重新登录！"),
     NO_AUTH(503, "您的权限不足，无法继续操作！"),
     MOBILE_ERROR(504, "短信发送失败，请稍后重试！"),

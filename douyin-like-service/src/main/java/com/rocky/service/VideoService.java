@@ -1,10 +1,7 @@
 package com.rocky.service;
 
 import com.rocky.bo.VideoBO;
-import com.rocky.pojo.Video;
-import com.rocky.vo.ResultVO;
 import com.rocky.vo.VideoVO;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;

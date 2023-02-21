@@ -1,9 +1,8 @@
 package com.rocky.service.impl;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.VideoBO;
 import com.rocky.mapper.VideoMapper;
-import com.rocky.pojo.Users;
 import com.rocky.pojo.Video;
 import com.rocky.service.CommentService;
 import com.rocky.service.FavoriteService;

@@ -2,7 +2,8 @@ package com.rocky.service;
 
 import com.rocky.bo.RegistLoginBO;
 import com.rocky.pojo.Users;
-import com.rocky.vo.RegisterLoginVO;
+import com.rocky.result.ResultVO;
+
 import com.rocky.vo.UsersVO;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +37,14 @@ public interface UsersService {
      * @param registLoginBO
      * @return
      */
-    public RegisterLoginVO login(RegistLoginBO registLoginBO);
+    public ResultVO login(RegistLoginBO registLoginBO);
 
     /**
      * 注册
      * @param registLoginBO
      * @return
      */
-    public RegisterLoginVO register(RegistLoginBO registLoginBO);
+    public ResultVO register(RegistLoginBO registLoginBO);
 
 
 

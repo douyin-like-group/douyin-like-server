@@ -1,7 +1,6 @@
 package com.rocky.service;
 
-import com.rocky.vo.ResultVO;
-import org.springframework.stereotype.Service;
+import com.rocky.result.ResultVO;
 
 
 public interface FollowService {

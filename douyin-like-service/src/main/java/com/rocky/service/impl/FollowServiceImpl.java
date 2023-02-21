@@ -1,17 +1,16 @@
 package com.rocky.service.impl;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.mapper.FollowMapper;
-import com.rocky.pojo.Favorite;
 import com.rocky.pojo.Follow;
 import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
 import com.rocky.vo.FriendUserVO;
-import com.rocky.vo.ResultVO;
+import com.rocky.result.ResultVO;
 import com.rocky.vo.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,7 +54,7 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
             followMapper.insert(follow);
         }
 
-        return new ResultVO(0, "关注成功", null, null);
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
         followMapper.updateUnfollow(fromUID, toUID);
 
-        return new ResultVO(0, "取消关注成功", null, null);
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }
 
     @Override

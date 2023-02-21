@@ -1,17 +1,16 @@
 package com.rocky.service.impl;
 
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.mapper.FavoriteMapper;
-import com.rocky.mapper.UsersMapper;
 import com.rocky.pojo.Favorite;
 import com.rocky.service.FavoriteService;
 import com.rocky.service.VideoService;
-import com.rocky.vo.ResultVO;
+import com.rocky.result.ResultVO;
 import com.rocky.vo.VideoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +27,7 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
     @Override
     public ResultVO like(long uid, long vid) {
         // 尝试update数据库中的favorite_status为1，并获取受影响行数
+
         int lines = favoriteMapper.updateLike(uid, vid);
 
         if (lines == 0) { // 受影响行数为0，需insert点赞记录到数据库中
@@ -40,7 +40,7 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
             favoriteMapper.insert(favorite);
         }
 
-        return new ResultVO(0, "点赞成功", null, null);
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
         // 尝试update数据库中的favorite_status为0，并获取受影响行数
         int lines = favoriteMapper.updateUnlike(uid, vid);
 
-        return new ResultVO(0, "取消点赞成功", null, null);
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }
 
     @Override

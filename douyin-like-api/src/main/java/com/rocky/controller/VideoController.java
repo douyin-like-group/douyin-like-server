@@ -4,22 +4,28 @@ package com.rocky.controller;
 import cn.hutool.core.date.DateUtil;
 
 import com.rocky.MinIOConfig;
-import com.rocky.base.BaseInfoProperties;
+import com.rocky.result.ResponseStatusEnum;
+import com.rocky.utils.BaseInfoProperties;
 import com.rocky.bo.VideoBO;
 
+import com.rocky.result.ResultVO;
 import com.rocky.service.VideoService;
 import com.rocky.utils.MinIOUtils;
 
+import com.rocky.utils.UserAuth;
 import com.rocky.vo.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +36,7 @@ import java.util.UUID;
 @RequestMapping("/douyin/")
 @RestController
 @EnableAsync //允许异步
+@Validated
 public class VideoController extends BaseInfoProperties {
 
     @Autowired
@@ -54,7 +61,7 @@ public class VideoController extends BaseInfoProperties {
 
 
     @GetMapping("feed")
-    public VideoFeedVO getVideoFeed(@RequestParam(required = false,value="latest_time") String latestTime,
+    public ResultVO getVideoFeed(@RequestParam(required = false,value="latest_time") String latestTime,
                                                  @RequestParam(required = false,value="token") String token  )throws Exception{
 
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
@@ -84,65 +91,47 @@ public class VideoController extends BaseInfoProperties {
         }
         nextTime /= 1000;
 
-        VideoFeedVO videoFeedVO = new VideoFeedVO();
-        videoFeedVO.setStatusMsg("访问成功");
-        videoFeedVO.setStatusCode(0);
-        videoFeedVO.setVideoList(videoVOList);
-        videoFeedVO.setNextTime(nextTime);
-        return videoFeedVO;
+        ResultVO resultVO = new ResultVO(ResponseStatusEnum.SUCCESS,"video_list",videoVOList);
+
+        resultVO.setNextTime(nextTime);
+
+        return resultVO;
 
     }
 
     @GetMapping("publish/list")
+    @UserAuth
     public ResultVO getVideoList(
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
     )throws Exception{
+
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
-        ResultVO resultVO = new ResultVO();
 
-        if(value==null){
-            resultVO.setStatusMsg("没有权限访问");
-            resultVO.setStatusCode(1);
-            return resultVO;
-        }
         long sourceUserId = Long.parseLong(value);
         long targetUserId = Long.parseLong(user_id);
 
         List<VideoVO> videoVOList = videoService.getAllVideoList(sourceUserId,targetUserId);
-        resultVO.setStatusMsg("访问成功");
-        resultVO.setStatusCode(0);
-        resultVO.setData(videoVOList);
-        resultVO.setObjectName("video_list");
-        return resultVO;
+
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS,"video_list",videoVOList);
 
     }
     @PostMapping("publish/action")
-    public PublishResultVO upload(
-            @RequestPart(value="data") MultipartFile data,
+    @UserAuth
+    public ResultVO upload(
+            @NotNull(message="视频不能为空")  @RequestPart(value="data") MultipartFile data,
             @RequestPart(value="token") String token,
-            @RequestPart(value="title") String title
+            @RequestPart(value="title") @NotBlank(message="标题不能为空") String title
 
                                    ) throws Exception {
 
         log.info("访问发布视频接口");
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
-
-        PublishResultVO publishResultVO = new PublishResultVO();
-
-
-        if(value==null){
-            publishResultVO.setStatusMsg("没有权限访问");
-            publishResultVO.setStatusCode(1);
-            return publishResultVO;
-        }
         String contenType = data.getOriginalFilename().substring(data.getOriginalFilename().lastIndexOf("."));
         if(!contenType.equals(".mp4")){
-            publishResultVO.setStatusMsg("请上传mp4类型的视频");
-            publishResultVO.setStatusCode(1);
-            return publishResultVO;
+            return ResultVO.error(ResponseStatusEnum.UPLOAD_ERR);
         }
         long userId = Long.parseLong(value);
 
@@ -166,10 +155,9 @@ public class VideoController extends BaseInfoProperties {
 
         videoService.createVideo(videoBO);
 //        log.info("插入数据库成功");
-        publishResultVO.setStatusMsg("发布成功");
-        publishResultVO.setStatusCode(0);
 
-        return publishResultVO;
+
+        return ResultVO.ok(ResponseStatusEnum.SUCCESS);
 
     }
 
