@@ -79,7 +79,7 @@
     <connections>
       <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" active="true" signed="true">
         <database>
-          <name value="server" />
+          <name value="server43" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -88,12 +88,12 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="82.156.2.33" />
-          <port value="3306" />
+          <host value="43.143.182.215" />
+          <port value="13306" />
           <database value="mysql" />
           <type value="USER_PASSWORD" />
           <user value="root" />
-          <deprecated-pwd value="emh1MTIz" />
+          <deprecated-pwd value="MTIzNDU2" />
         </database>
         <properties>
           <auto-commit value="false" />

@@ -12,9 +12,9 @@ spring:
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource      # 数据源的类型，可以更改为其他的数据源配置，比如druid
     driver-class-name: com.mysql.cj.jdbc.Driver     # mysql/MariaDB 的数据库驱动类名称
-    url: jdbc:mysql://82.156.2.33:3306/douyin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B7
+    url: jdbc:mysql://43.143.182.215:13306/douyin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B7
     username: root
-    password: zhu123
+    password: 123456
     hikari:
       connection-timeout: 30000               # 等待连接池分配连接的最大时间（毫秒），超过这个时长还没有可用的连接，则会抛出SQLException
       minimum-idle: 5                         # 最小连接数
@@ -26,10 +26,10 @@ spring:
       connection-test-query: SELECT 1
 
   redis:
-    host: 82.156.2.33
+    host: 43.143.182.215
     port: 6379
-    database: 1
-    password: zhu123
+    database: 0
+    password: redispwd
 
   servlet:
     multipart:
@@ -63,10 +63,10 @@ logging:
     root: info
 # MinIO 配置
 minio:
-  endpoint: http://conchincradle.top:9000      # MinIO服务地址
-  fileHost: http://conchincradle.top:9000      # 文件地址host
+  endpoint: http://43.143.182.215:9000      # MinIO服务地址
+  fileHost: http://43.143.182.215:9000      # 文件地址host
   bucketName: douyin                      # 存储桶bucket名称
-  accessKey: root                         # 用户名
-  secretKey: douyin123                     # 密码
+  accessKey: minioadmin                       # 用户名
+  secretKey: minioadmin                     # 密码
   imgSize: 1024                           # 图片大小限制，单位：m
   fileSize: 1024                          # 文件大小限制，单位：m

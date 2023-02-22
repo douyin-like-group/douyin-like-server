@@ -16,13 +16,13 @@
 CREATE DATABASE IF NOT EXISTS douyin;
 ALTER DATABASE douyin CHARACTER SET utf8mb4;
 USE douyin;
-DROP TABLE `users`;
-DROP TABLE `follow`;
-DROP TABLE `video`;
-DROP TABLE  `favorite`;
-DROP TABLE `message`;
-DROP TABLE `comment`;
-
+--DROP TABLE `users`;
+--DROP TABLE `follow`;
+--DROP TABLE `video`;
+--DROP TABLE  `favorite`;
+--DROP TABLE `message`;
+--DROP TABLE `comment`;
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL COMMENT '用户名',
@@ -102,7 +102,7 @@ CREATE TABLE `follow` (
   `create_time` datetime NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `writer_id`  USING BTREE (`from_id`,`to_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='粉丝表\n\n';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='关注表';
 
 -- ----------------------------
 -- Records of fans
@@ -121,7 +121,7 @@ CREATE TABLE `favorite` (
   `create_time` datetime NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`) ,
   UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞短视频关联表\n';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞';
 
 -- ----------------------------
 -- Records of favorite
@@ -139,9 +139,9 @@ CREATE TABLE `message` (
   `content` varchar(128) NOT NULL COMMENT '留言内容',
   `create_time` datetime NOT NULL COMMENT '关注时间',
   `message_status` tinyint COMMENT '0-未读，1-已读，2-删除',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 --  UNIQUE KEY `writer_id` USING BTREE (`uid`,`vid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞短视频关联表\n';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='消息表';
 
 -- ----------------------------
 -- Records of message
