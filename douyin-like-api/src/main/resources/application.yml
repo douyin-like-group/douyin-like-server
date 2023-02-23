@@ -70,3 +70,9 @@ minio:
   secretKey: minioadmin                     # 密码
   imgSize: 1024                           # 图片大小限制，单位：m
   fileSize: 1024                          # 文件大小限制，单位：m
+
+
+#  accessKey: root                         # 用户名
+#  secretKey: douyin123                     # 密码
+#  endpoint: http://8.134.113.47:9090
+#  fileHost: http://8.134.113.47:9090

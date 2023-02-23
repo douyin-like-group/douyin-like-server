@@ -8,6 +8,7 @@ import com.rocky.service.FavoriteService;
 import com.rocky.service.VideoService;
 import com.rocky.result.ResultVO;
 import com.rocky.vo.VideoVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,7 +75,15 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
 
     @Override
     public long getVideoBeLikedCount(long vid) {
-        return favoriteMapper.selectFavoriteCountByVID(vid);
+
+        String countsStr = redis.get(REDIS_VLOG_BE_LIKED_COUNTS + ":" + vid);
+        if (StringUtils.isBlank(countsStr)) {
+            countsStr = "0";
+        }
+        return Integer.valueOf(countsStr);
+
+
+//        return favoriteMapper.selectFavoriteCountByVID(vid);
     }
 
     @Override

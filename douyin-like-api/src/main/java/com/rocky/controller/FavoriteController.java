@@ -31,8 +31,14 @@ public class FavoriteController extends BaseInfoProperties {
         long videoID = Long.parseLong(videoIDStr);
 
         if (actionType == 1) { // 点赞
+
+            // 点赞后，视频和视频发布者的获赞都会 +1
+//            redis.increment(REDIS_VLOGER_BE_LIKED_COUNTS + ":" + vlogerId, 1);
+            redis.increment(REDIS_VLOG_BE_LIKED_COUNTS + ":" + videoID, 1);
             return favoriteService.like(userID, videoID);
         } else if (actionType == 2) { // 取消点赞
+
+            redis.decrement(REDIS_VLOG_BE_LIKED_COUNTS + ":" + videoID, 1);
             return favoriteService.unlike(userID, videoID);
         }
 
