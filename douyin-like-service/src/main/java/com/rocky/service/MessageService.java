@@ -18,10 +18,10 @@ public interface MessageService {
     /**
      * 创建消息
      */
-    public int createMsg(MessageBO messageBO);
+    int createMsg(MessageBO messageBO);
 
     /**
      * 查询消息列表
      */
-    public List<MessageVO> queryList(long fromUserId, long toUserId, long preMsgTime);
+    List<MessageVO> queryList(long fromUserId, long toUserId, long preMsgTime);
 }

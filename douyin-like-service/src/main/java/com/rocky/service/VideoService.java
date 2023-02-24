@@ -11,17 +11,17 @@ public interface VideoService {
     // todo
     //zhu
 
-    public boolean createVideo(VideoBO videoBO);
+    boolean createVideo(VideoBO videoBO);
 
-    public VideoVO getVideoVODetail(long sourceUserId, long vid);
+    VideoVO getVideoVODetail(long sourceUserId, long vid);
 
-    public List<VideoVO> getAllVideoList(long sourceUserId, long targetUserId);
+    List<VideoVO> getAllVideoList(long sourceUserId, long targetUserId);
 
-    public List<VideoVO> findVideoFeed(long sourceUserId, Date endTime);
+    List<VideoVO> findVideoFeed(long sourceUserId, Date endTime);
 
-    public Date findDateById(long videoId);
+    Date findDateById(long videoId);
 
-    public long findUserIdByVideoId(long videoId);
+    long findUserIdByVideoId(long videoId);
 
     //public List<Video> getVideoFeedByTime(Date time);
 

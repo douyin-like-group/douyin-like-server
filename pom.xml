@@ -74,12 +74,12 @@
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${mapper-spring-boot-starter.version}</version>
             </dependency>
-            <!--pagehelper -->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-spring-boot-starter.version}</version>
-            </dependency>
+<!--            &lt;!&ndash;pagehelper &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.github.pagehelper</groupId>-->
+<!--                <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--                <version>${pagehelper-spring-boot-starter.version}</version>-->
+<!--            </dependency>-->
 
             <!--<dependency>-->
             <!--<groupId>com.squareup.okhttp3</groupId>-->
@@ -135,17 +135,25 @@
                 <version>${joda-time.version}</version>
             </dependency>
 
-            <!-- knife4j 接口文档工具 -->
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>2.0.9</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-springdoc-ui</artifactId>
-                <version>3.0.3</version>
-            </dependency>
+<!--            &lt;!&ndash; 引入log4j日志依赖 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-log4j</artifactId>-->
+<!--                <version>1.3.8.RELEASE</version>-->
+<!--            </dependency>-->
+
+
+<!--            &lt;!&ndash; knife4j 接口文档工具 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.github.xiaoymin</groupId>-->
+<!--                <artifactId>knife4j-spring-boot-starter</artifactId>-->
+<!--                <version>2.0.9</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.github.xiaoymin</groupId>-->
+<!--                <artifactId>knife4j-springdoc-ui</artifactId>-->
+<!--                <version>3.0.3</version>-->
+<!--            </dependency>-->
 
             <!-- MinIO -->
             <dependency>

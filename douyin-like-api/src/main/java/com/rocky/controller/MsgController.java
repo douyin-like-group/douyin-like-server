@@ -61,7 +61,7 @@ public class MsgController extends BaseInfoProperties {
     @PostMapping("/action")
     @UserAuth
     public ResultVO saveMsg(@RequestParam String token, String to_user_id, String action_type, String content){
-//        log.info("/douyin/message/action 接口捕获");
+        log.info("/douyin/message/action 接口捕获");
         //demo
         ResultVO resultVO = new ResultVO();
         long from_user_id ;

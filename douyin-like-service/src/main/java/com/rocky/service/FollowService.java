@@ -12,7 +12,7 @@ public interface FollowService {
      * @param toUID
      * @return
      */
-    public ResultVO follow(long fromUID, long toUID);
+    ResultVO follow(long fromUID, long toUID);
 
     /**
      * 取关操作
@@ -20,42 +20,42 @@ public interface FollowService {
      * @param toUID
      * @return
      */
-    public ResultVO unFollow(long fromUID, long toUID);
+    ResultVO unFollow(long fromUID, long toUID);
 
     /**
      * 获取关注列表
      * @param uid
      * @return
      */
-    public ResultVO getFollowList(long uid);
+    ResultVO getFollowList(long uid);
 
     /**
      * 获取粉丝列表
      * @param uid
      * @return
      */
-    public ResultVO getFollowerList(long uid);
+    ResultVO getFollowerList(long uid);
 
     /**
      * 获取朋友列表
      * @param uid
      * @return
      */
-    public ResultVO getFriendList(long uid);
+    ResultVO getFriendList(long uid);
 
     /**
      * 获取用户关注用户的数量
      * @param uid
      * @return
      */
-    public long getFollowCount(long uid);
+    long getFollowCount(long uid);
 
     /**
      * 获取用户粉丝的数量
      * @param uid
      * @return
      */
-    public long getFollowerCount(long uid);
+    long getFollowerCount(long uid);
 
     /**
      * 判断fromId用户是否关注了toId用户
@@ -63,5 +63,5 @@ public interface FollowService {
      * @param toId
      * @return
      */
-    public boolean isFollow(long fromId, long  toId);
+    boolean isFollow(long fromId, long  toId);
 }

@@ -89,10 +89,6 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
     @Override
     public boolean doesUserLikeVideo(long uid, long vid) {
         Favorite favorite = favoriteMapper.selectFavoriteByUIDAndVID(uid, vid);
-        if (favorite == null || favorite.getFavoriteStatus() == 0) {
-            return false;
-        }else {
-            return true;
-        }
+        return favorite != null && favorite.getFavoriteStatus() != 0;
     }
 }

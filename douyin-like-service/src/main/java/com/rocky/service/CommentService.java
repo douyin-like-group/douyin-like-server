@@ -14,9 +14,9 @@ public interface CommentService {
     /**
      * 添加新的评论/
      */
-    public CommentVO queryComment(long sourceId, CommentBO commentBO);
+    CommentVO queryComment(long sourceId, CommentBO commentBO);
 
-    public List<CommentVO> getCommentList(long vid);
+    List<CommentVO> getCommentList(long vid);
 
-    public long getVideoCommentsCount(long vid);
+    long getVideoCommentsCount(long vid);
 }

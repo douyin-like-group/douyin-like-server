@@ -16,13 +16,7 @@
 CREATE DATABASE IF NOT EXISTS douyin;
 ALTER DATABASE douyin CHARACTER SET utf8mb4;
 USE douyin;
---DROP TABLE `users`;
---DROP TABLE `follow`;
---DROP TABLE `video`;
---DROP TABLE  `favorite`;
---DROP TABLE `message`;
---DROP TABLE `comment`;
-DROP TABLE IF EXISTS `users`;
+drop table if exists `users`;
 CREATE TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL COMMENT '用户名',

@@ -168,7 +168,7 @@ public class RedisOperator {
      * @return value
      */
     public String get(String key) {
-        return (String)redisTemplate.opsForValue().get(key);
+        return redisTemplate.opsForValue().get(key);
     }
 
     /**
@@ -270,7 +270,7 @@ public class RedisOperator {
      * @return 列表key的头元素。
      */
     public String lpop(String key) {
-        return (String)redisTemplate.opsForList().leftPop(key);
+        return redisTemplate.opsForList().leftPop(key);
     }
 
     /**

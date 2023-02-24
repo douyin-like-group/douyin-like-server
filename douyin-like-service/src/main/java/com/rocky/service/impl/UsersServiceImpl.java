@@ -11,6 +11,7 @@ import com.rocky.service.UsersService;
 
 
 import com.rocky.vo.UsersVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +27,7 @@ import java.util.UUID;
 
 
 @Service
+@Slf4j
 public class UsersServiceImpl extends BaseInfoProperties implements UsersService {
 
     @Autowired
@@ -91,6 +93,7 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     }
     @Override
     public ResultVO login(RegistLoginBO registLoginBO){
+        log.info("/douyin/user/login 接口捕获");
 
         Users user = findByEmail(registLoginBO.getEmail());
 

@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-// test for file upload
 @RequestMapping("/douyin/")
 @RestController
 @EnableAsync //允许异步
@@ -63,6 +62,8 @@ public class VideoController extends BaseInfoProperties {
     @GetMapping("feed")
     public ResultVO getVideoFeed(@RequestParam(required = false,value="latest_time") String latestTime,
                                                  @RequestParam(required = false,value="token") String token  )throws Exception{
+        log.info("/douyin/feed 接口捕获");
+
 
         String userId = redis.get(REDIS_USER_TOKEN+":"+token);
         long sourceUserId;
@@ -105,6 +106,8 @@ public class VideoController extends BaseInfoProperties {
             @RequestParam(value="token") String token,
             @RequestParam(value="user_id") String user_id
     )throws Exception{
+        log.info("/douyin/publish/list 接口捕获");
+
 
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
@@ -126,7 +129,8 @@ public class VideoController extends BaseInfoProperties {
 
                                    ) throws Exception {
 
-        log.info("访问发布视频接口");
+        log.info("/douyin/publish/action 接口捕获");
+
         String value = redis.get(REDIS_USER_TOKEN+":"+token);
 
         String contenType = data.getOriginalFilename().substring(data.getOriginalFilename().lastIndexOf("."));

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface VideoMapper extends MyMapper<Video> {
 
-    public List<Video> selectVideoFeedByTime(Date endTime);
+    List<Video> selectVideoFeedByTime(Date endTime);
 
 
 }

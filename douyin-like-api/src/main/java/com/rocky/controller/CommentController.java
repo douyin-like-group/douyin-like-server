@@ -7,6 +7,7 @@ import com.rocky.service.CommentService;
 import com.rocky.utils.UserAuth;
 import com.rocky.vo.CommentVO;
 import com.rocky.result.ResultVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @date: 2023-02-05 18:50
  */
 @RestController
+@Slf4j
 @RequestMapping("/douyin/comment")
 public class CommentController extends BaseInfoProperties {
 
@@ -32,6 +34,8 @@ public class CommentController extends BaseInfoProperties {
             @RequestParam(required = true, value = "action_type") String actionType,
             @RequestParam(required = false, value = "comment_text") String commentText,
             @RequestParam(required = false, value = "comment_id") String commentId) {
+        log.info("/douyin/comment/action 接口捕获");
+
 
         // 检查用户状态
         String userId = redis.get(REDIS_USER_TOKEN + ":" + token);
@@ -53,6 +57,8 @@ public class CommentController extends BaseInfoProperties {
 
     @GetMapping("/list")
     public ResultVO getCommentList( @RequestParam(required = true, value = "video_id") String vid) {
+        log.info("/douyin/message/list 接口捕获");
+
         List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(vid));
         ResultVO resultVO = new ResultVO();
         resultVO.setStatusCode(0);

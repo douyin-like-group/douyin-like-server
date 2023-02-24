@@ -34,6 +34,8 @@ public class FollowController extends BaseInfoProperties {
                            @RequestParam(name = "to_user_id") String toUserIDStr,
                            @RequestParam(name = "action_type") String actionTypeStr) {
          // 获取用户uid
+        log.info("/douyin/follow/action 接口捕获");
+
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         long fromUserID = Long.parseLong(fromUserIDStr);
         System.out.println("count = " + followService.getFollowCount(250));
@@ -54,7 +56,8 @@ public class FollowController extends BaseInfoProperties {
     @UserAuth
     public ResultVO getFollowList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
-        // 校验token
+        log.info("/douyin/follow/list 接口捕获");
+
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
 
         long userID = Long.parseLong(userIDStr);

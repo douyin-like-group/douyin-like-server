@@ -15,12 +15,12 @@
 
 	<dependencies>
 
-		<!-- 引入log4j日志依赖 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j</artifactId>
-			<version>1.3.8.RELEASE</version>
-		</dependency>
+<!--		&lt;!&ndash; 引入log4j日志依赖 &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-log4j</artifactId>-->
+<!--			<version>1.3.8.RELEASE</version>-->
+<!--		</dependency>-->
 
 		<!-- 阿里开源数据源 -->
 		<dependency>
@@ -52,12 +52,12 @@
 			<artifactId>mapper-spring-boot-starter</artifactId>
 			<version>1.2.4</version>
 		</dependency>
-		<!--pagehelper-->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.3</version>
-		</dependency>
+<!--		&lt;!&ndash;pagehelper&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.github.pagehelper</groupId>-->
+<!--			<artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--			<version>1.2.3</version>-->
+<!--		</dependency>-->
 
 		<!-- mybatis 逆向生成工具  -->
 		<dependency>

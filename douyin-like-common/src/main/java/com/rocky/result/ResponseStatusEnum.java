@@ -85,10 +85,10 @@ public enum ResponseStatusEnum {
 
 
 
-    private Integer status_code;
+    private final Integer status_code;
     // 调用是否成功
 
-    private String status_msg;
+    private final String status_msg;
 
     ResponseStatusEnum(Integer status_code, String status_msg) {
         this.status_code = status_code;

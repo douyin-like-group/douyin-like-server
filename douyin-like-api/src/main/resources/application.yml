@@ -53,9 +53,9 @@ mapper:
   identity: MYSQL
 
 # 分页插件助手的配置
-pagehelper:
-  helper-dialect: MYSQL
-  support-methods-arguments: true
+#pagehelper:
+#  helper-dialect: MYSQL
+#  support-methods-arguments: true
 
 # 日志级别
 logging:

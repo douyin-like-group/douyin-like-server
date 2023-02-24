@@ -22,6 +22,7 @@ public class FavoriteController extends BaseInfoProperties {
                            @RequestParam(name = "video_id") String videoIDStr,
                            @RequestParam(name = "action_type") String actionTypeStr) {
         ResultVO resultVO = null;
+        log.info("/douyin/favorite/action 接口捕获");
 
         // 获取用户uid
         String userIDStr = redis.get(REDIS_USER_TOKEN + ":" + token);
@@ -49,6 +50,8 @@ public class FavoriteController extends BaseInfoProperties {
     @UserAuth
     public ResultVO getFavoriteList(@RequestParam(name = "user_id") String userID,
                                     @RequestParam String token) {
+        log.info("/douyin/favorite/list/ 接口捕获");
+
         // 校验用户token
         String userIDStr = redis.get(REDIS_USER_TOKEN + ":" + token);
         return favoriteService.getlikeList(Long.parseLong(userID));
