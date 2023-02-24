@@ -34,11 +34,12 @@ public class FollowController extends BaseInfoProperties {
                            @RequestParam(name = "to_user_id") String toUserIDStr,
                            @RequestParam(name = "action_type") String actionTypeStr) {
          // 获取用户uid
-        log.info("/douyin/follow/action 接口捕获");
+
 
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         long fromUserID = Long.parseLong(fromUserIDStr);
-        System.out.println("count = " + followService.getFollowCount(250));
+//        System.out.println("count = " + followService.getFollowCount(250));
+        log.info("/douyin/follow/action 接口捕获");
 
         // 根据actionType的值执行关注或取关操作
         long toUserID = Long.parseLong(toUserIDStr);
@@ -69,7 +70,7 @@ public class FollowController extends BaseInfoProperties {
     @UserAuth
     public ResultVO getFollowerList(@RequestParam(name = "user_id") String userIDStr,
                                   @RequestParam String token) {
-        // 校验token
+
         log.info("/follower/list接口捕获");
         String fromUserIDStr = redis.get(REDIS_USER_TOKEN+":"+token);
         long userID = Long.parseLong(userIDStr);

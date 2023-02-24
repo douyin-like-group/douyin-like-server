@@ -34,6 +34,8 @@ public class CommentController extends BaseInfoProperties {
             @RequestParam(required = true, value = "action_type") String actionType,
             @RequestParam(required = false, value = "comment_text") String commentText,
             @RequestParam(required = false, value = "comment_id") String commentId) {
+
+
         log.info("/douyin/comment/action 接口捕获");
 
 
@@ -57,9 +59,10 @@ public class CommentController extends BaseInfoProperties {
 
     @GetMapping("/list")
     public ResultVO getCommentList( @RequestParam(required = true, value = "video_id") String vid) {
-        log.info("/douyin/message/list 接口捕获");
+
 
         List<CommentVO> commentList = commentService.getCommentList(Long.valueOf(vid));
+        log.info("/douyin/comment/list 接口捕获");
         ResultVO resultVO = new ResultVO();
         resultVO.setStatusCode(0);
         resultVO.setStatusMsg("获取评论列表成功" );

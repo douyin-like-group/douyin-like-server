@@ -36,7 +36,7 @@
       <console name="server43-13306" type="STANDARD" schema="mysql" session="Main" />
     </connection>
     <connection id="8b40e046-a95b-47c1-808e-c8d6d579aec7">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
