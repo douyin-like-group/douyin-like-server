@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.logging.Logger;
 
 
 @RestController
@@ -46,7 +47,6 @@ public class UserController extends BaseInfoProperties {
 
 
         log.info("/douyin/user/login 接口捕获");
-
 
         return usersService.login(new RegistLoginBO(email,password));
 

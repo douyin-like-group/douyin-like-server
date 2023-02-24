@@ -61,6 +61,7 @@ mapper:
 logging:
   level:
     root: info
+
 # MinIO 配置
 minio:
   endpoint: http://43.143.182.215:9000      # MinIO服务地址

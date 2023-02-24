@@ -27,6 +27,7 @@
       <module name="douyin-like-mapper" options="-parameters" />
       <module name="douyin-like-model" options="-parameters" />
       <module name="douyin-like-service" options="-parameters" />
+      <module name="mybatis-generator-mysql8" options="-parameters" />
     </option>
   </component>
 </project>
