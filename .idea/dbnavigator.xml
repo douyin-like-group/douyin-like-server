@@ -57,7 +57,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/douyin-like.sql" connection-id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" session-id="MAIN" current-schema="mysql" />
+    <mapping file-url="file://$PROJECT_DIR$/douyin-like.sql" connection-id="b72ae1ee-cb07-4886-9670-a342c3e2639f" session-id="MAIN" current-schema="mysql" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -86,7 +86,7 @@
     <connections>
       <connection id="f31472ab-351e-47b4-8bdd-c9e948b1f0f6" active="true" signed="true">
         <database>
-          <name value="server43" />
+          <name value="server43-3307" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -96,7 +96,7 @@
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="43.143.182.215" />
-          <port value="13308" />
+          <port value="3307" />
           <database value="mysql" />
           <type value="USER_PASSWORD" />
           <user value="root" />
@@ -200,10 +200,10 @@
           <key-passphrase value="" />
         </ssh-settings>
         <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
+          <active value="true" />
+          <certificate-authority-file value="C:\Users\14392\Desktop\cert\ca.pem" />
+          <client-certificate-file value="C:\Users\14392\Desktop\cert\client-cert.pem" />
+          <client-key-file value="C:\Users\14392\Desktop\cert\client-key.pem" />
         </ssl-settings>
         <details>
           <charset value="UTF-8" />
@@ -254,21 +254,21 @@
       </connection>
       <connection id="8b40e046-a95b-47c1-808e-c8d6d579aec7" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="server43-3308" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="8.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="localhost" />
-          <port value="3306" />
+          <host value="43.143.182.215" />
+          <port value="3308" />
           <database value="mysql" />
           <type value="USER_PASSWORD" />
-          <user value="" />
-          <deprecated-pwd value="" />
+          <user value="root" />
+          <deprecated-pwd value="MTIzNDU2" />
         </database>
         <properties>
           <auto-commit value="false" />
