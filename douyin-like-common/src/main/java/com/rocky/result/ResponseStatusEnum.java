@@ -71,10 +71,6 @@ public enum ResponseStatusEnum {
     ARTICLE_REVIEW_ERROR(585,   "文章审核出错！"),
     ARTICLE_ALREADY_READ_ERROR(586,   "文章重复阅读！"),
 
-    // 人脸识别错误代码
-    FACE_VERIFY_TYPE_ERROR(600,   "人脸比对验证类型不正确！"),
-    FACE_VERIFY_LOGIN_ERROR(601,   "人脸登录失败！"),
-
     // 系统错误，未预期的错误 555
     SYSTEM_ERROR(555,   "系统繁忙，请稍后再试！"),
     SYSTEM_OPERATION_ERROR(556,   "操作失败，请重试或联系管理员"),

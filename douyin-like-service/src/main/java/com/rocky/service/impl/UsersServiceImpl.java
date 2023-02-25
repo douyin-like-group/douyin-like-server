@@ -46,6 +46,8 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
     private FollowService followService;
 
 
+
+
     @Transactional
     @Override
     public Users createUser(RegistLoginBO registLoginBO) {
@@ -64,6 +66,9 @@ public class UsersServiceImpl extends BaseInfoProperties implements UsersService
         user.setUpdatedTime(new Date());
         usersMapper.insertAndGetId(user);
         //这里的主键已经赋值给user的id了，这里返回的id只是影响的行数，原始的方法不行
+        //这里数据库必须提前插入官方账户，新用户默认互相关注
+        followService.follow(1L, user.getId());
+        followService.follow(user.getId(), 1L);
         return user;
     }
 

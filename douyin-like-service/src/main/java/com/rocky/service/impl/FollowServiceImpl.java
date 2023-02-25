@@ -1,11 +1,15 @@
 package com.rocky.service.impl;
 
+import com.rocky.bo.MessageBO;
+import com.rocky.result.MessageEnum;
 import com.rocky.result.ResponseStatusEnum;
 import com.rocky.utils.BaseInfoProperties;
 import com.rocky.mapper.FollowMapper;
 import com.rocky.pojo.Follow;
 import com.rocky.service.FollowService;
 import com.rocky.service.UsersService;
+import com.rocky.utils.JsonUtils;
+import com.rocky.utils.RabbitMQConfig;
 import com.rocky.vo.FriendUserVO;
 import com.rocky.result.ResultVO;
 import com.rocky.vo.UsersVO;
@@ -57,24 +61,18 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
             followMapper.insert(follow);
         }
 //todo
-        // 系统消息：点赞短视频
-        Vlog vlog = this.getVlog(vlogId);
-        Map msgContent = new HashMap();
-        msgContent.put("vlogId", vlogId);
-        msgContent.put("vlogCover", vlog.getCover());
-//        msgService.createMsg(userId,
-//                            vlog.getVlogerId(),
-//                            MessageEnum.LIKE_VLOG.type,
-//                            msgContent);
+        // 系统消息：关注博主
+
         // MQ异步解耦
-        MessageMO messageMO = new MessageMO();
-        messageMO.setFromUserId(userId);
-        messageMO.setToUserId(vlog.getVlogerId());
-        messageMO.setMsgContent(msgContent);
+
+        //使用官方账户发送谁关注你了
+
+
+        MessageBO messageBO = new MessageBO(1L,toUID,"有人关注你了！",(byte)0);
         rabbitTemplate.convertAndSend(
                 RabbitMQConfig.EXCHANGE_MSG,
-                "sys.msg." + MessageEnum.LIKE_VLOG.enValue,
-                JsonUtils.objectToJson(messageMO));
+                "sys.msg." + MessageEnum.FOLLOW_YOU.enValue,
+                JsonUtils.objectToJson(messageBO));
 
         return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }

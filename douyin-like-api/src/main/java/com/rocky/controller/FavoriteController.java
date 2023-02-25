@@ -1,6 +1,7 @@
 package com.rocky.controller;
 
 import com.rocky.result.ResponseStatusEnum;
+import com.rocky.service.VideoService;
 import com.rocky.utils.BaseInfoProperties;
 import com.rocky.service.FavoriteService;
 import com.rocky.result.ResultVO;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class FavoriteController extends BaseInfoProperties {
     @Autowired
     private FavoriteService favoriteService;
+
+    @Autowired
+    private VideoService videoService;
 
     @Value("${nacos.counts}")
     private Integer nacosCounts;
@@ -42,13 +46,13 @@ public class FavoriteController extends BaseInfoProperties {
         // 点赞完毕，获得当前在redis中的总数
         // 比如获得总计数为 1k/1w/10w，假定阈值（配置）为2000
         // 此时1k满足2000，则触发入库
-        String countsStr = redis.get(REDIS_VLOG_BE_LIKED_COUNTS + ":" + vlogId);
-        log.info("======" + REDIS_VLOG_BE_LIKED_COUNTS + ":" + vlogId + "======");
+        String countsStr = redis.get(REDIS_VLOG_BE_LIKED_COUNTS + ":" + videoID);
+//        log.info("======" + REDIS_VLOG_BE_LIKED_COUNTS + ":" + videoID + "======");
         Integer counts = 0;
         if (StringUtils.isNotBlank(countsStr)) {
             counts = Integer.valueOf(countsStr);
             if (counts >= nacosCounts) {
-                vlogService.flushCounts(vlogId, counts);
+                videoService.flushCounts(videoID, counts);
             }
         }
 

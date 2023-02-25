@@ -39,6 +39,8 @@ CREATE TABLE `users` (
 -- Records of user
 -- ----------------------------
 
+--INSERT `users` (1,"抖声官方账户",);
+
 -- 不懂以下的
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;

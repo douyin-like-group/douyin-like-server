@@ -1,10 +1,9 @@
-package com.rocky;
+package com.rocky.utils;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.ExchangeBuilder;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,8 +39,6 @@ import org.springframework.context.annotation.Bean;* 根据模型编写代码：
     }
 
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 
 @Bean
     public Binding binding(@Qualifier(EXCHANGE_MSG) Exchange exchange,

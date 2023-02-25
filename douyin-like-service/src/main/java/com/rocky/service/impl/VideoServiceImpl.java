@@ -12,6 +12,7 @@ import com.rocky.vo.UsersVO;
 import com.rocky.vo.VideoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
@@ -111,5 +112,11 @@ public class VideoServiceImpl extends BaseInfoProperties implements VideoService
         Video video = videoMapper.selectByPrimaryKey(videoId);
 
         return video.getUid();
+    }
+
+    @Transactional
+    @Override
+    public void flushCounts(long videoID, Integer counts) {
+        videoMapper.updateFavoriteCounts(videoID,counts);
     }
 }

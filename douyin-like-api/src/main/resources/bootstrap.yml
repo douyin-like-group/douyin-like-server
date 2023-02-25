@@ -1,6 +1,6 @@
 spring:
   application:
-    name: douyin-like-server-nacos
+    name: douyin-like-server
   cloud:
     nacos:
       config:

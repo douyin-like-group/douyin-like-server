@@ -93,16 +93,6 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
         return favorite != null && favorite.getFavoriteStatus() != 0;
     }
 
-    @Transactional
-    @Override
-    public void flushCounts(String vlogId, Integer counts) {
 
-        Vlog vlog = new Vlog();
-        vlog.setId(vlogId);
-        vlog.setLikeCounts(counts);
-
-        vlogMapper.updateByPrimaryKeySelective(vlog);
-
-    }
 
 }

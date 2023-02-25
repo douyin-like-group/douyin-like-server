@@ -12,5 +12,7 @@ public interface VideoMapper extends MyMapper<Video> {
 
     List<Video> selectVideoFeedByTime(Date endTime);
 
+    Void updateFavoriteCounts(long videoID, Integer counts);
+
 
 }
