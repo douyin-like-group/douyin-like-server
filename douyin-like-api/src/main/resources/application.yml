@@ -36,8 +36,29 @@ spring:
       max-file-size: -1     # 文件上传大小限制，设置最大值，不能超过该值，否则报错
 #      max-file-size: 500KB      # 文件上传大小限制，设置最大值，不能超过该值，否则报错
       max-request-size: -1     # 文件最大请求限制，用于批量上传
+  rabbitmq:
+    host: 192.168.1.204
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: imooc-red-book
+#counts: 100
+#  application:
+#    name: douyin-like-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 43.143.182.215:8848   # nacos 所在的地址
+# 打开监控
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
 
-
+pagehelper:
+  helper-dialect: MYSQL
+  support-methods-arguments: true
 
 # 整合mybatis
 mybatis:

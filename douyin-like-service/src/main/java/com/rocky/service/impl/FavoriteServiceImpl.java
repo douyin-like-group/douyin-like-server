@@ -11,6 +11,7 @@ import com.rocky.vo.VideoVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,4 +92,17 @@ public class FavoriteServiceImpl extends BaseInfoProperties implements FavoriteS
         Favorite favorite = favoriteMapper.selectFavoriteByUIDAndVID(uid, vid);
         return favorite != null && favorite.getFavoriteStatus() != 0;
     }
+
+    @Transactional
+    @Override
+    public void flushCounts(String vlogId, Integer counts) {
+
+        Vlog vlog = new Vlog();
+        vlog.setId(vlogId);
+        vlog.setLikeCounts(counts);
+
+        vlogMapper.updateByPrimaryKeySelective(vlog);
+
+    }
+
 }

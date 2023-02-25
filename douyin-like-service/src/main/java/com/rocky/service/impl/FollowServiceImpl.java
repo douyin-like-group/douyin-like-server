@@ -9,12 +9,12 @@ import com.rocky.service.UsersService;
 import com.rocky.vo.FriendUserVO;
 import com.rocky.result.ResultVO;
 import com.rocky.vo.UsersVO;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -24,6 +24,9 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    public RabbitTemplate rabbitTemplate;
 
     @Override
     public ResultVO follow(long fromUID, long toUID) {
@@ -53,6 +56,25 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
 
             followMapper.insert(follow);
         }
+//todo
+        // 系统消息：点赞短视频
+        Vlog vlog = this.getVlog(vlogId);
+        Map msgContent = new HashMap();
+        msgContent.put("vlogId", vlogId);
+        msgContent.put("vlogCover", vlog.getCover());
+//        msgService.createMsg(userId,
+//                            vlog.getVlogerId(),
+//                            MessageEnum.LIKE_VLOG.type,
+//                            msgContent);
+        // MQ异步解耦
+        MessageMO messageMO = new MessageMO();
+        messageMO.setFromUserId(userId);
+        messageMO.setToUserId(vlog.getVlogerId());
+        messageMO.setMsgContent(msgContent);
+        rabbitTemplate.convertAndSend(
+                RabbitMQConfig.EXCHANGE_MSG,
+                "sys.msg." + MessageEnum.LIKE_VLOG.enValue,
+                JsonUtils.objectToJson(messageMO));
 
         return ResultVO.ok(ResponseStatusEnum.SUCCESS);
     }
@@ -150,5 +172,8 @@ public class FollowServiceImpl extends BaseInfoProperties implements FollowServi
         Follow result = followList.get(0);
         return result.getFollowStatus() != (byte) 0;
     }
+
+
+
 
 }

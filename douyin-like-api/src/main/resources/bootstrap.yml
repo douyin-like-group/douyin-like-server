@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: douyin-like-server-nacos
+  cloud:
+    nacos:
+      config:
+        server-addr: 43.143.182.215:8848   # nacos 所在的地址
+        file-extension: yaml
+# 先于application配置
